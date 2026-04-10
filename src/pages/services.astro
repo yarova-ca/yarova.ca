@@ -1,0 +1,150 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`Services — ${SITE_TITLE}`} description="Platform engineering consulting, DevOps coaching, and AI automation services." />
+    <style>
+      .page {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+      .page h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      .page .lead {
+        font-size: 1.15rem;
+        color: #555;
+        margin-bottom: 2rem;
+      }
+      .offering {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+      }
+      .offering h2 {
+        margin-top: 0;
+        font-size: 1.3rem;
+      }
+      .offering .price {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #111;
+        margin: 0.5rem 0;
+      }
+      .offering ul {
+        padding-left: 1.2rem;
+        color: #444;
+      }
+      .offering ul li {
+        margin-bottom: 0.4rem;
+      }
+      .cta-btn {
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        background: #111;
+        color: #fff;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 700;
+        margin-top: 1rem;
+      }
+      .newsletter {
+        background: #f7f7f7;
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        margin-top: 2rem;
+      }
+      .newsletter h2 {
+        margin-top: 0;
+      }
+      .newsletter input[type="email"] {
+        padding: 0.6rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        width: 260px;
+        max-width: 80%;
+      }
+      .newsletter button {
+        padding: 0.6rem 1.2rem;
+        background: #111;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        margin-left: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="page">
+        <h1>Services</h1>
+        <p class="lead">
+          I help teams build, scale, and automate their infrastructure.
+          From Kubernetes architecture to AI-powered DevOps workflows.
+        </p>
+
+        <div class="offering">
+          <h2>Platform Engineering Consulting</h2>
+          <p class="price">$200/hr CAD</p>
+          <ul>
+            <li>Kubernetes & OpenShift architecture reviews</li>
+            <li>Helm chart design and migration</li>
+            <li>CI/CD pipeline optimization (GitHub Actions, ArgoCD, Tekton)</li>
+            <li>Multi-cluster strategy and namespace design</li>
+            <li>Production readiness assessments</li>
+          </ul>
+          <a href="mailto:rohith@yarova.ca?subject=Consulting Inquiry" class="cta-btn">Get in Touch</a>
+        </div>
+
+        <div class="offering">
+          <h2>DevOps Coaching (1:1)</h2>
+          <p class="price">$150/hr CAD</p>
+          <ul>
+            <li>Career path to Staff/Principal/Distinguished Engineer</li>
+            <li>System design interview prep</li>
+            <li>Building your own AI-powered DevOps workflow</li>
+            <li>Resume and LinkedIn profile review for senior roles</li>
+          </ul>
+          <a href="mailto:rohith@yarova.ca?subject=Coaching Inquiry" class="cta-btn">Book a Session</a>
+        </div>
+
+        <div class="offering">
+          <h2>AI Automation Setup</h2>
+          <p class="price">Project-based (starts at $2,000 CAD)</p>
+          <ul>
+            <li>Claude Code + MCP server integration for your team</li>
+            <li>Custom memory systems (like Cortex) for your workflows</li>
+            <li>Playbook development for your operational procedures</li>
+            <li>AI-assisted incident response and runbook automation</li>
+          </ul>
+          <a href="mailto:rohith@yarova.ca?subject=AI Automation Project" class="cta-btn">Let's Talk</a>
+        </div>
+
+        <div class="newsletter">
+          <h2>The Infrastructure Newsletter</h2>
+          <p>Weekly insights on platform engineering, DevOps, and AI automation. No spam, unsubscribe anytime.</p>
+          <form action="#" method="post">
+            <input type="email" name="email" placeholder="your@email.com" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

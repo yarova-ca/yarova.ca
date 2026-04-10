@@ -1,0 +1,167 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      .hero {
+        text-align: center;
+        padding: 4rem 1rem 2rem;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .hero .subtitle {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+      .cta-row {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+      .cta-btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+      .cta-primary {
+        background: #111;
+        color: #fff;
+      }
+      .cta-secondary {
+        border: 2px solid #111;
+        color: #111;
+      }
+      .sections {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      .section {
+        margin-bottom: 3rem;
+      }
+      .section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 0.5rem;
+      }
+      .post-list {
+        list-style: none;
+        padding: 0;
+      }
+      .post-list li {
+        margin-bottom: 1rem;
+      }
+      .post-list a {
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: #111;
+      }
+      .post-list a:hover {
+        text-decoration: underline;
+      }
+      .post-date {
+        color: #888;
+        font-size: 0.9rem;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+      }
+      .service-card {
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 1.5rem;
+      }
+      .service-card h3 {
+        margin-top: 0;
+        font-size: 1.1rem;
+      }
+      .service-card p {
+        color: #555;
+        font-size: 0.95rem;
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="hero">
+        <h1>Rohith Yadla</h1>
+        <p class="subtitle">
+          Platform Engineer. I build infrastructure that scales, automate what slows teams down,
+          and write about the systems behind modern software delivery.
+        </p>
+        <div class="cta-row">
+          <a href="/blog" class="cta-btn cta-primary">Read the Blog</a>
+          <a href="/services" class="cta-btn cta-secondary">Work With Me</a>
+        </div>
+      </div>
+
+      <div class="sections">
+        <div class="section">
+          <h2>Latest Posts</h2>
+          <ul class="post-list">
+            {posts.slice(0, 5).map((post) => (
+              <li>
+                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+                <span class="post-date">
+                  {' '}&mdash;{' '}
+                  {post.data.pubDate.toLocaleDateString('en-us', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>What I Do</h2>
+          <div class="services-grid">
+            <div class="service-card">
+              <h3>Platform Engineering</h3>
+              <p>OpenShift, Kubernetes, Helm, Terraform. Production-grade infrastructure for teams that ship.</p>
+            </div>
+            <div class="service-card">
+              <h3>DevOps Consulting</h3>
+              <p>CI/CD pipelines, GitOps, observability, incident response. Reduce your deploy friction.</p>
+            </div>
+            <div class="service-card">
+              <h3>AI Automation</h3>
+              <p>Custom AI workflows, MCP integrations, Claude-powered tooling. Compound your team's output.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
