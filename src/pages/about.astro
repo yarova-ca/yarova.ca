@@ -8,7 +8,7 @@ import { SITE_TITLE } from '../consts';
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={`About — ${SITE_TITLE}`} description="Rohith Yadla is a platform engineer building infrastructure at scale for the BC Government. Creator of Cortex." />
+    <BaseHead title={`About — ${SITE_TITLE}`} description="Yarova is a platform engineering company founded by Rohith Yadla. We make enterprise infrastructure as reliable as it is invisible." />
   </head>
   <body>
     <Header />
@@ -16,69 +16,86 @@ import { SITE_TITLE } from '../consts';
       <article class="about">
         <div class="about-inner">
           <header class="about-header">
-            <h1>About</h1>
+            <h1>About Yarova</h1>
           </header>
 
           <div class="about-content">
             <section>
               <p class="intro">
-                I'm Rohith Yadla, a platform engineer based in British Columbia, Canada. I build and operate the infrastructure that teams depend on to ship software. My work sits at the intersection of Kubernetes, automation, and developer experience.
+                Yarova is a platform engineering company founded with a simple thesis: infrastructure should accelerate your team, not slow it down. We design, build, and automate the systems that modern software depends on.
               </p>
             </section>
 
             <section>
-              <h2>What I do</h2>
+              <h2>Our mission</h2>
               <p>
-                I design and manage container platforms on OpenShift and Kubernetes. I build CI/CD pipelines, configure GitOps workflows, set up observability stacks, and generally make sure that developers can deploy with confidence and ops teams can sleep at night.
-              </p>
-              <p>
-                Recently, I've been deep in AI-assisted operations. Using Claude Code, MCP servers, and custom memory systems to build tooling that makes infrastructure work faster and more reliable.
+                Make enterprise infrastructure as reliable as it is invisible. When the platform works, teams ship faster, incidents drop, and engineers focus on the problems that matter. That is the outcome we optimize for.
               </p>
             </section>
 
             <section>
-              <h2>Career highlights</h2>
-              <ul class="highlights">
-                <li>Platform Engineer at the BC Government, supporting critical public services</li>
-                <li>14 production applications running across 3 OpenShift clusters (Silver, Gold, Emerald)</li>
-                <li>Built and maintained Helm charts, Tekton pipelines, and ArgoCD deployments at scale</li>
-                <li>Designed multi-cluster namespace strategies and production readiness frameworks</li>
-                <li>Early adopter of AI-powered DevOps workflows with Claude Code and MCP</li>
-              </ul>
+              <h2>Our values</h2>
+              <div class="values-grid">
+                <div class="value">
+                  <h3>Precise</h3>
+                  <p>We measure twice and cut once. Infrastructure work demands accuracy, and we bring disciplined attention to every configuration, pipeline, and deployment.</p>
+                </div>
+                <div class="value">
+                  <h3>Generous</h3>
+                  <p>We share what we learn. Through our blog, open-source contributions, and transparent consulting, we believe the best infrastructure knowledge should be accessible.</p>
+                </div>
+                <div class="value">
+                  <h3>Grounded</h3>
+                  <p>We stay close to the real work. No hand-waving architecture decks. We operate production systems and our recommendations come from lived experience.</p>
+                </div>
+                <div class="value">
+                  <h3>Crafted</h3>
+                  <p>We care about the details. Clean Helm charts, well-structured pipelines, thoughtful naming, clear documentation. Quality is not optional.</p>
+                </div>
+                <div class="value">
+                  <h3>Human</h3>
+                  <p>Technology serves people. We build systems that respect the humans who operate them -- clear error messages, sane defaults, and interfaces that reduce cognitive load.</p>
+                </div>
+              </div>
             </section>
 
             <section>
-              <h2>The Cortex story</h2>
-              <p>
-                Cortex is my personal knowledge system -- a structured memory layer that sits behind my AI tooling. It tracks decisions, architecture patterns, operational playbooks, and context across every project I work on.
-              </p>
-              <p>
-                The idea is simple: infrastructure work generates enormous amounts of context. Cortex captures that context and makes it available exactly when it's needed. It's how I maintain clarity across clusters, namespaces, and dozens of applications without losing signal in the noise.
-              </p>
-              <p>
-                I'm building Cortex in the open and writing about it on this blog.
-              </p>
+              <h2>The team</h2>
+              <div class="team-member">
+                <div class="team-info">
+                  <h3>Rohith Yadla</h3>
+                  <p class="team-role">Founder &amp; Principal Engineer</p>
+                  <p>
+                    Rohith is a platform engineer based in British Columbia, Canada. He designs and operates container platforms on OpenShift and Kubernetes for critical public services. His work spans CI/CD pipelines, GitOps workflows, observability, and multi-cluster operations at scale.
+                  </p>
+                  <p>
+                    Before founding Yarova, Rohith built and maintained infrastructure supporting 14 production applications across multiple OpenShift clusters for the BC Government. He is an early adopter of AI-powered DevOps workflows and the creator of Cortex.
+                  </p>
+                  <div class="team-links">
+                    <a href="https://github.com/AceYarova" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/rohithyadla" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://twitter.com/AceYarova" target="_blank" rel="noopener noreferrer">Twitter</a>
+                  </div>
+                </div>
+              </div>
             </section>
 
             <section>
-              <h2>Why Yarova</h2>
+              <h2>Powered by Cortex</h2>
               <p>
-                Yarova is the name behind my consulting and writing practice. It exists because I believe the best infrastructure knowledge shouldn't be locked inside one organization. The problems teams face with Kubernetes, CI/CD, and platform engineering are universal. The solutions should be shared.
+                Cortex is our internal AI knowledge system -- a structured memory layer that captures infrastructure decisions, architecture patterns, and operational context across every engagement. It gives us the ability to maintain deep context across clusters, namespaces, and dozens of applications without losing signal in the noise.
               </p>
               <p>
-                Through Yarova, I offer consulting, coaching, and AI automation services to teams that want to level up their infrastructure game. If that sounds like your team, <a href="/services">take a look at what I offer</a> or <a href="mailto:rohith@yarova.ca">send me an email</a>.
+                This is not just tooling we recommend to clients. It is the system we use every day to deliver faster, more reliable results. When you work with Yarova, you benefit from the compound intelligence that Cortex provides.
               </p>
             </section>
 
             <section class="connect">
-              <h2>Connect</h2>
-              <ul class="social-list">
-                <li><a href="https://github.com/AceYarova" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                <li><a href="https://linkedin.com/in/rohithyadla" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                <li><a href="https://twitter.com/AceYarova" target="_blank" rel="noopener noreferrer">Twitter / X</a></li>
-                <li><a href="https://bsky.app/profile/yarova.ca" target="_blank" rel="noopener noreferrer">Bluesky</a></li>
-                <li><a href="mailto:rohith@yarova.ca">rohith@yarova.ca</a></li>
-              </ul>
+              <h2>Get in touch</h2>
+              <p>
+                Interested in working together? We would love to hear about your infrastructure challenges.
+              </p>
+              <a href="mailto:hello@yarova.ca" class="btn btn-primary btn-lg">hello@yarova.ca</a>
             </section>
           </div>
         </div>
@@ -143,44 +160,71 @@ import { SITE_TITLE } from '../consts';
     color: var(--color-amber-hover);
   }
 
-  .highlights {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  /* Values */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-6);
   }
 
-  .highlights li {
-    position: relative;
-    padding-left: var(--space-6);
-    margin-bottom: var(--space-3);
+  .value {
+    padding: var(--space-6);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+  }
+
+  .value h3 {
     font-size: var(--text-base);
-    color: var(--text-secondary);
+    font-weight: 600;
+    color: var(--color-amber);
+    margin-bottom: var(--space-3);
+  }
+
+  .value p {
+    font-size: var(--text-sm);
+    margin: 0;
     line-height: var(--leading-normal);
   }
 
-  .highlights li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 10px;
-    width: 6px;
-    height: 6px;
-    border-radius: var(--radius-full);
-    background: var(--color-amber);
+  /* Team */
+  .team-member {
+    margin-top: var(--space-6);
   }
 
-  .social-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .team-info h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-1);
+    color: var(--text-primary);
+  }
+
+  .team-role {
+    font-size: var(--text-sm) !important;
+    color: var(--color-amber) !important;
+    font-weight: 500;
+    margin-bottom: var(--space-5) !important;
+  }
+
+  .team-links {
     display: flex;
-    flex-wrap: wrap;
     gap: var(--space-6);
+    margin-top: var(--space-2);
   }
 
-  .social-list a {
+  .team-links a {
     font-size: var(--text-sm);
     font-weight: 500;
+  }
+
+  /* Connect */
+  .connect {
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border-color);
+  }
+
+  .connect .btn {
+    text-decoration: none;
+    margin-top: var(--space-2);
   }
 
   @media (max-width: 640px) {
@@ -190,6 +234,10 @@ import { SITE_TITLE } from '../consts';
 
     .about-header h1 {
       font-size: var(--text-3xl);
+    }
+
+    .values-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

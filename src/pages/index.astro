@@ -21,22 +21,66 @@ const posts = (await getCollection('blog')).sort(
       <!-- Hero -->
       <section class="hero">
         <div class="hero-inner">
-          <h1>Rohith Yadla</h1>
+          <p class="hero-label">Yarova</p>
+          <h1>Platform engineering that scales.<br />AI automation that compounds.</h1>
           <p class="tagline">
-            Platform Engineer. Building infrastructure that scales, writing about the systems behind modern software delivery.
+            We help teams build, operate, and automate modern infrastructure.
           </p>
           <div class="cta-row">
-            <a href="/blog" class="btn btn-primary btn-lg">Read the Blog</a>
-            <a href="/services" class="btn btn-secondary btn-lg">Work With Me</a>
+            <a href="/services" class="btn btn-primary btn-lg">Work With Us</a>
+            <a href="/blog" class="btn btn-secondary btn-lg">Read the Blog</a>
           </div>
         </div>
       </section>
 
-      <!-- Latest Posts -->
+      <!-- Product / Service Areas -->
+      <section class="section">
+        <div class="section-inner">
+          <h2>What we do</h2>
+          <div class="services-grid">
+            <div class="service-card card">
+              <div class="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <h3>Platform Engineering</h3>
+              <p>Kubernetes, OpenShift, Helm, and Terraform architecture and operations. Production-grade infrastructure for teams that ship fast and sleep well.</p>
+            </div>
+            <div class="service-card card">
+              <div class="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <h3>AI-Native DevOps</h3>
+              <p>Custom AI workflows, memory systems, and automated runbooks. Compound your team's output with intelligent automation that learns.</p>
+            </div>
+            <div class="service-card card">
+              <div class="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+              <h3>Training &amp; Content</h3>
+              <p>Courses, workshops, and an engineering blog for platform teams. Level up your infrastructure practice with hands-on, real-world content.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trusted By -->
+      <section class="section trusted-section">
+        <div class="section-inner">
+          <p class="trusted-label">Trusted by engineering teams building at scale</p>
+          <div class="trusted-logos">
+            <span class="logo-placeholder"></span>
+            <span class="logo-placeholder"></span>
+            <span class="logo-placeholder"></span>
+            <span class="logo-placeholder"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- From the Blog -->
       <section class="section">
         <div class="section-inner">
           <div class="section-header">
-            <h2>Latest Posts</h2>
+            <h2>From the Blog</h2>
             <a href="/blog" class="view-all">View all</a>
           </div>
           <div class="posts-grid">
@@ -58,42 +102,12 @@ const posts = (await getCollection('blog')).sort(
         </div>
       </section>
 
-      <!-- What I Do -->
-      <section class="section">
-        <div class="section-inner">
-          <h2>What I Do</h2>
-          <div class="services-grid">
-            <div class="service-card card">
-              <div class="service-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              </div>
-              <h3>Platform Engineering</h3>
-              <p>OpenShift, Kubernetes, Helm, Terraform. Production-grade infrastructure for teams that ship fast and sleep well.</p>
-            </div>
-            <div class="service-card card">
-              <div class="service-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              </div>
-              <h3>DevOps Consulting</h3>
-              <p>CI/CD pipelines, GitOps, observability, incident response. Reduce deploy friction and build confidence in every release.</p>
-            </div>
-            <div class="service-card card">
-              <div class="service-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-              </div>
-              <h3>AI Automation</h3>
-              <p>Custom AI workflows, MCP integrations, Claude-powered tooling. Compound your team's output with intelligent automation.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- Newsletter -->
       <section class="section">
         <div class="section-inner">
           <div class="newsletter-card">
-            <h2>Stay in the loop</h2>
-            <p>Occasional posts on platform engineering, DevOps practices, and AI automation. No spam.</p>
+            <h2>The Infrastructure Newsletter</h2>
+            <p>Weekly insights for platform engineers. DevOps practices, AI automation, and infrastructure patterns from the field.</p>
             <form class="newsletter-form" action="#" method="post">
               <input type="email" name="email" placeholder="your@email.com" required />
               <button type="submit" class="btn btn-primary">Subscribe</button>
@@ -120,15 +134,26 @@ const posts = (await getCollection('blog')).sort(
   }
 
   .hero-inner {
-    max-width: var(--content-width);
+    max-width: var(--page-width);
     margin: 0 auto;
+  }
+
+  .hero-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    margin-bottom: var(--space-5);
   }
 
   .hero h1 {
     font-size: var(--text-5xl);
     font-weight: 700;
     letter-spacing: -0.03em;
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-5);
+    line-height: var(--leading-tight);
+    max-width: 720px;
   }
 
   .tagline {
@@ -180,6 +205,38 @@ const posts = (await getCollection('blog')).sort(
 
   .view-all:hover {
     color: var(--text-primary);
+  }
+
+  /* Trusted By */
+  .trusted-section .section-inner {
+    padding: var(--space-8) 0;
+    text-align: center;
+  }
+
+  .trusted-label {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    margin-bottom: var(--space-8);
+  }
+
+  .trusted-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-12);
+    flex-wrap: wrap;
+  }
+
+  .logo-placeholder {
+    display: block;
+    width: 120px;
+    height: 40px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    opacity: 0.5;
   }
 
   /* Post Cards */
@@ -317,6 +374,10 @@ const posts = (await getCollection('blog')).sort(
 
     .newsletter-card {
       padding: var(--space-8) var(--space-6);
+    }
+
+    .trusted-logos {
+      gap: var(--space-6);
     }
   }
 </style>

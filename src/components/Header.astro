@@ -6,9 +6,10 @@ import HeaderLink from './HeaderLink.astro';
   <nav>
     <a href="/" class="logo">YAROVA</a>
     <div class="nav-links">
-      <HeaderLink href="/blog">Blog</HeaderLink>
       <HeaderLink href="/services">Services</HeaderLink>
+      <HeaderLink href="/blog">Blog</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
+      <a href="mailto:hello@yarova.ca" class="nav-contact">Contact</a>
     </div>
   </nav>
 </header>
@@ -60,6 +61,18 @@ import HeaderLink from './HeaderLink.astro';
 
   .nav-links :global(a:hover),
   .nav-links :global(a.active) {
+    color: var(--text-primary);
+  }
+
+  .nav-contact {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    padding: var(--space-2) 0;
+  }
+
+  .nav-contact:hover {
     color: var(--text-primary);
   }
 

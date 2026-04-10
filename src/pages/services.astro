@@ -8,7 +8,7 @@ import { SITE_TITLE } from '../consts';
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={`Services — ${SITE_TITLE}`} description="Platform engineering consulting, DevOps coaching, and AI automation services." />
+    <BaseHead title={`Services — ${SITE_TITLE}`} description="Platform engineering consulting, AI automation projects, and engineering training from Yarova." />
   </head>
   <body>
     <Header />
@@ -17,7 +17,7 @@ import { SITE_TITLE } from '../consts';
         <div class="page-inner">
           <h1>Services</h1>
           <p class="lead">
-            I help teams build, scale, and automate their infrastructure. From Kubernetes architecture to AI-powered DevOps workflows.
+            We help teams build, scale, and automate their infrastructure. From Kubernetes architecture to AI-powered operations workflows.
           </p>
         </div>
       </section>
@@ -25,65 +25,102 @@ import { SITE_TITLE } from '../consts';
       <section class="offerings">
         <div class="page-inner">
           <div class="offerings-grid">
-            <!-- Platform Engineering -->
+            <!-- Platform Engineering Consulting -->
             <div class="offering card">
               <div class="offering-header">
                 <h2>Platform Engineering Consulting</h2>
                 <div class="price">$200/hr <span class="price-unit">CAD</span></div>
               </div>
+              <p class="offering-desc">Architecture, operations, and incident response for teams running container platforms at scale.</p>
+              <h4 class="deliverables-label">Deliverables</h4>
               <ul>
-                <li>Kubernetes and OpenShift architecture reviews</li>
-                <li>Helm chart design and migration</li>
+                <li>Platform architecture review with written recommendations and action plan</li>
+                <li>Kubernetes and OpenShift cluster design, namespace strategy, and RBAC policies</li>
+                <li>Helm chart authoring, migration, and best-practice templates</li>
                 <li>CI/CD pipeline optimization (GitHub Actions, ArgoCD, Tekton)</li>
-                <li>Multi-cluster strategy and namespace design</li>
-                <li>Production readiness assessments</li>
+                <li>GitOps workflow design and implementation</li>
+                <li>Production readiness assessment with prioritized remediation roadmap</li>
+                <li>Incident response support and post-mortem facilitation</li>
               </ul>
-              <a href="mailto:rohith@yarova.ca?subject=Consulting Inquiry" class="btn btn-primary">Get in Touch</a>
-            </div>
-
-            <!-- DevOps Coaching -->
-            <div class="offering card">
-              <div class="offering-header">
-                <h2>DevOps Coaching</h2>
-                <div class="price">$150/hr <span class="price-unit">CAD</span></div>
-              </div>
-              <ul>
-                <li>Career path to Staff / Principal / Distinguished Engineer</li>
-                <li>System design interview preparation</li>
-                <li>Building your own AI-powered DevOps workflow</li>
-                <li>Resume and LinkedIn review for senior roles</li>
-              </ul>
-              <a href="mailto:rohith@yarova.ca?subject=Coaching Inquiry" class="btn btn-primary">Book a Session</a>
+              <a href="mailto:hello@yarova.ca?subject=Consulting Inquiry" class="btn btn-primary">Get in Touch</a>
             </div>
 
             <!-- AI Automation -->
             <div class="offering card">
               <div class="offering-header">
-                <h2>AI Automation Projects</h2>
-                <div class="price">from $2,000 <span class="price-unit">CAD</span></div>
+                <h2>AI Automation</h2>
+                <div class="price">from $2,000 <span class="price-unit">CAD / project</span></div>
               </div>
+              <p class="offering-desc">Custom AI workflows and memory systems that compound your team's operational capacity.</p>
+              <h4 class="deliverables-label">Deliverables</h4>
               <ul>
-                <li>Claude Code + MCP server integration for your team</li>
-                <li>Custom memory systems (like Cortex) for your workflows</li>
-                <li>Playbook development for operational procedures</li>
-                <li>AI-assisted incident response and runbook automation</li>
+                <li>Custom Claude Code and MCP server integration for your engineering team</li>
+                <li>AI memory systems (like Cortex) tailored to your infrastructure context</li>
+                <li>Automated runbook generation from operational playbooks</li>
+                <li>AI-assisted incident response workflows</li>
+                <li>Operational procedure documentation with AI-powered search</li>
+                <li>Training session for your team on using AI tooling effectively</li>
               </ul>
-              <a href="mailto:rohith@yarova.ca?subject=AI Automation Project" class="btn btn-primary">Start a Project</a>
+              <a href="mailto:hello@yarova.ca?subject=AI Automation Project" class="btn btn-primary">Start a Project</a>
+            </div>
+
+            <!-- Training -->
+            <div class="offering card">
+              <div class="offering-header">
+                <h2>Training &amp; Workshops</h2>
+                <div class="price">Coming soon</div>
+              </div>
+              <p class="offering-desc">Hands-on workshops and courses for engineering teams that want to level up their infrastructure practice.</p>
+              <h4 class="deliverables-label">What to expect</h4>
+              <ul>
+                <li>Kubernetes fundamentals and advanced operations workshops</li>
+                <li>Platform engineering best practices for growing teams</li>
+                <li>AI-powered DevOps workflow training</li>
+                <li>Custom curriculum tailored to your team's stack and goals</li>
+                <li>Ongoing engineering blog with real-world patterns and tutorials</li>
+              </ul>
+              <a href="mailto:hello@yarova.ca?subject=Training Interest" class="btn btn-secondary">Join the Waitlist</a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Newsletter -->
-      <section class="newsletter-section">
+      <!-- How We Work -->
+      <section class="process-section">
         <div class="page-inner">
-          <div class="newsletter-card">
-            <h2>The Infrastructure Newsletter</h2>
-            <p>Weekly insights on platform engineering, DevOps, and AI automation. No spam, unsubscribe anytime.</p>
-            <form class="newsletter-form" action="#" method="post">
-              <input type="email" name="email" placeholder="your@email.com" required />
-              <button type="submit" class="btn btn-primary">Subscribe</button>
-            </form>
+          <h2>How we work</h2>
+          <div class="process-grid">
+            <div class="process-step">
+              <div class="step-number">01</div>
+              <h3>Discovery</h3>
+              <p>We start by understanding your current infrastructure, pain points, and goals. A focused conversation to map the landscape.</p>
+            </div>
+            <div class="process-step">
+              <div class="step-number">02</div>
+              <h3>Architecture</h3>
+              <p>We design a solution that fits your team's size, stack, and constraints. Clear diagrams, written recommendations, no black boxes.</p>
+            </div>
+            <div class="process-step">
+              <div class="step-number">03</div>
+              <h3>Implementation</h3>
+              <p>We build alongside your team. Helm charts, pipelines, automation scripts, AI integrations -- whatever the project requires.</p>
+            </div>
+            <div class="process-step">
+              <div class="step-number">04</div>
+              <h3>Support</h3>
+              <p>We stay available after handoff. Questions, incident support, and iteration as your platform evolves.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <div class="page-inner">
+          <div class="cta-card">
+            <h2>Ready to work together?</h2>
+            <p>Tell us about your infrastructure challenges. We typically respond within one business day.</p>
+            <a href="mailto:hello@yarova.ca" class="btn btn-primary btn-lg">hello@yarova.ca</a>
           </div>
         </div>
       </section>
@@ -141,7 +178,7 @@ import { SITE_TITLE } from '../consts';
   }
 
   .offering-header {
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-4);
   }
 
   .offering h2 {
@@ -159,6 +196,22 @@ import { SITE_TITLE } from '../consts';
     font-size: var(--text-sm);
     font-weight: 400;
     color: var(--text-tertiary);
+  }
+
+  .offering-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-6);
+  }
+
+  .deliverables-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-4);
   }
 
   .offering ul {
@@ -192,12 +245,51 @@ import { SITE_TITLE } from '../consts';
     align-self: flex-start;
   }
 
-  /* Newsletter */
-  .newsletter-section {
+  /* Process */
+  .process-section {
+    padding: var(--space-16) 0;
+  }
+
+  .process-section h2 {
+    margin-bottom: var(--space-10);
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .process-step {
+    padding: 0;
+  }
+
+  .step-number {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-amber);
+    font-family: var(--font-mono);
+    margin-bottom: var(--space-4);
+  }
+
+  .process-step h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-3);
+  }
+
+  .process-step p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-normal);
+    margin: 0;
+  }
+
+  /* CTA */
+  .cta-section {
     padding: var(--space-6) 0;
   }
 
-  .newsletter-card {
+  .cta-card {
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
     padding: var(--space-12) var(--space-8);
@@ -206,26 +298,14 @@ import { SITE_TITLE } from '../consts';
     margin: 0 auto;
   }
 
-  .newsletter-card h2 {
+  .cta-card h2 {
     margin-bottom: var(--space-3);
   }
 
-  .newsletter-card > p {
+  .cta-card > p {
     font-size: var(--text-sm);
     color: var(--text-secondary);
     margin-bottom: var(--space-8);
-  }
-
-  .newsletter-form {
-    display: flex;
-    gap: var(--space-3);
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .newsletter-form input {
-    width: 260px;
-    max-width: 100%;
   }
 
   @media (max-width: 640px) {
@@ -241,7 +321,11 @@ import { SITE_TITLE } from '../consts';
       grid-template-columns: 1fr;
     }
 
-    .newsletter-card {
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-card {
       padding: var(--space-8) var(--space-6);
     }
   }
