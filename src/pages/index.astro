@@ -14,154 +14,309 @@ const posts = (await getCollection('blog')).sort(
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      .hero {
-        text-align: center;
-        padding: 4rem 1rem 2rem;
-        max-width: 720px;
-        margin: 0 auto;
-      }
-      .hero h1 {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-      }
-      .hero .subtitle {
-        font-size: 1.2rem;
-        color: #666;
-        margin-bottom: 2rem;
-        line-height: 1.6;
-      }
-      .cta-row {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-bottom: 3rem;
-      }
-      .cta-btn {
-        display: inline-block;
-        padding: 0.75rem 1.5rem;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1rem;
-      }
-      .cta-primary {
-        background: #111;
-        color: #fff;
-      }
-      .cta-secondary {
-        border: 2px solid #111;
-        color: #111;
-      }
-      .sections {
-        max-width: 720px;
-        margin: 0 auto;
-        padding: 0 1rem;
-      }
-      .section {
-        margin-bottom: 3rem;
-      }
-      .section h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 0.5rem;
-      }
-      .post-list {
-        list-style: none;
-        padding: 0;
-      }
-      .post-list li {
-        margin-bottom: 1rem;
-      }
-      .post-list a {
-        font-size: 1.1rem;
-        font-weight: 600;
-        text-decoration: none;
-        color: #111;
-      }
-      .post-list a:hover {
-        text-decoration: underline;
-      }
-      .post-date {
-        color: #888;
-        font-size: 0.9rem;
-      }
-      .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-      }
-      .service-card {
-        border: 1px solid #eee;
-        border-radius: 8px;
-        padding: 1.5rem;
-      }
-      .service-card h3 {
-        margin-top: 0;
-        font-size: 1.1rem;
-      }
-      .service-card p {
-        color: #555;
-        font-size: 0.95rem;
-      }
-    </style>
   </head>
   <body>
     <Header />
     <main>
-      <div class="hero">
-        <h1>Rohith Yadla</h1>
-        <p class="subtitle">
-          Platform Engineer. I build infrastructure that scales, automate what slows teams down,
-          and write about the systems behind modern software delivery.
-        </p>
-        <div class="cta-row">
-          <a href="/blog" class="cta-btn cta-primary">Read the Blog</a>
-          <a href="/services" class="cta-btn cta-secondary">Work With Me</a>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-inner">
+          <h1>Rohith Yadla</h1>
+          <p class="tagline">
+            Platform Engineer. Building infrastructure that scales, writing about the systems behind modern software delivery.
+          </p>
+          <div class="cta-row">
+            <a href="/blog" class="btn btn-primary btn-lg">Read the Blog</a>
+            <a href="/services" class="btn btn-secondary btn-lg">Work With Me</a>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div class="sections">
-        <div class="section">
-          <h2>Latest Posts</h2>
-          <ul class="post-list">
-            {posts.slice(0, 5).map((post) => (
-              <li>
-                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-                <span class="post-date">
-                  {' '}&mdash;{' '}
+      <!-- Latest Posts -->
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-header">
+            <h2>Latest Posts</h2>
+            <a href="/blog" class="view-all">View all</a>
+          </div>
+          <div class="posts-grid">
+            {posts.slice(0, 3).map((post) => (
+              <a href={`/blog/${post.id}/`} class="post-card card">
+                <time class="post-date" datetime={post.data.pubDate.toISOString()}>
                   {post.data.pubDate.toLocaleDateString('en-us', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
                   })}
-                </span>
-              </li>
+                </time>
+                <h3 class="post-title">{post.data.title}</h3>
+                <p class="post-excerpt">{post.data.description}</p>
+                <span class="post-link">Read more</span>
+              </a>
             ))}
-          </ul>
+          </div>
         </div>
+      </section>
 
-        <div class="section">
+      <!-- What I Do -->
+      <section class="section">
+        <div class="section-inner">
           <h2>What I Do</h2>
           <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card card">
+              <div class="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
               <h3>Platform Engineering</h3>
-              <p>OpenShift, Kubernetes, Helm, Terraform. Production-grade infrastructure for teams that ship.</p>
+              <p>OpenShift, Kubernetes, Helm, Terraform. Production-grade infrastructure for teams that ship fast and sleep well.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card card">
+              <div class="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
               <h3>DevOps Consulting</h3>
-              <p>CI/CD pipelines, GitOps, observability, incident response. Reduce your deploy friction.</p>
+              <p>CI/CD pipelines, GitOps, observability, incident response. Reduce deploy friction and build confidence in every release.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card card">
+              <div class="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
               <h3>AI Automation</h3>
-              <p>Custom AI workflows, MCP integrations, Claude-powered tooling. Compound your team's output.</p>
+              <p>Custom AI workflows, MCP integrations, Claude-powered tooling. Compound your team's output with intelligent automation.</p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section class="section">
+        <div class="section-inner">
+          <div class="newsletter-card">
+            <h2>Stay in the loop</h2>
+            <p>Occasional posts on platform engineering, DevOps practices, and AI automation. No spam.</p>
+            <form class="newsletter-form" action="#" method="post">
+              <input type="email" name="email" placeholder="your@email.com" required />
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
     <Footer />
   </body>
 </html>
+
+<style>
+  main {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Hero */
+  .hero {
+    padding: var(--space-24) var(--space-6) var(--space-20);
+  }
+
+  .hero-inner {
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: var(--text-5xl);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-4);
+  }
+
+  .tagline {
+    font-size: var(--text-xl);
+    color: var(--text-secondary);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-10);
+    max-width: 560px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  /* Sections */
+  .section {
+    padding: var(--space-6);
+  }
+
+  .section-inner {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: var(--space-12) 0;
+  }
+
+  .section-inner h2 {
+    margin-bottom: var(--space-8);
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-8);
+  }
+
+  .section-header h2 {
+    margin-bottom: 0;
+  }
+
+  .view-all {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .view-all:hover {
+    color: var(--text-primary);
+  }
+
+  /* Post Cards */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-card:hover {
+    color: inherit;
+  }
+
+  .post-date {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    margin-bottom: var(--space-3);
+  }
+
+  .post-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+    line-height: var(--leading-tight);
+  }
+
+  .post-excerpt {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    flex: 1;
+    margin-bottom: var(--space-4);
+    line-height: var(--leading-normal);
+  }
+
+  .post-link {
+    font-size: var(--text-sm);
+    color: var(--color-amber);
+    font-weight: 500;
+  }
+
+  .post-card:hover .post-link {
+    color: var(--color-amber-hover);
+  }
+
+  /* Services Grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-icon {
+    color: var(--color-amber);
+    margin-bottom: var(--space-5);
+  }
+
+  .service-card h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-3);
+  }
+
+  .service-card p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-normal);
+    margin: 0;
+  }
+
+  /* Newsletter */
+  .newsletter-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-12) var(--space-8);
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .newsletter-card h2 {
+    margin-bottom: var(--space-3);
+  }
+
+  .newsletter-card > p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-8);
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .newsletter-form input {
+    width: 260px;
+    max-width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: var(--space-16) var(--space-4) var(--space-12);
+    }
+
+    .hero h1 {
+      font-size: var(--text-3xl);
+    }
+
+    .tagline {
+      font-size: var(--text-lg);
+    }
+
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .newsletter-card {
+      padding: var(--space-8) var(--space-6);
+    }
+  }
+</style>

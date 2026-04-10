@@ -1,63 +1,195 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`About — ${SITE_TITLE}`} description="Rohith Yadla is a platform engineer building infrastructure at scale for the BC Government. Creator of Cortex." />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <article class="about">
+        <div class="about-inner">
+          <header class="about-header">
+            <h1>About</h1>
+          </header>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+          <div class="about-content">
+            <section>
+              <p class="intro">
+                I'm Rohith Yadla, a platform engineer based in British Columbia, Canada. I build and operate the infrastructure that teams depend on to ship software. My work sits at the intersection of Kubernetes, automation, and developer experience.
+              </p>
+            </section>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+            <section>
+              <h2>What I do</h2>
+              <p>
+                I design and manage container platforms on OpenShift and Kubernetes. I build CI/CD pipelines, configure GitOps workflows, set up observability stacks, and generally make sure that developers can deploy with confidence and ops teams can sleep at night.
+              </p>
+              <p>
+                Recently, I've been deep in AI-assisted operations. Using Claude Code, MCP servers, and custom memory systems to build tooling that makes infrastructure work faster and more reliable.
+              </p>
+            </section>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+            <section>
+              <h2>Career highlights</h2>
+              <ul class="highlights">
+                <li>Platform Engineer at the BC Government, supporting critical public services</li>
+                <li>14 production applications running across 3 OpenShift clusters (Silver, Gold, Emerald)</li>
+                <li>Built and maintained Helm charts, Tekton pipelines, and ArgoCD deployments at scale</li>
+                <li>Designed multi-cluster namespace strategies and production readiness frameworks</li>
+                <li>Early adopter of AI-powered DevOps workflows with Claude Code and MCP</li>
+              </ul>
+            </section>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+            <section>
+              <h2>The Cortex story</h2>
+              <p>
+                Cortex is my personal knowledge system -- a structured memory layer that sits behind my AI tooling. It tracks decisions, architecture patterns, operational playbooks, and context across every project I work on.
+              </p>
+              <p>
+                The idea is simple: infrastructure work generates enormous amounts of context. Cortex captures that context and makes it available exactly when it's needed. It's how I maintain clarity across clusters, namespaces, and dozens of applications without losing signal in the noise.
+              </p>
+              <p>
+                I'm building Cortex in the open and writing about it on this blog.
+              </p>
+            </section>
+
+            <section>
+              <h2>Why Yarova</h2>
+              <p>
+                Yarova is the name behind my consulting and writing practice. It exists because I believe the best infrastructure knowledge shouldn't be locked inside one organization. The problems teams face with Kubernetes, CI/CD, and platform engineering are universal. The solutions should be shared.
+              </p>
+              <p>
+                Through Yarova, I offer consulting, coaching, and AI automation services to teams that want to level up their infrastructure game. If that sounds like your team, <a href="/services">take a look at what I offer</a> or <a href="mailto:rohith@yarova.ca">send me an email</a>.
+              </p>
+            </section>
+
+            <section class="connect">
+              <h2>Connect</h2>
+              <ul class="social-list">
+                <li><a href="https://github.com/AceYarova" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                <li><a href="https://linkedin.com/in/rohithyadla" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                <li><a href="https://twitter.com/AceYarova" target="_blank" rel="noopener noreferrer">Twitter / X</a></li>
+                <li><a href="https://bsky.app/profile/yarova.ca" target="_blank" rel="noopener noreferrer">Bluesky</a></li>
+                <li><a href="mailto:rohith@yarova.ca">rohith@yarova.ca</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  main {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .about-inner {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+  }
+
+  .about-header {
+    padding: var(--space-20) 0 var(--space-8);
+  }
+
+  .about-header h1 {
+    font-size: var(--text-4xl);
+    letter-spacing: -0.03em;
+  }
+
+  .about-content section {
+    margin-bottom: var(--space-12);
+  }
+
+  .about-content h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-5);
+  }
+
+  .about-content p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-5);
+  }
+
+  .intro {
+    font-size: var(--text-lg) !important;
+    color: var(--text-primary) !important;
+    line-height: var(--leading-relaxed);
+  }
+
+  .about-content a {
+    color: var(--color-amber);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .about-content a:hover {
+    color: var(--color-amber-hover);
+  }
+
+  .highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .highlights li {
+    position: relative;
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-3);
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-normal);
+  }
+
+  .highlights li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--color-amber);
+  }
+
+  .social-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+  }
+
+  .social-list a {
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+
+  @media (max-width: 640px) {
+    .about-header {
+      padding: var(--space-12) 0 var(--space-6);
+    }
+
+    .about-header h1 {
+      font-size: var(--text-3xl);
+    }
+  }
+</style>
