@@ -6,6 +6,7 @@ import HeaderLink from './HeaderLink.astro';
   <nav>
     <a href="/" class="logo">YAROVA</a>
     <div class="nav-links">
+      <a href="https://operator.yarova.ca" class="nav-product">Operator</a>
       <HeaderLink href="/services">Services</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
@@ -74,6 +75,22 @@ import HeaderLink from './HeaderLink.astro';
 
   .nav-contact:hover {
     color: var(--text-primary);
+  }
+
+  .nav-product {
+    font-size: var(--text-sm);
+    color: var(--color-amber);
+    text-decoration: none;
+    font-weight: 600;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-amber);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+  }
+
+  .nav-product:hover {
+    background: var(--color-amber);
+    color: #fff;
   }
 
   @media (max-width: 640px) {
