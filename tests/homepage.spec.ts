@@ -19,9 +19,9 @@ test.describe('Homepage — structure', () => {
     await expect(page.locator('.cadence')).toContainText('Monthly cohorts');
   });
 
-  test('hero CTA links to #schedule', async ({ page }) => {
-    const href = await page.locator('.s-hero .btn-primary').getAttribute('href');
-    expect(href).toBe('#schedule');
+  test('hero CTA opens cal.com (data-cal-link set)', async ({ page }) => {
+    const calLink = await page.locator('.s-hero [data-cal-link]').getAttribute('data-cal-link');
+    expect(calLink).toBe('yarova-fxqeea/discovery-call');
   });
 
   test('trust strip shows 3 company anchors', async ({ page }) => {
@@ -190,9 +190,9 @@ test.describe('Homepage — header and footer', () => {
     expect(href).toBe('/');
   });
 
-  test('header CTA links to #schedule', async ({ page }) => {
-    const href = await page.locator('header .btn-primary').getAttribute('href');
-    expect(href).toBe('#schedule');
+  test('header CTA opens cal.com (data-cal-link set)', async ({ page }) => {
+    const calLink = await page.locator('header [data-cal-link]').getAttribute('data-cal-link');
+    expect(calLink).toBe('yarova-fxqeea/discovery-call');
   });
 
   test('footer has new tagline', async ({ page }) => {
@@ -238,10 +238,10 @@ test.describe('Mobile — sticky CTA', () => {
     await expect(page.locator('#sticky-cta')).not.toHaveClass(/visible/);
   });
 
-  test('sticky CTA links to #schedule', async ({ page }) => {
+  test('sticky CTA opens cal.com (data-cal-link set)', async ({ page }) => {
     await page.goto('/');
-    const href = await page.locator('.sticky-cta-link').getAttribute('href');
-    expect(href).toBe('#schedule');
+    const calLink = await page.locator('.sticky-cta-link').getAttribute('data-cal-link');
+    expect(calLink).toBe('yarova-fxqeea/discovery-call');
   });
 });
 

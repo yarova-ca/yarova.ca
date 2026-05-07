@@ -17,7 +17,12 @@ import FounderPhoto from '../assets/blog-placeholder-about.jpg'; /* TODO: Replac
 
     <!-- Sticky bottom CTA — mobile only, appears after 50% scroll -->
     <div id="sticky-cta" class="sticky-cta" aria-hidden="true">
-      <a href="#schedule" class="sticky-cta-link">Schedule a fit call &rarr;</a>
+      <button type="button"
+        data-cal-link="yarova-fxqeea/discovery-call"
+        data-cal-origin="https://cal.com"
+        class="sticky-cta-link">
+        Schedule a fit call &rarr;
+      </button>
       <button id="sticky-dismiss" class="sticky-dismiss" aria-label="Dismiss">&times;</button>
     </div>
 
@@ -54,7 +59,12 @@ import FounderPhoto from '../assets/blog-placeholder-about.jpg'; /* TODO: Replac
             Or you haven't gotten interviews at all.<br />
             The problem is depth — and that's exactly what we fix.
           </p>
-          <a href="#schedule" class="btn btn-primary btn-lg">Schedule a fit call</a>
+          <button type="button"
+            data-cal-link="yarova-fxqeea/discovery-call"
+            data-cal-origin="https://cal.com"
+            class="btn btn-primary btn-lg">
+            Schedule a fit call
+          </button>
           <p class="cadence">Monthly cohorts &middot; 40 seats &middot; Applications close end of month</p>
         </div>
       </section>
@@ -515,7 +525,12 @@ import FounderPhoto from '../assets/blog-placeholder-about.jpg'; /* TODO: Replac
               <span class="price-value">$1,500 CAD</span>
             </div>
             <p class="pricing-terms">6 months access &middot; support until offer</p>
-            <a href="mailto:hello@yarova.ca" class="btn btn-primary btn-lg">Reserve your seat</a>
+            <button type="button"
+              data-cal-link="yarova-fxqeea/discovery-call"
+              data-cal-origin="https://cal.com"
+              class="btn btn-primary btn-lg">
+              Reserve your seat
+            </button>
             <p class="pricing-guarantee">Complete the program and don&rsquo;t feel ready &mdash; rejoin the next cohort free.</p>
           </div>
 
@@ -615,8 +630,14 @@ import FounderPhoto from '../assets/blog-placeholder-about.jpg'; /* TODO: Replac
             About a third of applicants get a yes. The rest get a clear path forward.</p>
             <p class="final-cadence">Monthly cohorts &middot; 40 seats &middot; Applications close end of month</p>
             <div class="final-cta-buttons">
-              <a href="mailto:hello@yarova.ca" class="btn btn-primary btn-lg">Schedule a fit call</a>
-              <a href="mailto:hello@yarova.ca" class="btn btn-secondary btn-lg">Contact via email</a>
+              <button type="button"
+                data-cal-link="yarova-fxqeea/discovery-call"
+                data-cal-origin="https://cal.com"
+                class="btn btn-primary btn-lg">
+                Schedule a fit call
+              </button>
+              <a href="https://wa.me/16047197918" class="btn btn-secondary btn-lg" target="_blank" rel="noopener noreferrer">WhatsApp Business</a>
+              <a href="mailto:support@yarova.ca" class="btn btn-secondary btn-lg">Email support</a>
             </div>
           </div>
 
@@ -687,6 +708,13 @@ import FounderPhoto from '../assets/blog-placeholder-about.jpg'; /* TODO: Replac
 
         sections.forEach(s => observer.observe(s));
       }
+    </script>
+
+    <!-- Cal.com embed — popup on all data-cal-link buttons -->
+    <script type="text/javascript" is:inline>
+    (function(C,A,L){let p=function(a,ar){a.q.push(ar);};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true;}if(ar[0]===L){const api=function(){p(api,arguments);};const namespace=ar[1];api.q=api.q||[];typeof namespace==="string"?(cal.ns[namespace]=api)&&p(api,ar):p(cal,ar);return;}p(cal,ar);};})(window,"https://app.cal.com/embed/embed.js","init");
+    Cal("init",{origin:"https://cal.com"});
+    Cal("ui",{"theme":"light","styles":{"branding":{"brandColor":"#B45309"}},"hideEventTypeDetails":false,"layout":"month_view"});
     </script>
   </body>
 </html>
@@ -1509,18 +1537,20 @@ import FounderPhoto from '../assets/blog-placeholder-about.jpg'; /* TODO: Replac
     flex: 1;
     display: block;
     text-align: center;
-    background: var(--color-amber);
+    background: var(--color-amber-hover);
     color: #fff;
+    font-family: var(--font-sans);
     font-size: var(--text-sm);
     font-weight: 600;
     padding: var(--space-3) var(--space-5);
     border-radius: var(--radius-md);
-    text-decoration: none;
+    border: none;
+    cursor: pointer;
     transition: background var(--transition-fast);
   }
 
   .sticky-cta-link:hover {
-    background: var(--color-amber-hover);
+    background: #92400E;
     color: #fff;
   }
 
