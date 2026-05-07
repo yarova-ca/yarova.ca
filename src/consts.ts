@@ -1,5 +1,5 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = 'Yarova — Platform Engineering & AI Automation';
-export const SITE_DESCRIPTION = 'Yarova helps teams build, operate, and automate modern infrastructure. Platform engineering consulting, AI-native DevOps, and engineering training.';
+export const SITE_TITLE = 'Yarova — IT Placement Consultancy for the AI Era';
+export const SITE_DESCRIPTION = 'Yarova is an IT placement consultancy. We get you into DevOps, SRE, and Platform Engineering roles in Canada — with real depth, real GitHub artifacts, and real interview readiness.';

@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Playwright test run artifacts (not source)
+test-results/
+playwright-report/
+
+# Lighthouse generated reports (regenerated on demand)
+tests/lighthouse-report.json
+tests/lighthouse-report.html

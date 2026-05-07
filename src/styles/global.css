@@ -271,14 +271,15 @@ pre > code {
 }
 
 .btn-primary {
-  background: var(--color-amber);
+  /* #B45309 gives 4.95:1 contrast against white — WCAG AA compliant */
+  background: var(--color-amber-hover);
   color: #FFFFFF;
-  border-color: var(--color-amber);
+  border-color: var(--color-amber-hover);
 }
 
 .btn-primary:hover {
-  background: var(--color-amber-hover);
-  border-color: var(--color-amber-hover);
+  background: #92400E;
+  border-color: #92400E;
   color: #FFFFFF;
 }
 
