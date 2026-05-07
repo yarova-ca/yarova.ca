@@ -18,7 +18,7 @@
     "lighthouse": "lighthouse http://localhost:4321 --output html --output-path tests/lighthouse-report.html --chrome-flags=\"--headless\" --quiet"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/mdx": "^5.0.4",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "astro": "^6.1.5",
