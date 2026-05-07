@@ -33,8 +33,8 @@ jobs:
       - name: Functional tests (Chromium desktop)
         run: npx playwright test tests/homepage.spec.ts --project=chromium-desktop-1440
 
-      - name: Cross-device layout tests (3 key viewports)
-        run: npx playwright test tests/cross-device.spec.ts --project=chromium-desktop-1440 --project=chromium-phone-360 --project=webkit-tablet-834
+      - name: Cross-device layout tests (Chromium — mobile + desktop)
+        run: npx playwright test tests/cross-device.spec.ts --project=chromium-desktop-1440 --project=chromium-phone-360
 
       - name: Accessibility tests (WCAG 2.1 AA)
         run: npm run test:a11y

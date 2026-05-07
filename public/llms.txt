@@ -1,0 +1,45 @@
+# Yarova
+
+> An IT placement consultancy for the AI era. We get people into DevOps, SRE, and Platform Engineering roles in Canada.
+
+Yarova is a placement consultancy — not a bootcamp, not a course platform.
+
+The program builds real GitHub artifacts: 33 executed tickets across 8 phases, 3 repositories (viro-services, viro-tooling, viro-infra), and a resume rebuilt around proof.
+
+Founder: Rohith Yadla — Solutions Architect with 10 years of production consulting experience across Morgan Stanley, Salesforce, and the BC Government.
+
+## What Yarova does
+
+- Structured 8-phase program — foundations through interview readiness
+- 33 tickets executed and committed to GitHub by the participant
+- Live group sessions, async coaching, mock interviews, resume rebuild
+- Support until the participant has an offer — no time cap
+- One-time $1,500 CAD — rejoin free if program is completed without landing a role
+
+## Who it is for
+
+- People already in Canada who need a structured path to DevOps/SRE interviews
+- Newcomers arriving within 6–12 months or on shrinking PGWP authorization
+- Career switchers targeting DevOps or SRE specifically
+- IT professionals (junior, sysadmin, QA) going senior
+
+## Roles targeted
+
+- DevOps Engineer (Junior–Mid): $75,000–$110,000 CAD
+- Site Reliability Engineer I–II: $90,000–$130,000 CAD
+- Site Reliability Engineer III / Senior: $130,000–$170,000 CAD
+- Platform Engineer: $110,000–$155,000 CAD
+- Cloud Engineer / Cloud Architect Assoc.: $95,000–$140,000 CAD
+
+## Contact
+
+- Discovery call: https://cal.com/yarova-fxqeea/discovery-call
+- WhatsApp Business: https://wa.me/16047197918
+- Email: support@yarova.ca
+- Location: Langley, British Columbia, Canada
+
+## Optional
+
+- [Full site](https://yarova.ca)
+- [Blog](https://yarova.ca/blog)
+- [About Rohith Yadla](https://yarova.ca/about)
