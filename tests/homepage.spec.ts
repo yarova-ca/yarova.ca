@@ -24,16 +24,32 @@ test.describe('Homepage — core sections', () => {
     await expect(page.locator('#hero .hero-meta .cell')).toHaveCount(4);
   });
 
-  test('hero shows 91% placement stat', async ({ page }) => {
-    await expect(page.locator('#hero .hero-meta')).toContainText('Placed within 6 months');
+  test('hero meta shows program fee label', async ({ page }) => {
+    await expect(page.locator('#hero .hero-meta')).toContainText('Program fee');
+    await expect(page.locator('#hero .hero-meta')).toContainText('Monthly cohorts');
+  });
+
+  test('hero uses enrolled language not graduates', async ({ page }) => {
+    const text = await page.locator('#hero').textContent();
+    expect(text).toContain('engineers enrolled');
+    expect(text).not.toContain('all graduates');
   });
 
   test('authority strip has 4 stats', async ({ page }) => {
     await expect(page.locator('.authority .cell')).toHaveCount(4);
   });
 
+  test('authority strip shows 23 cohorts', async ({ page }) => {
+    await expect(page.locator('.authority')).toContainText('June 2026');
+  });
+
   test('anchor pricing strip has 4 columns', async ({ page }) => {
     await expect(page.locator('.anchor-strip .col')).toHaveCount(4);
+  });
+
+  test('anchor pricing strip has placement agency column', async ({ page }) => {
+    await expect(page.locator('.anchor-strip')).toContainText('Placement agency');
+    expect(await page.locator('.anchor-strip').textContent()).not.toContain('CS degree');
   });
 
   test('Yarova column is highlighted in anchor strip', async ({ page }) => {
@@ -41,12 +57,10 @@ test.describe('Homepage — core sections', () => {
     await expect(page.locator('.anchor-strip .col.us')).toContainText('$1,500');
   });
 
-  test('ensure section has 3 promise cards', async ({ page }) => {
+  test('ensure section has 3 cards with new headings', async ({ page }) => {
     await expect(page.locator('.ensure-card')).toHaveCount(3);
-  });
-
-  test('cost box shows $96,000', async ({ page }) => {
-    await expect(page.locator('.cost-box')).toContainText('$96,000');
+    await expect(page.locator('.ensure-card').nth(0)).toContainText('visual tool');
+    await expect(page.locator('.ensure-card').nth(1)).toContainText('tickets');
   });
 
   test('request path has 7 nodes', async ({ page }) => {
@@ -57,60 +71,77 @@ test.describe('Homepage — core sections', () => {
     await expect(page.locator('.layer-row')).toHaveCount(12);
   });
 
-  test('track record table has 8 data rows', async ({ page }) => {
-    await expect(page.locator('.track-table tbody tr')).toHaveCount(8);
+  test('track record shows twenty-three cohorts heading', async ({ page }) => {
+    await expect(page.locator('#track h2')).toContainText('Twenty-three');
+    await expect(page.locator('#track h2')).toContainText('Three hundred and seventy');
   });
 
-  test('cohort progress bar exists', async ({ page }) => {
-    await expect(page.locator('.cohort-bar')).toBeVisible();
-    await expect(page.locator('.cohort-bar .seats')).toContainText('3 remaining');
+  test('track record table has 23 cohort rows plus COVID pause row', async ({ page }) => {
+    await expect(page.locator('.track-table tbody tr:not(.covid-pause)')).toHaveCount(23);
+    await expect(page.locator('.track-table .covid-pause')).toHaveCount(1);
+  });
+
+  test('cohort bar shows June 2026', async ({ page }) => {
+    await expect(page.locator('.cohort-bar')).toContainText('June 2026');
+    await expect(page.locator('.cohort-bar .seats')).toContainText('1 remaining');
   });
 
   test('testimonials grid has 6 cards', async ({ page }) => {
     await expect(page.locator('.testi')).toHaveCount(6);
   });
 
-  test('curriculum has 8 phases', async ({ page }) => {
-    await expect(page.locator('.phase-row')).toHaveCount(8);
+  test('journey section exists with 3 main stages and 3 parallel stages', async ({ page }) => {
+    await expect(page.locator('#journey')).toBeAttached();
+    await expect(page.locator('.jstage')).toHaveCount(6);
   });
 
-  test('risk reversal section exists with guarantee text', async ({ page }) => {
-    await expect(page.locator('.risk h2')).toContainText('until');
-    await expect(page.locator('.risk h2')).toContainText('an offer');
-    await expect(page.locator('.seal')).toContainText('Re-enroll free');
+  test('journey heading is correct', async ({ page }) => {
+    await expect(page.locator('#journey h2')).toContainText('Three tracks running in parallel');
   });
 
-  test('compare matrix has Yarova column', async ({ page }) => {
-    await expect(page.locator('.matrix th.us')).toContainText('Yarova');
+  test('compare matrix has placement agency column not CS degree', async ({ page }) => {
+    await expect(page.locator('.matrix')).toContainText('Placement agency');
+    expect(await page.locator('.matrix').textContent()).not.toContain('CS degree');
+  });
+
+  test('compare matrix has 8 rows', async ({ page }) => {
     await expect(page.locator('.matrix tbody tr')).toHaveCount(8);
   });
 
-  test('pricing shows $1,500 CAD', async ({ page }) => {
+  test('pricing shows $1,500 CAD and June 2026', async ({ page }) => {
     await expect(page.locator('.price-card .price')).toContainText('$1,500');
     await expect(page.locator('.price-card .price .ccy')).toContainText('CAD');
+    await expect(page.locator('.price-card .label')).toContainText('June 2026');
   });
 
   test('included list has 10 items', async ({ page }) => {
     await expect(page.locator('.price-list ul').first().locator('li')).toHaveCount(10);
   });
 
-  test('excluded list has 3 items', async ({ page }) => {
-    await expect(page.locator('.price-list ul').last().locator('li.no')).toHaveCount(3);
+  test('not-included list has 4 items', async ({ page }) => {
+    await expect(page.locator('.price-list ul').last().locator('li.no')).toHaveCount(4);
   });
 
-  test('FAQ has 8 questions', async ({ page }) => {
+  test('FAQ has 8 questions with new heading', async ({ page }) => {
     await expect(page.locator('.faq details')).toHaveCount(8);
+    await expect(page.locator('#faq h2')).toContainText('before committing');
   });
 
   test('first FAQ is open by default', async ({ page }) => {
     await expect(page.locator('.faq details[open]')).toHaveCount(1);
   });
 
-  test('clicking a closed FAQ opens it', async ({ page }) => {
+  test('FAQ glyph shows minus when open', async ({ page }) => {
+    const firstDetails = page.locator('.faq details').first();
+    await expect(firstDetails.locator('.glyph')).toContainText('−');
+  });
+
+  test('clicking a closed FAQ opens it and shows minus glyph', async ({ page }) => {
     const second = page.locator('.faq details').nth(1);
     await expect(second).not.toHaveAttribute('open');
     await second.locator('summary').click();
     await expect(second).toHaveAttribute('open', '');
+    await expect(second.locator('.glyph')).toContainText('−');
   });
 
   test('final CTA section heading exists', async ({ page }) => {
@@ -125,6 +156,11 @@ test.describe('Homepage — core sections', () => {
   test('twin lane section has 2 lanes', async ({ page }) => {
     await expect(page.locator('.cta-final .twin .lane')).toHaveCount(2);
   });
+
+  test('no autoplay video or audio', async ({ page }) => {
+    const count = await page.locator('[autoplay]').count();
+    expect(count).toBe(0);
+  });
 });
 
 test.describe('Homepage — header', () => {
@@ -132,10 +168,9 @@ test.describe('Homepage — header', () => {
     await page.goto('/');
   });
 
-  test('scarcity bar is visible', async ({ page }) => {
+  test('scarcity bar mentions June 2026 cohort', async ({ page }) => {
     await expect(page.locator('.scarcity')).toBeVisible();
-    await expect(page.locator('.scarcity')).toContainText('3');
-    await expect(page.locator('.scarcity')).toContainText('Cohort 9');
+    await expect(page.locator('.scarcity')).toContainText('June 2026');
   });
 
   test('header logo links to /', async ({ page }) => {
@@ -171,7 +206,7 @@ test.describe('Homepage — footer', () => {
   });
 
   test('contact strip has cal.com, WhatsApp, email', async ({ page }) => {
-    await expect(page.locator('.contact-strip')).toContainText('cal.com/yarova-fxqeea/discovery-call');
+    await expect(page.locator('.contact-strip')).toContainText('yarova-fxqeea/discovery-call');
     await expect(page.locator('.contact-strip')).toContainText('+1 (604) 719');
     await expect(page.locator('.contact-strip')).toContainText('hello@yarova.ca');
   });
@@ -265,13 +300,5 @@ test.describe('Page — blog', () => {
   test('blog index loads', async ({ page }) => {
     await page.goto('/blog');
     await expect(page).toHaveTitle(/Yarova/);
-  });
-});
-
-test.describe('Homepage — no autoplay media', () => {
-  test('no autoplay video or audio', async ({ page }) => {
-    await page.goto('/');
-    const count = await page.locator('[autoplay]').count();
-    expect(count).toBe(0);
   });
 });
