@@ -13,6 +13,7 @@ test.describe('Accessibility — homepage', () => {
 
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+      .exclude('astro-dev-toolbar')
       .analyze();
 
     const criticalViolations = results.violations.filter(v => v.impact === 'critical');
@@ -31,11 +32,13 @@ test.describe('Accessibility — homepage', () => {
 
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+      .exclude('astro-dev-toolbar')
       .analyze();
 
     const seriousViolations = results.violations.filter(v => v.impact === 'serious');
     if (seriousViolations.length > 0) {
-      console.warn('Serious axe violations:', seriousViolations.map(v => `[${v.id}] ${v.description}`).join(', '));
+      const summary = seriousViolations.map(v => `[${v.id}] ${v.description} — ${v.nodes.length} node(s): ${v.nodes.map(n => n.html.slice(0, 120)).join(' | ')}`).join('\n');
+      throw new Error(`Serious axe violations:\n${summary}`);
     }
     expect(seriousViolations).toHaveLength(0);
   });
@@ -59,12 +62,16 @@ test.describe('Accessibility — homepage', () => {
 
     for (let i = 0; i < count; i++) {
       const btn = buttons.nth(i);
+      const innerHTML = await btn.innerHTML();
+      // Skip Astro DevToolbar slot buttons (dev-only, not in production)
+      if (innerHTML.trim() === '<slot></slot>' || innerHTML.includes('astro-dev-toolbar')) continue;
+
       const text = await btn.textContent();
       const ariaLabel = await btn.getAttribute('aria-label');
       const ariaLabelledby = await btn.getAttribute('aria-labelledby');
 
       const hasName = (text?.trim() !== '') || (ariaLabel !== null) || (ariaLabelledby !== null);
-      expect(hasName, `Button ${i} has no accessible name. HTML: ${await btn.innerHTML()}`).toBe(true);
+      expect(hasName, `Button ${i} has no accessible name. HTML: ${innerHTML.slice(0, 100)}`).toBe(true);
     }
   });
 

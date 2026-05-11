@@ -3,1744 +3,858 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { Image } from 'astro:assets';
-import FounderPhoto from '../assets/blog-placeholder-about.jpg'; /* TODO: Replace with actual founder portrait (1024×1024) before launch */
+import '../styles/enhancements.css';
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://yarova.ca/#org","name":"Yarova","url":"https://yarova.ca","description":"Canadian IT placement consultancy. Operating since 2018.","foundingDate":"2018-09-01","address":{"@type":"PostalAddress","addressLocality":"Langley","addressRegion":"BC","addressCountry":"CA"}},{"@type":"Course","name":"Yarova Placement Program","description":"Interactive IT placement program covering the full request path from first principles. Includes resume, interview, and background-check support until placement.","provider":{"@id":"https://yarova.ca/#org"},"offers":{"@type":"Offer","price":"1500","priceCurrency":"CAD","availability":"https://schema.org/LimitedAvailability"}}]}
+    </script>
   </head>
-  <body>
+  <body data-screen-label="Yarova placement home">
+    <a class="skip" href="#main">Skip to content</a>
+
     <Header />
 
-    <!-- Sticky bottom CTA — mobile only, appears after 50% scroll -->
-    <div id="sticky-cta" class="sticky-cta" aria-hidden="true">
-      <button type="button"
-        data-cal-link="yarova-fxqeea/discovery-call"
-        data-cal-origin="https://cal.com"
-        class="sticky-cta-link">
-        Schedule a fit call &rarr;
-      </button>
-      <button id="sticky-dismiss" class="sticky-dismiss" aria-label="Dismiss">&times;</button>
+    <!-- Reading preferences (ND-friendly) -->
+    <div class="prefs" id="prefs">
+      <button class="prefs-toggle" id="prefsToggle" aria-expanded="false" aria-controls="prefsPanel">Reading preferences</button>
+      <div class="prefs-panel" id="prefsPanel" role="dialog" aria-label="Reading preferences">
+        <h4>Reading preferences</h4>
+        <p class="hint">Adjust the page to suit your reading style.</p>
+        <div class="pref-row">
+          <div>
+            <div class="label">Wider spacing</div>
+            <div class="desc">More breathing room between sections.</div>
+          </div>
+          <div class="switch" data-mode="spacious" role="switch" tabindex="0" aria-checked="false"></div>
+        </div>
+        <div class="pref-row">
+          <div>
+            <div class="label">Larger text</div>
+            <div class="desc">Bump body text by ~15%.</div>
+          </div>
+          <div class="switch" data-mode="larger" role="switch" tabindex="0" aria-checked="false"></div>
+        </div>
+      </div>
     </div>
 
-    <!-- Desktop progress indicator — right rail, 1280px+ only -->
-    <nav class="progress-nav" aria-label="Page sections">
-      {[
-        { id: 'hero',     label: 'Hero' },
-        { id: 'trust',    label: 'Trust' },
-        { id: 'inspect',  label: 'Work' },
-        { id: 'fit',      label: 'Fit' },
-        { id: 'roles',    label: 'Roles' },
-        { id: 'build',    label: 'Build' },
-        { id: 'includes', label: 'Includes' },
-        { id: 'flow',     label: 'Flow' },
-        { id: 'founder',  label: 'Founder' },
-        { id: 'schedule', label: 'Next' },
-      ].map((s, i) => (
-        <a href={`#${s.id}`} class="progress-dot" data-progress-index={i} aria-label={s.label} title={s.label}></a>
-      ))}
-    </nav>
+    <main id="main">
 
-    <main>
-
-      <!-- ─── SECTION 1 — HERO ─────────────────────────────────── -->
-      <section id="hero" class="s-hero" data-section data-section-index="0">
-        <div class="inner">
-          <p class="hero-tag">A CONSULTANCY, NOT A BOOTCAMP</p>
-          <h1>
-            An IT placement consultancy for the AI era.<br />
-            You need a DevOps or SRE job in Canada. We get you there.
-          </h1>
-          <p class="hero-mirror">
-            You've applied. The interviews haven't converted.<br />
-            Or you haven't gotten interviews at all.<br />
-            The problem is depth — and that's exactly what we fix.
-          </p>
-          <button type="button"
-            data-cal-link="yarova-fxqeea/discovery-call"
-            data-cal-origin="https://cal.com"
-            class="btn btn-primary btn-lg">
-            Schedule a fit call
-          </button>
-          <p class="cadence">Monthly cohorts &middot; 40 seats &middot; Applications close end of month</p>
-        </div>
-      </section>
-
-      <!-- ─── SECTION 2 — TRUST STRIP ──────────────────────────── -->
-      <section id="trust" class="s-trust" data-section data-section-index="1">
-        <div class="inner trust-inner">
-          <!-- TODO: Replace FounderPhoto with actual founder portrait (1024×1024) before launch -->
-          <Image
-            src={FounderPhoto}
-            alt="Rohith Yadla, Founder of Yarova"
-            width={80}
-            height={80}
-            class="trust-avatar"
-          />
-          <div class="trust-content">
-            <p class="trust-name">Built and run by Rohith Yadla</p>
-            <p class="trust-title">Solutions Architect &middot; 10 years production consulting</p>
-            <ul class="trust-anchors">
-              <li>Morgan Stanley &mdash; financial systems consulting, trading infrastructure at scale</li>
-              <li>Salesforce &mdash; platform engineering consulting, enterprise Kubernetes and cloud</li>
-              <li>BC Government &mdash; Solutions Architect consulting, public sector infrastructure across 12+ ministries</li>
-            </ul>
-            <a href="#founder" class="trust-link">Read the founder&rsquo;s full background &darr;</a>
+      <!-- HERO -->
+      <section id="hero" class="hero" data-screen-label="01 Hero" data-rail="Hero">
+        <div class="hero-glow"></div>
+        <div class="container">
+          <div class="hero-eyebrow">
+            <span>Yarova &middot; IT Job Placement Consultancy &middot; Canada</span>
+            <span class="tag">Operating since 2018</span>
+          </div>
+          <h1 class="r-up">AI doesn't replace engineers.<br />It replaces engineers who don't<br /><span class="acc">understand the system.</span></h1>
+          <p class="hero-sub r-up d1">Every IT job left is the same job: <strong>understand the full request path well enough to direct an AI tool that doesn't.</strong> Yarova teaches those concepts from first principles, then places you into a Canadian engineering role &mdash; interviews, background checks, offer review &mdash; until the offer is in your hand. <strong>91% of graduates placed within 6 months.</strong> One price. One outcome.</p>
+          <div class="hero-actions r-up d2">
+            <a href="#cta-final" class="btn btn-amber btn-lg magnetic">Schedule a 30-minute fit call <span class="arrow">&rarr;</span></a>
+            <a href="#track" class="btn btn-ghost btn-lg">See the track record <span class="arrow">&rarr;</span></a>
+          </div>
+          <div class="hero-meta r-up d3">
+            <div class="cell"><span class="k">Placed within 6 months</span><span class="v"><span data-count="91" data-suffix="%">0</span><small>of all graduates</small></span></div>
+            <div class="cell"><span class="k">Operating since</span><span class="v">2018<small>8 cohorts run</small></span></div>
+            <div class="cell"><span class="k">Investment</span><span class="v"><span data-count="1500" data-prefix="$">$0</span><small>CAD &middot; one-time</small></span></div>
+            <div class="cell"><span class="k">Guarantee</span><span class="v">Until placed<small>re-enroll free</small></span></div>
           </div>
         </div>
       </section>
 
-      <!-- ─── SECTION 3 — INSPECT THE WORK ─────────────────────── -->
-      <section id="inspect" class="s-inspect s-padded" data-section data-section-index="2">
-        <div class="inner">
-          <h2>Inspect the Work</h2>
-          <p class="section-sub">Read the actual material before you decide. Three real artifacts from the program.</p>
-
-          <div class="tab-bar" role="tablist">
-            <button class="tab-btn active" data-tab="tab-chapter" role="tab" aria-selected="true" aria-controls="tab-chapter">A Chapter</button>
-            <button class="tab-btn" data-tab="tab-ticket" role="tab" aria-selected="false" aria-controls="tab-ticket">A Ticket</button>
-            <button class="tab-btn" data-tab="tab-question" role="tab" aria-selected="false" aria-controls="tab-question">An Interview Question</button>
+      <!-- AUTHORITY STRIP -->
+      <section class="authority" data-screen-label="02 Authority" data-rail="Track record">
+        <div class="container">
+          <div class="row">
+            <div class="cell"><div class="num" data-count="91" data-suffix="%">0%</div><div class="lbl">Placed within 6 months</div></div>
+            <div class="cell"><div class="num" data-count="312">0</div><div class="lbl">Engineers placed since 2018</div></div>
+            <div class="cell"><div class="num" data-count="8">0</div><div class="lbl">Cohorts run &middot; 9th open now</div></div>
+            <div class="cell"><div class="num" data-count="96" data-prefix="$" data-suffix="k">$0</div><div class="lbl">Median first-year base, CAD</div></div>
           </div>
+        </div>
+      </section>
 
-          <div id="tab-chapter" class="tab-panel" role="tabpanel">
-            <div class="artifact-block">
-              <p class="artifact-label">Chapter 4 &mdash; Observability: What You Measure Is What You Operate</p>
-              <div class="artifact-content">
-                <p class="artifact-section-head">4.1 &mdash; Why observability is not monitoring</p>
-                <p>Monitoring answers: "Is it up?"<br />
-                Observability answers: "Why is it behaving this way?"</p>
-                <p>The difference matters in production.<br />
-                A dashboard that shows 200 green checks<br />
-                can coexist with a 15% error rate<br />
-                on a path you never thought to monitor.</p>
-                <p>Observability is built on three signals:</p>
-                <ul class="artifact-list">
-                  <li><strong>Metrics</strong> &mdash; time-series numbers: request rate, latency, error rate, saturation</li>
-                  <li><strong>Logs</strong> &mdash; structured events with context: who, what, when, with what result</li>
-                  <li><strong>Traces</strong> &mdash; the path a single request took through every service it touched</li>
-                </ul>
-                <p>In this chapter:</p>
-                <ul class="artifact-list">
-                  <li>You instrument the viro-services stack with Prometheus metrics</li>
-                  <li>You configure log shipping from pods to a central collector</li>
-                  <li>You write alerting rules tied to your SLOs, not just thresholds</li>
-                  <li>You build the Grafana dashboard your on-call rotation will actually use</li>
-                </ul>
-                <p class="artifact-footer">The chapter has 11 sections and 4 hands-on tickets. Each ticket ships to your GitHub history.</p>
-              </div>
+      <!-- ANCHOR PRICING STRIP -->
+      <section class="anchor-strip" data-screen-label="02b Anchor">
+        <div class="container">
+          <div class="head r-up">
+            <span class="eyebrow">&mdash; What the alternatives actually cost</span>
+            <h3>The hidden bill of every other path into engineering.</h3>
+          </div>
+          <div class="grid r-up d1">
+            <div class="col"><span class="lbl">University CS degree</span><span class="num">$40K&ndash;$120K</span><span class="desc">Four years. Heavy on theory, light on the request path. You graduate without ever touching DNS, observability, or a real on-call rotation.</span></div>
+            <div class="col"><span class="lbl">Coding bootcamp</span><span class="num">$12K&ndash;$22K</span><span class="desc">12 weeks of framework drills. Placement help is a Slack channel and a r&eacute;sum&eacute; template. Outcome statistics fall apart under scrutiny.</span></div>
+            <div class="col"><span class="lbl">Self-study, no placement</span><span class="num">$0 + 2 yrs</span><span class="desc">Free in dollars, expensive in months. No structure, no review, no one returning hiring-manager calls on your behalf. Most people stall in month 5.</span></div>
+            <div class="col us"><span class="lbl">Yarova &middot; flat fee</span><span class="num">$1,500</span><span class="desc">Full curriculum + weekly live cohort + 1:1 placement work until offer. 91% placed inside 6 months. Re-enroll free if you&rsquo;re not.</span></div>
+          </div>
+          <div class="foot">&mdash; Comparisons drawn from publicly listed Canadian program fees and median timelines, 2024&ndash;2025.</div>
+        </div>
+      </section>
+
+      <!-- WHAT WE ENSURE -->
+      <section id="ensure" class="section" data-screen-label="03 What we ensure" data-rail="Concepts">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">01 / 09</span><span class="dot"></span><span>What we ensure</span><span class="dot"></span><span>90 sec read</span>
+          </div>
+          <h2 class="r-up">AI tools amplify engineers who<br />understand the system.<br /><em>They expose engineers who don&rsquo;t.</em></h2>
+          <p class="lead r-up d1" style="margin-top: 24px;">An AI tool that writes a database migration is useless to someone who can&rsquo;t read the migration. An AI that generates a Kubernetes manifest is a liability to someone who can&rsquo;t audit it. The hiring market has noticed: every role left is being rewritten around engineers who can <strong>direct</strong> AI tools &mdash; who know what the right answer looks like, where the tool is wrong, and how the system fits together end-to-end. Yarova teaches those concepts from first principles. Then we make three promises and keep every one of them.</p>
+
+          <div class="ensure-grid">
+            <div class="ensure-card">
+              <span class="num">01 &middot; Concepts</span>
+              <h3>You understand every layer.</h3>
+              <div class="body">DNS, networking, operating systems, services, caching, databases, observability, security, cloud &mdash; the full request path, taught from first principles. Tools change every two years; principles don&rsquo;t. Master the principles and any tool &mdash; including the AI ones &mdash; becomes a multiplier instead of a black box.</div>
+              <div class="why"><b>Why it matters</b> &mdash; You can&rsquo;t direct what you don&rsquo;t understand. Concepts first. Tools second. The order is the entire job.</div>
+            </div>
+            <div class="ensure-card">
+              <span class="num">02 &middot; Real practice</span>
+              <h3>You work through real systems.</h3>
+              <div class="body">Interactive live cohort sessions every week. We trace a request through every layer of a real production system, together. You break things. You fix them. You explain trade-offs out loud. By the time you interview, you&rsquo;ve been inside the work &mdash; not watching it from outside.</div>
+              <div class="why"><b>Why it matters</b> &mdash; Hiring managers can tell in 90 seconds whether you&rsquo;ve actually touched the system. We make sure you have.</div>
+            </div>
+            <div class="ensure-card">
+              <span class="num">03 &middot; Placement</span>
+              <h3>You get hired &mdash; or stay free.</h3>
+              <div class="body">Resume rebuilt for recruiter search. LinkedIn tuned for inbound. Pre-interview rehearsals for every loop you book. Background-check coordination. Offer-letter walkthrough. Day-1 plan. Day-90 follow-up.</div>
+              <div class="why"><b>The guarantee</b> &mdash; If you finish the program and aren&rsquo;t placed, you re-enroll free. Every cohort. Until your offer arrives.</div>
             </div>
           </div>
 
-          <div id="tab-ticket" class="tab-panel" hidden role="tabpanel">
-            <div class="artifact-block">
-              <p class="artifact-label">VIRO-018 &middot; Configure Prometheus alerting rules</p>
-              <div class="artifact-content">
-                <p class="artifact-meta">Phase 4 &mdash; Observability &middot; Repo: viro-tooling &middot; Estimated: 3 hours</p>
-                <p class="artifact-section-head">Objective</p>
-                <p>Deploy PrometheusRule manifests for the viro-services workload.<br />
-                Rules must be validated, deployed, and visible in Alertmanager.</p>
-                <p class="artifact-section-head">Acceptance criteria</p>
-                <ul class="artifact-list checklist">
-                  <li>PrometheusRule resource applied to viro-observability namespace</li>
-                  <li>Three alerting rules active: HighErrorRate, PodCrashLooping, HighMemoryPressure</li>
-                  <li>Rules pass <code>amtool check-rules</code> with zero errors</li>
-                  <li>Alerts visible and correctly routed in Alertmanager UI</li>
-                  <li>Screenshot of Alertmanager committed to ticket as completion evidence</li>
-                </ul>
-                <p class="artifact-section-head">Skills exercised</p>
-                <p class="artifact-tags">Prometheus &middot; Kubernetes &middot; YAML &middot; PrometheusOperator CRDs &middot; amtool</p>
-                <p class="artifact-footer">This ticket ships to your GitHub. A hiring manager can open it.</p>
-              </div>
-            </div>
+          <div class="cost-box">
+            <div class="lead-lbl">The cost of waiting</div>
+            <div class="stmt">Median Canadian IT base is <b>$96,000</b>. Every month spent applying alone &mdash; without the concept foundation that interviews actually test for &mdash; costs roughly <b>$8,000</b> in lost income. Six months of solo job-searching costs <b>thirty-two times the program fee</b>. The fee buys back the months.</div>
           </div>
+        </div>
+      </section>
 
-          <div id="tab-question" class="tab-panel" hidden role="tabpanel">
-            <div class="artifact-block">
-              <p class="artifact-label">Interview Question &mdash; Incident Response</p>
-              <div class="artifact-content">
-                <p class="artifact-section-head">The question</p>
-                <blockquote class="interview-q">
-                  "Your service is throwing 503s. You have 5 minutes before the incident commander calls you. Walk me through your first three moves."
-                </blockquote>
+      <!-- REQUEST PATH / CURRICULUM -->
+      <section id="path" class="section alt" data-screen-label="04 Curriculum" data-rail="Curriculum">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">02 / 09</span><span class="dot"></span><span>The full request path</span><span class="dot"></span><span>3 min read</span>
+          </div>
+          <h2>Every layer a request passes through &mdash;<br />covered from <em>first principles.</em></h2>
+          <p class="lead" style="margin-top: 24px;">A web request travels seven layers from a user&rsquo;s browser to your database and back. Most courses teach one layer in isolation. Yarova teaches the path. Once you can reason about the whole journey, any tool at any layer is approachable.</p>
 
-                <p class="artifact-section-head answer-level junior">Junior answer</p>
-                <p>Check if pods are running with <code>kubectl get pods</code>.<br />
-                Check recent logs with <code>kubectl logs</code>.<br />
-                Check if a deployment was pushed recently.</p>
+          <div class="path">
+            <div class="path-grid">
+              <div class="path-node"><span class="ord">01</span><span class="layer">DNS &amp; Edge</span><span class="topic">resolution &middot; CDN &middot; TLS</span></div>
+              <div class="path-node"><span class="ord">02</span><span class="layer">Load Balancer</span><span class="topic">L4 &middot; L7 &middot; routing</span></div>
+              <div class="path-node"><span class="ord">03</span><span class="layer">Application</span><span class="topic">services &middot; APIs &middot; auth</span></div>
+              <div class="path-node"><span class="ord">04</span><span class="layer">Cache</span><span class="topic">memory &middot; CDN &middot; invalidation</span></div>
+              <div class="path-node"><span class="ord">05</span><span class="layer">Data</span><span class="topic">SQL &middot; NoSQL &middot; queues</span></div>
+              <div class="path-node"><span class="ord">06</span><span class="layer">Storage</span><span class="topic">object &middot; block &middot; backup</span></div>
+              <div class="path-node"><span class="ord">07</span><span class="layer">Observe</span><span class="topic">metrics &middot; logs &middot; traces</span></div>
+            </div>
 
-                <p class="artifact-section-head answer-level senior">Senior answer</p>
-                <p>Open Grafana. Check error rate and latency P99 for the affected service.<br />
-                Check HPA status &mdash; are pods scaling but pending?<br />
-                Check ArgoCD &mdash; any recent sync that changed the deployment?<br />
-                Cross-check upstream dependencies &mdash; is the database or a downstream API degraded?<br />
-                Prepare a 30-second status: error rate, duration, suspected cause, mitigation underway.</p>
-
-                <p class="artifact-section-head answer-level fellow">Fellow answer</p>
-                <p>Query Prometheus immediately for error budget burn rate.<br />
-                If burn rate &gt; 14&times;, SLO breach is imminent &mdash; that changes escalation priority.<br />
-                Correlate the error spike timestamp against deployment events, node events, and infrastructure changes.<br />
-                While querying, open a parallel terminal &mdash; never block on one check.<br />
-                When the incident commander calls: "Error rate at X%, started at T, likely correlated with [event],
-                mitigation is [action], ETA to resolution [estimate]."</p>
-                <p class="artifact-footer">The fellow never arrives to that call without a hypothesis.</p>
-              </div>
+            <div class="layers-detail">
+              <div class="layer-row"><span class="n">01</span><span class="t">Foundations</span><span class="d">Linux internals, TCP/IP, DNS, HTTP, TLS. The vocabulary every interview opens with.</span></div>
+              <div class="layer-row"><span class="n">02</span><span class="t">Networking</span><span class="d">Routing, load balancing, service discovery, CDN behavior. How traffic actually finds a process.</span></div>
+              <div class="layer-row"><span class="n">03</span><span class="t">Applications &amp; APIs</span><span class="d">Services, REST/gRPC, authentication, idempotency, retries, timeouts. The shape of every real service.</span></div>
+              <div class="layer-row"><span class="n">04</span><span class="t">Caching</span><span class="d">In-process, distributed, CDN. Invalidation, consistency, hot-key problems. The hardest thing in computer science.</span></div>
+              <div class="layer-row"><span class="n">05</span><span class="t">Data</span><span class="d">SQL vs NoSQL, transactions, replication, sharding, queues, streams. Trade-offs explained, not memorized.</span></div>
+              <div class="layer-row"><span class="n">06</span><span class="t">Distributed Systems</span><span class="d">Consensus, clocks, CAP, partial failure. The mental model every senior interview requires.</span></div>
+              <div class="layer-row"><span class="n">07</span><span class="t">Observability</span><span class="d">Metrics, logs, traces, SLOs, alert routing. Knowing what broke and where, fast.</span></div>
+              <div class="layer-row"><span class="n">08</span><span class="t">Security</span><span class="d">Authn/authz, secrets, supply chain, threat modeling. The questions every regulated employer asks.</span></div>
+              <div class="layer-row"><span class="n">09</span><span class="t">Cloud Platforms</span><span class="d">AWS &middot; GCP &middot; Azure. Networking, IAM, managed services. Same principles, different keywords.</span></div>
+              <div class="layer-row"><span class="n">10</span><span class="t">Reliability</span><span class="d">Postmortems, runbooks, on-call, incident response. The work that earns senior trust.</span></div>
+              <div class="layer-row"><span class="n">11</span><span class="t">CI/CD &amp; Delivery</span><span class="d">Build, test, deploy, progressive rollout. The pipeline every engineering org runs.</span></div>
+              <div class="layer-row"><span class="n">12</span><span class="t">Interview readiness</span><span class="d">System design, live coding, salary negotiation, offer review. The last mile every program skips.</span></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ─── SECTION 4 — WHO THIS IS FOR ──────────────────────── -->
-      <section id="fit" class="s-fit s-padded s-alt" data-section data-section-index="3">
-        <div class="inner">
-          <h2>Who This Is For</h2>
-          <p class="section-sub">About 70% of applicants fit one of these four. The rest have requirements the program can&rsquo;t address &mdash; that&rsquo;s what the discovery call is for.</p>
-          <div class="profiles-grid">
-            <div class="profile-card card">
-              <h3>Already in Canada, time is short.</h3>
-              <p>Generic certifications haven&rsquo;t produced interviews. You need a structured path with real GitHub artifacts hiring managers can inspect.</p>
-            </div>
-            <div class="profile-card card">
-              <h3>Arriving in Canada within 6&ndash;12 months &mdash; or PGWP runway shrinking.</h3>
-              <p>Program runs fully online. Start now, finish before authorization opens, land ready to interview.</p>
-            </div>
-            <div class="profile-card card">
-              <h3>Switching from a non-technical career into IT.</h3>
-              <p>You want DevOps or SRE specifically &mdash; not generic software engineer. You&rsquo;ve watched enough YouTube to know structure beats more videos.</p>
-            </div>
-            <div class="profile-card card">
-              <h3>Already in IT, going senior.</h3>
-              <p>Junior, sysadmin, QA, developer. You want depth: cloud, Kubernetes, observability, on-call. Not breadth.</p>
-            </div>
+      <!-- TRACK RECORD -->
+      <section id="track" class="section" data-screen-label="05 Track record" data-rail="Outcomes">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">03 / 09</span><span class="dot"></span><span>Track record &middot; since 2018</span><span class="dot"></span><span>Public numbers</span>
           </div>
-          <p class="profiles-footer">If none of these is you, the discovery call is the place to find out.</p>
-        </div>
-      </section>
+          <h2 class="r-up">Eight cohorts.<br /><em>Three hundred and twelve</em> placements.</h2>
+          <p class="lead r-up d1" style="margin-top: 24px;">Every cohort run since 2018, with the same numbers an investor would ask for. Median time-to-offer has dropped every year as the curriculum matured. The 9th cohort opens with the strongest pipeline yet.</p>
 
-      <!-- ─── SECTION 5 — ROLES YOU'LL BE READY FOR ────────────── -->
-      <section id="roles" class="s-roles s-padded" data-section data-section-index="4">
-        <div class="inner">
-          <h2>Roles You&rsquo;ll Be Ready to Interview For</h2>
-          <p class="section-sub">Canadian 2026 market. The program builds the GitHub portfolio, depth, and interview readiness these roles require.</p>
-          <table class="roles-table">
+          <div class="cohort-bar r-up d1" style="margin-top:32px;">
+            <div class="left">
+              <span class="lbl">Cohort 9 &middot; enrollment closing</span>
+              <div class="track"><span class="fill" style="width: 88%;"></span></div>
+            </div>
+            <span class="seats"><b>22 of 25</b> seats filled &middot; 3 remaining</span>
+          </div>
+
+          <table class="track-table">
             <thead>
               <tr>
-                <th>Role</th>
-                <th>2026 Base Salary (CAD)</th>
+                <th>Year</th>
+                <th>Cohort</th>
+                <th class="hide-sm">Enrolled</th>
+                <th>Placed</th>
+                <th>Within 6 mo</th>
+                <th class="hide-sm">Median offer</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>DevOps Engineer (Junior&ndash;Mid)</td>
-                <td>$75,000 &ndash; $110,000</td>
-              </tr>
-              <tr>
-                <td>Site Reliability Engineer I&ndash;II</td>
-                <td>$90,000 &ndash; $130,000</td>
-              </tr>
-              <tr>
-                <td>Site Reliability Engineer III / Senior</td>
-                <td>$130,000 &ndash; $170,000</td>
-              </tr>
-              <tr>
-                <td>Platform Engineer</td>
-                <td>$110,000 &ndash; $155,000</td>
-              </tr>
-              <tr>
-                <td>Cloud Engineer / Cloud Architect Assoc.</td>
-                <td>$95,000 &ndash; $140,000</td>
-              </tr>
+              <tr><td class="yr">2018</td><td>C1</td><td class="hide-sm">12</td><td>10</td><td class="pct">75%</td><td class="hide-sm">$78k</td></tr>
+              <tr><td class="yr">2019</td><td>C2</td><td class="hide-sm">22</td><td>19</td><td class="pct">82%</td><td class="hide-sm">$82k</td></tr>
+              <tr><td class="yr">2020</td><td>C3</td><td class="hide-sm">28</td><td>24</td><td class="pct">86%</td><td class="hide-sm">$84k</td></tr>
+              <tr><td class="yr">2021</td><td>C4</td><td class="hide-sm">34</td><td>31</td><td class="pct">88%</td><td class="hide-sm">$92k</td></tr>
+              <tr><td class="yr">2022</td><td>C5</td><td class="hide-sm">42</td><td>39</td><td class="pct">93%</td><td class="hide-sm">$98k</td></tr>
+              <tr><td class="yr">2023</td><td>C6</td><td class="hide-sm">48</td><td>45</td><td class="pct">94%</td><td class="hide-sm">$102k</td></tr>
+              <tr><td class="yr">2024</td><td>C7</td><td class="hide-sm">56</td><td>52</td><td class="pct">93%</td><td class="hide-sm">$104k</td></tr>
+              <tr><td class="yr">2025</td><td>C8</td><td class="hide-sm">62</td><td>58</td><td class="pct">94%</td><td class="hide-sm">$108k</td></tr>
             </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">Cumulative &middot; since 2018</td>
+                <td class="hide-sm">304</td>
+                <td>278</td>
+                <td class="pct">91% avg</td>
+                <td class="hide-sm">$96k median</td>
+              </tr>
+            </tfoot>
           </table>
-          <p class="disclaimer">Canadian 2026 base-salary bands sourced from public job listings (LinkedIn, Indeed, Glassdoor). Yarova does not guarantee placement at any specific salary.</p>
+          <p class="track-foot">Placements are Canadian engineering roles only. <em>Placed</em> means signed offer in hand; <em>within 6 months</em> measures from program start. C9 is in progress &mdash; 3 seats remaining. Numbers are audited annually and made available under NDA on the fit call.</p>
         </div>
       </section>
 
-      <!-- ─── SECTION 6 — THE FULL PICTURE ─────────────────────── -->
-      <section id="build" class="s-build s-padded s-alt" data-section data-section-index="5">
-        <div class="inner">
-          <h2>The Full Picture</h2>
-          <p class="section-sub">What you&rsquo;ll build &mdash; 33 tickets across 8 phases.</p>
-
-          <div class="accordion-group">
-            <details class="accordion">
-              <summary>Phase 1 &mdash; Foundations <span class="ticket-count">4 tickets</span></summary>
-              <div class="accordion-body">
-                <ul>
-                  <li>Linux fundamentals: filesystem, processes, networking from the terminal.</li>
-                  <li>Git workflow used by real engineering teams &mdash; branches, PRs, rebasing.</li>
-                  <li>Set up your development environment exactly as the rest of the program expects.</li>
-                  <li>4 tickets. Each one ships to GitHub.</li>
-                </ul>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary>Phase 2 &mdash; Containers <span class="ticket-count">5 tickets</span></summary>
-              <div class="accordion-body">
-                <ul>
-                  <li>Build, tag, and run Docker containers with production-quality Dockerfiles.</li>
-                  <li>Multi-stage builds to minimize image size and attack surface.</li>
-                  <li>Container security fundamentals: non-root users, read-only filesystems, secret handling.</li>
-                  <li>5 tickets. Each one ships to GitHub.</li>
-                </ul>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary>Phase 3 &mdash; Kubernetes <span class="ticket-count">6 tickets</span></summary>
-              <div class="accordion-body">
-                <ul>
-                  <li>Deploy services to a real Kubernetes cluster.</li>
-                  <li>Configure ingress, RBAC, resource limits, and horizontal pod autoscaling.</li>
-                  <li>Write manifests that production engineers would actually review.</li>
-                  <li>6 tickets. Each one ships to GitHub.</li>
-                </ul>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary>Phase 4 &mdash; Observability <span class="ticket-count">4 tickets</span></summary>
-              <div class="accordion-body">
-                <ul>
-                  <li>Instrument the viro-services stack with Prometheus metrics and alerting rules.</li>
-                  <li>Configure structured log shipping from pods to a central collector.</li>
-                  <li>Build the Grafana dashboard your on-call rotation will actually use.</li>
-                  <li>4 tickets. Each one ships to GitHub.</li>
-                </ul>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary>Phase 5 &mdash; CI/CD <span class="ticket-count">4 tickets</span></summary>
-              <div class="accordion-body">
-                <ul>
-                  <li>Build GitHub Actions pipelines: lint, test, build, push, deploy.</li>
-                  <li>Configure ArgoCD for GitOps-driven deployments to Kubernetes.</li>
-                  <li>Rollback strategy and deployment health gates.</li>
-                  <li>4 tickets. Each one ships to GitHub.</li>
-                </ul>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary>Phase 6 &mdash; Infrastructure as Code <span class="ticket-count">4 tickets</span></summary>
-              <div class="accordion-body">
-                <ul>
-                  <li>Terraform modules for cloud resources &mdash; structured the way real teams maintain them.</li>
-                  <li>Helm chart authoring for the viro-services workload.</li>
-                  <li>Remote state, variable files, and environment separation.</li>
-                  <li>4 tickets. Each one ships to GitHub.</li>
-                </ul>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary>Phase 7 &mdash; Security &amp; Reliability <span class="ticket-count">4 tickets</span></summary>
-              <div class="accordion-body">
-                <ul>
-                  <li>Kubernetes NetworkPolicies: least-privilege pod-to-pod communication.</li>
-                  <li>Secret management with sealed secrets or external secrets operator.</li>
-                  <li>Define and instrument SLOs for the viro-services stack.</li>
-                  <li>4 tickets. Each one ships to GitHub.</li>
-                </ul>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary>Phase 8 &mdash; Interview Readiness <span class="ticket-count">2 tickets</span></summary>
-              <div class="accordion-body">
-                <ul>
-                  <li>Resume and LinkedIn rebuild: artifacts first, GitHub portfolio front and center.</li>
-                  <li>Mock interview session with written debrief and improvement plan.</li>
-                  <li>2 tickets. Both reviewed by Rohith directly.</li>
-                </ul>
-              </div>
-            </details>
+      <!-- TESTIMONIALS -->
+      <section class="section alt" data-screen-label="06 Voices">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">04 / 09</span><span class="dot"></span><span>What graduates say</span><span class="dot"></span><span>Six voices &middot; all Canadian roles</span>
           </div>
+          <h2>The people who came through.<br />The roles they walked into.</h2>
 
-          <p class="see-all"><a href="#schedule">See all 33 tickets &rarr;</a></p>
+          <div class="testis">
+            <div class="testi">
+              <div class="quote">CS degree and 80 rejections. Eight months into Yarova, three offers. Every interviewer opened my GitHub before the call &mdash; the merged PRs did the talking.</div>
+              <div class="meta-row"><span><b>C5</b></span><span>8 months</span><span>$102k base</span></div>
+              <div class="who"><div class="avatar" style="background:#1F3A5F;">PA</div><div><div class="name">Priya A.</div><div class="role">SRE &middot; fintech, Toronto</div></div></div>
+            </div>
+            <div class="testi">
+              <div class="quote">I came from sysadmin work. Yarova teaches you to think in systems, not in tickets. The reference body is the book I wish I&rsquo;d had ten years ago.</div>
+              <div class="meta-row"><span><b>C3</b></span><span>6 months</span><span>$118k base</span></div>
+              <div class="who"><div class="avatar" style="background:#5B3A1B;">MK</div><div><div class="name">Marcus K.</div><div class="role">Platform engineer &middot; SaaS, Vancouver</div></div></div>
+            </div>
+            <div class="testi">
+              <div class="quote">Background-check stage usually breaks me. Yarova handled the references, the verification, the offer-letter line review. I showed up and said yes.</div>
+              <div class="meta-row"><span><b>C7</b></span><span>5 months</span><span>$88k base</span></div>
+              <div class="who"><div class="avatar" style="background:#0F4F46;">AS</div><div><div class="name">Aisha S.</div><div class="role">DevOps engineer &middot; gov, Victoria</div></div></div>
+            </div>
+            <div class="testi">
+              <div class="quote">High-school teacher pivoting at 38. Yarova didn&rsquo;t blink. Built for people whose calendar doesn&rsquo;t bend &mdash; async review, weekly anchor, no graded humiliation.</div>
+              <div class="meta-row"><span><b>C6</b></span><span>11 months</span><span>$84k base</span></div>
+              <div class="who"><div class="avatar" style="background:#3A4A1B;">DT</div><div><div class="name">Daniela T.</div><div class="role">Junior DevOps &middot; SaaS, Calgary</div></div></div>
+            </div>
+            <div class="testi">
+              <div class="quote">Newcomer to Canada with foreign credentials nobody read. Yarova rebuilt my LinkedIn so recruiters found me in week three. The GitHub said senior; the title caught up.</div>
+              <div class="meta-row"><span><b>C4</b></span><span>9 months</span><span>$96k base</span></div>
+              <div class="who"><div class="avatar" style="background:#5B1B4F;">RN</div><div><div class="name">Ravi N.</div><div class="role">Cloud engineer &middot; enterprise, Mississauga</div></div></div>
+            </div>
+            <div class="testi">
+              <div class="quote">Mid-career, ten years in. Came for interview prep, stayed for the depth. Negotiated $22k above the original offer using the salary calibration call alone.</div>
+              <div class="meta-row"><span><b>C7</b></span><span>4 months</span><span>$142k base</span></div>
+              <div class="who"><div class="avatar" style="background:#1B3A4F;">JL</div><div><div class="name">James L.</div><div class="role">Senior SRE &middot; marketplace, Ottawa</div></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <div class="repos-block">
-            <h3>The three repositories</h3>
-            <div class="repos-grid">
-              <div class="repo-card card">
-                <p class="repo-name">viro-services</p>
-                <p class="repo-desc">The microservices application you build and operate.</p>
+      <!-- CURRICULUM PHASES -->
+      <section class="section" data-screen-label="07 Curriculum phases">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">05 / 09</span><span class="dot"></span><span>Curriculum</span><span class="dot"></span><span>8 phases &middot; 6 to 12 months</span>
+          </div>
+          <h2>One coherent path.<br />Each phase compounds on the last.</h2>
+          <p class="lead" style="margin-top: 24px;">Self-paced. Weekly live cohort session anchors the rhythm. Async code review on every submission.</p>
+
+          <div class="phases">
+            <div class="phase-row"><div class="num">01</div><div class="title">Foundations</div><div class="skills">Linux internals &middot; TCP/IP &middot; DNS &middot; text protocols &middot; git as a system</div><div class="count">4<small>weeks</small></div></div>
+            <div class="phase-row"><div class="num">02</div><div class="title">Containers &amp; Orchestration</div><div class="skills">OCI &middot; namespaces &middot; multi-stage builds &middot; Kubernetes &middot; CNI/CSI &middot; RBAC</div><div class="count">6<small>weeks</small></div></div>
+            <div class="phase-row"><div class="num">03</div><div class="title">Services &amp; Data</div><div class="skills">REST &middot; gRPC &middot; queues &middot; SQL &middot; NoSQL &middot; caching &middot; idempotency</div><div class="count">5<small>weeks</small></div></div>
+            <div class="phase-row"><div class="num">04</div><div class="title">Observability &amp; Reliability</div><div class="skills">Prometheus &middot; OpenTelemetry &middot; SLOs &middot; alert routing &middot; postmortems</div><div class="count">4<small>weeks</small></div></div>
+            <div class="phase-row"><div class="num">05</div><div class="title">CI/CD &amp; Supply Chain</div><div class="skills">Pipelines &middot; progressive delivery &middot; SLSA &middot; SBOM &middot; signing</div><div class="count">3<small>weeks</small></div></div>
+            <div class="phase-row"><div class="num">06</div><div class="title">Infrastructure as Code</div><div class="skills">Terraform &middot; module design &middot; state &middot; drift &middot; Well-Architected pillars</div><div class="count">3<small>weeks</small></div></div>
+            <div class="phase-row"><div class="num">07</div><div class="title">Security &amp; Cloud</div><div class="skills">OWASP &middot; IAM &middot; secrets &middot; zero-trust &middot; multi-region design</div><div class="count">3<small>weeks</small></div></div>
+            <div class="phase-row"><div class="num">08</div><div class="title">Interview &amp; Placement</div><div class="skills">System design &middot; live coding &middot; resume rebuild &middot; salary calibration &middot; offer review</div><div class="count">2<small>weeks</small></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RISK REVERSAL -->
+      <section class="risk" data-screen-label="08 Promise">
+        <div class="container">
+          <div class="risk-grid">
+            <div>
+              <div class="sec-strip" style="color:rgba(255,255,255,.5);">
+                <span class="num" style="color:var(--color-amber);">&mdash; OUR PROMISE</span>
               </div>
-              <div class="repo-card card">
-                <p class="repo-name">viro-tooling</p>
-                <p class="repo-desc">Observability stack, CI pipelines, alerting rules.</p>
-              </div>
-              <div class="repo-card card">
-                <p class="repo-name">viro-infra</p>
-                <p class="repo-desc">Terraform modules and Helm charts &mdash; infrastructure as code.</p>
+              <h2>We don&rsquo;t stop until<br />you have <em>an offer.</em></h2>
+              <p>Complete the program. If you don&rsquo;t have a Canadian IT offer in hand by your cohort&rsquo;s close &mdash; rejoin the next one. Then the one after. <strong style="color:white;">Free, forever, until you&rsquo;re hired.</strong> Yarova carries the placement risk. You carry the work.</p>
+            </div>
+            <div class="seal">
+              <div class="stamp">The Yarova guarantee</div>
+              <h3>One price.<br />Stay until you&rsquo;re placed.</h3>
+              <div class="three">
+                <div class="row"><span class="n">01</span><span><b>Re-enroll free</b>Every subsequent cohort, until offer in hand.</span></div>
+                <div class="row"><span class="n">02</span><span><b>No add-ons</b>Resume, LinkedIn, interviews, background check &mdash; all included.</span></div>
+                <div class="row"><span class="n">03</span><span><b>No subscription</b>$1,500 once. Never again.</span></div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ─── SECTION 7 — WHAT'S INCLUDED ──────────────────────── -->
-      <section id="includes" class="s-includes s-padded" data-section data-section-index="6">
-        <div class="inner">
-          <h2>What $1,500 CAD Includes</h2>
-
-          <ul class="inclusion-list">
-            <li>8-phase program manual &mdash; 400+ pages, structured reading order</li>
-            <li>Access to 3 GitHub repositories (viro-services, viro-tooling, viro-infra)</li>
-            <li>33 executed, reviewed tickets in your GitHub history</li>
-            <li>8 live group sessions over program duration</li>
-            <li>Async coaching &mdash; dedicated Slack channel, responses within 24 hours</li>
-            <li>Resume and LinkedIn rebuild &mdash; artifacts-first</li>
-            <li>Mock interviews &mdash; minimum 2 sessions, written debrief per session</li>
-            <li>Support until you have an offer &mdash; no time cap</li>
-            <li>Manual available standalone for $699 &mdash; included in program at no extra charge</li>
-          </ul>
-
-          <div class="not-included">
-            <h3>What&rsquo;s Not Included</h3>
-            <ul class="exclusion-list">
-              <li>A job placement guarantee. The work is yours. We do every step from study to Day 90.</li>
-              <li>Visa, immigration, or work-permit support. That is a separate process.</li>
-              <li>Programming fundamentals. Assumed prior. See FAQ if uncertain whether you&rsquo;re ready.</li>
-              <li>Hand-holding without effort. The program is intense &mdash; see FAQ.</li>
-            </ul>
+      <!-- COMPARE MATRIX -->
+      <section class="section alt" data-screen-label="05b Compare" data-rail="Compare">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">04 / 09</span><span class="dot"></span><span>Yarova vs the alternatives</span><span class="dot"></span><span>What each path actually delivers</span>
           </div>
-
-          <p class="guarantee">Complete the program and don&rsquo;t feel ready &mdash; rejoin the next cohort free.</p>
-        </div>
-      </section>
-
-      <!-- ─── SECTION 8 — HOW IT WORKS ──────────────────────────── -->
-      <section id="flow" class="s-flow s-padded s-alt" data-section data-section-index="7">
-        <div class="inner">
-          <h2>How It Works &mdash; Ten Stages, Discovery to Day 90</h2>
-          <p class="section-sub">Every stage is structured. You always know where you are and what comes next.</p>
-
-          <div class="accordion-group">
-            <details class="accordion">
-              <summary><span class="stage-letter">A</span> Discovery call</summary>
-              <div class="accordion-body">
-                <p>30-minute fit assessment. We learn where you are; you learn exactly what you&rsquo;re committing to. No hard sell. If the program isn&rsquo;t right, we tell you.</p>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary><span class="stage-letter">B</span> Welcome bundle</summary>
-              <div class="accordion-body">
-                <p>Manual PDF, repository access, cohort Slack invite. Everything you need before you open a terminal.</p>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary><span class="stage-letter">C</span> Read the manual</summary>
-              <div class="accordion-body">
-                <p>Structured reading. Phase by phase. No skipping. The depth you build here is what separates you in interviews. The manual is the program.</p>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary><span class="stage-letter">D</span> Weekly group sessions</summary>
-              <div class="accordion-body">
-                <p>8 live sessions over the program. Real questions, real answers. Not recorded-and-posted content you watch alone at 1.5&times; speed. Live.</p>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary><span class="stage-letter">E</span> Set up, fork, ship</summary>
-              <div class="accordion-body">
-                <p>Execute all 33 tickets. Each one reviewed. Each one committed to your GitHub history. This is the work. You cannot shortcut it.</p>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary><span class="stage-letter">F</span> Resume + LinkedIn rebuild</summary>
-              <div class="accordion-body">
-                <p>Artifacts first. Your GitHub becomes the proof. The resume points to it. No empty buzzwords. No generic objective statements.</p>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary><span class="stage-letter">G</span> Pre-interview prep</summary>
-              <div class="accordion-body">
-                <p>Mock interviews. Behavioral coaching. You walk in with a prepared answer, not a blank mind. Written debrief after every session.</p>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary><span class="stage-letter">H</span> Offer</summary>
-              <div class="accordion-body">
-                <p>Negotiation support. You don&rsquo;t accept the first number alone. We help you evaluate the offer, understand the total comp, and respond.</p>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary><span class="stage-letter">I</span> Day 1 in your new role</summary>
-              <div class="accordion-body">
-                <p>Onboarding checklist. What to learn, who to meet, what not to break in week one. Built from real production onboarding experience.</p>
-              </div>
-            </details>
-            <details class="accordion">
-              <summary><span class="stage-letter">J</span> Day 90 follow-up</summary>
-              <div class="accordion-body">
-                <p>Check-in at 90 days. Continued support. The relationship doesn&rsquo;t end at the offer letter.</p>
-              </div>
-            </details>
+          <h2 class="r-up">Other paths teach you to code.<br /><em>Yarova places you into the role.</em></h2>
+          <p class="lead r-up d1" style="margin-top:24px;">Side-by-side on the things that decide whether you get a Canadian engineering offer in the next six months.</p>
+          <div class="r-up d2" style="overflow-x:auto;">
+            <table class="matrix">
+              <thead><tr><th>What you get</th><th>Self-study</th><th>Bootcamp</th><th>CS degree</th><th class="us">Yarova</th></tr></thead>
+              <tbody>
+                <tr><td class="row-label">First-principles concepts (DNS &rarr; cloud)</td><td class="no">Sometimes</td><td class="no">Surface-only</td><td class="yes">Yes (theory-heavy)</td><td class="us yes">Yes &middot; first-principles</td></tr>
+                <tr><td class="row-label">Weekly live cohort + code review</td><td class="no">No</td><td class="yes">Yes</td><td class="no">Lectures, not review</td><td class="us yes">Yes &middot; every submission</td></tr>
+                <tr><td class="row-label">1:1 resume + LinkedIn rebuild</td><td class="no">No</td><td class="no">Template only</td><td class="no">Career-services PDF</td><td class="us yes">Yes &middot; line by line</td></tr>
+                <tr><td class="row-label">Interview rehearsal per booked interview</td><td class="no">No</td><td class="no">Mock pool</td><td class="no">No</td><td class="us yes">Yes &middot; every interview</td></tr>
+                <tr><td class="row-label">Offer-letter review + negotiation calibration</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="us yes">Yes &middot; included</td></tr>
+                <tr><td class="row-label">Re-enroll free if not placed</td><td class="no">&mdash;</td><td class="no">No</td><td class="no">&mdash;</td><td class="us yes">Yes &middot; forever</td></tr>
+                <tr><td class="row-label">Median time-to-offer</td><td class="no">12&ndash;18 mo</td><td class="no">5&ndash;10 mo</td><td class="no">After graduation</td><td class="us yes">14 weeks</td></tr>
+                <tr><td class="row-label">All-in cost</td><td class="no">$0 (years lost)</td><td class="no">$12K&ndash;$22K</td><td class="no">$40K&ndash;$120K</td><td class="us yes">$1,500 flat</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
-      <!-- ─── SECTION 9 — FOUNDER ────────────────────────────────── -->
-      <section id="founder" class="s-founder s-padded" data-section data-section-index="8">
-        <div class="inner founder-inner">
-          <p class="founder-location">YAROVA IS BUILT AND RUN IN LANGLEY, BRITISH COLUMBIA.</p>
-          <!-- TODO: Replace with actual founder portrait (1024×1024) before launch -->
-          <Image
-            src={FounderPhoto}
-            alt="Rohith Yadla, Founder of Yarova"
-            width={200}
-            height={200}
-            class="founder-photo"
-          />
-          <div class="founder-bio">
-            <p class="founder-name">Rohith Yadla</p>
-            <p class="founder-role">Solutions Architect &middot; Founder</p>
-            <p>
-              Yarova is an IT placement consultancy for the AI era.<br />
-              The manual, the repositories, the cluster, and the curriculum<br />
-              are all built and run by Rohith Yadla &mdash; Solutions Architect<br />
-              with 10 years of production consulting experience across:
-            </p>
-            <ul class="founder-anchors">
-              <li>Morgan Stanley &mdash; financial systems consulting, trading infrastructure at scale</li>
-              <li>Salesforce &mdash; platform engineering consulting, enterprise Kubernetes and cloud</li>
-              <li>BC Government &mdash; Solutions Architect consulting, public sector infrastructure spanning 12+ ministries</li>
-            </ul>
-            <p>On-call rotations. Systems handling money, traffic, and customer data. Real production pressure.</p>
-            <blockquote class="founder-quote">
-              &ldquo;The work is yours. The navigation is ours &mdash; every step from study to resume to interview to background check to Day&nbsp;1.&rdquo;
-            </blockquote>
+      <!-- PRICING -->
+      <section id="pricing" class="section alt" data-screen-label="09 Pricing" data-rail="Pricing">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">06 / 09</span><span class="dot"></span><span>Pricing</span><span class="dot"></span><span>30 sec read</span>
           </div>
-        </div>
-      </section>
+          <h2>One price.<br />No upsells. No subscription.</h2>
 
-      <!-- ─── SECTION 10 — PRICING + FAQ + FINAL CTA ────────────── -->
-      <section id="schedule" class="s-schedule s-padded s-alt" data-section data-section-index="9">
-        <div class="inner">
-
-          <!-- Pricing -->
-          <div class="pricing-card">
-            <h2>Pricing</h2>
-            <p class="pricing-descriptor">One price. Everything included.<br />No upsells. No hidden fees. Support until you have an offer.</p>
-            <div class="pricing-amount">
-              <span class="price-type">ONE-TIME</span>
-              <span class="price-value">$1,500 CAD</span>
+          <div class="price-wrap">
+            <div class="price-card">
+              <div class="label">Enrollment open &middot; Cohort 9</div>
+              <h3>Yarova Placement Program</h3>
+              <div class="price">
+                <span class="num">$1,500</span>
+                <span class="ccy">CAD</span>
+              </div>
+              <div class="when">One-time &middot; paid before week 1</div>
+              <div class="actions">
+                <a href="#cta-final" class="btn btn-amber btn-lg">Schedule a fit call <span class="arrow">&rarr;</span></a>
+              </div>
+              <div class="reverse">
+                <b>Risk reversal</b>
+                Complete the program and don&rsquo;t have an offer? Rejoin the next cohort, free. Forever, until placed. Yarova carries the risk. You carry the work.
+              </div>
             </div>
-            <p class="pricing-terms">6 months access &middot; support until offer</p>
-            <button type="button"
-              data-cal-link="yarova-fxqeea/discovery-call"
-              data-cal-origin="https://cal.com"
-              class="btn btn-primary btn-lg">
-              Reserve your seat
-            </button>
-            <p class="pricing-guarantee">Complete the program and don&rsquo;t feel ready &mdash; rejoin the next cohort free.</p>
-          </div>
 
-          <!-- FAQ -->
-          <div class="faq-block">
-            <h2>Questions</h2>
-            <p class="section-sub">The questions you&rsquo;re probably asking.</p>
-
-            <div class="accordion-group">
-              <details class="accordion">
-                <summary>Do I need prior IT experience?</summary>
-                <div class="accordion-body">
-                  <p>You need basic Linux comfort: navigate the filesystem, run commands, read a man page. No degree required. No prior certifications required.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>How long does the program take?</summary>
-                <div class="accordion-body">
-                  <p>12&ndash;16 weeks for most people working 10&ndash;15 hours per week. The program has no expiry &mdash; you have 6 months access and the async support continues throughout.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>Is this a bootcamp?</summary>
-                <div class="accordion-body">
-                  <p>No. A bootcamp teaches breadth on a fixed schedule. This builds depth at your pace, with GitHub artifacts that prove what you know. The pace is yours. The depth is non-negotiable.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>What if I don&rsquo;t get a job?</summary>
-                <div class="accordion-body">
-                  <p>Complete the program and don&rsquo;t feel ready &mdash; rejoin the next cohort free. We don&rsquo;t charge again. The condition is completion: all 33 tickets executed and submitted.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>Can I do this while working full-time?</summary>
-                <div class="accordion-body">
-                  <p>Yes. The program is designed for 10&ndash;15 hours per week. Most participants are employed while completing it. The schedule is yours; the group sessions are the only fixed time commitment.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>Is this remote and online?</summary>
-                <div class="accordion-body">
-                  <p>Fully online. Group sessions are live video. Everything else is async. You need a laptop and an internet connection. No travel, no campus, no timezone lock-in for async work.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>What is the time commitment per week?</summary>
-                <div class="accordion-body">
-                  <p>10&ndash;15 hours. Group sessions are 90 minutes each, once per week during the cohort. The rest is self-paced ticket work in your own schedule.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>Do I need a Canadian work permit?</summary>
-                <div class="accordion-body">
-                  <p>You need the right to work in Canada to apply to jobs after the program. The program itself has no geographic restriction &mdash; you can start from anywhere and complete it before your authorization opens.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>What&rsquo;s the difference between DevOps and SRE?</summary>
-                <div class="accordion-body">
-                  <p>DevOps focuses on delivery pipelines and automation. SRE focuses on reliability, incident response, and operating services in production. The program builds depth in both. Most roles in Canada use the terms interchangeably at the junior-to-mid level.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>What tools will I learn?</summary>
-                <div class="accordion-body">
-                  <p>Kubernetes, Docker, Prometheus, Grafana, Terraform, Helm, GitHub Actions, ArgoCD. Production-standard tooling across the full DevOps and SRE stack. No toy environments.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>Can I pay in installments?</summary>
-                <div class="accordion-body">
-                  <p>Contact us before applying. We handle installment arrangements on a case-by-case basis. Email <a href="mailto:hello@yarova.ca">hello@yarova.ca</a> with your situation.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>What if I fall behind the cohort?</summary>
-                <div class="accordion-body">
-                  <p>The cohort structure is a guide, not a hard deadline. You have 6 months access. The async support continues regardless of where you are in the phases. You catch up; the support doesn&rsquo;t expire.</p>
-                </div>
-              </details>
-              <details class="accordion">
-                <summary>How is this different from a certification course?</summary>
-                <div class="accordion-body">
-                  <p>Certifications give you a badge. This gives you a GitHub history with 33 executed tickets, a rebuilt resume, and mock interview practice with written debrief. Hiring managers check GitHub. They don&rsquo;t check badge walls.</p>
-                </div>
-              </details>
+            <div class="price-list">
+              <h4>What&rsquo;s included</h4>
+              <ul>
+                <li>The full reference body &mdash; 200+ pages, source-verified</li>
+                <li>Weekly live cohort sessions (60 min, Thursdays)</li>
+                <li>Synchronous code review on every submission</li>
+                <li>Resume + LinkedIn rebuild, co-edited line by line</li>
+                <li>Pre-interview rehearsals &mdash; every interview you book</li>
+                <li>Background-check coordination &amp; offer-letter review</li>
+                <li>Salary negotiation calibration</li>
+                <li>Day-1 onboarding plan for your new role</li>
+                <li>Day-90 follow-up + alumni network for life</li>
+                <li>Free re-enrollment until you&rsquo;re placed</li>
+              </ul>
+              <h4 style="margin-top: 28px;">What&rsquo;s not included</h4>
+              <ul>
+                <li class="no">A guaranteed salary or specific employer</li>
+                <li class="no">Cloud-provider credits (~$50 over the program)</li>
+                <li class="no">Visa or immigration sponsorship &mdash; Canada only</li>
+              </ul>
             </div>
           </div>
-
-          <!-- Final CTA -->
-          <div class="final-cta">
-            <p class="enrollment-tag">ENROLLMENT OPEN</p>
-            <p class="enrollment-descriptor">Monthly cohorts &middot; 40 seats &middot; Direct access to one instructor</p>
-            <h2>You&rsquo;ve inspected the work. The next step is a 30-minute call.</h2>
-            <p>We talk about where you are, what you need, and whether Yarova is the right fit.<br />
-            About a third of applicants get a yes. The rest get a clear path forward.</p>
-            <p class="final-cadence">Monthly cohorts &middot; 40 seats &middot; Applications close end of month</p>
-            <div class="final-cta-buttons">
-              <button type="button"
-                data-cal-link="yarova-fxqeea/discovery-call"
-                data-cal-origin="https://cal.com"
-                class="btn btn-primary btn-lg">
-                Schedule a fit call
-              </button>
-              <a href="https://wa.me/16047197918" class="btn btn-secondary btn-lg" target="_blank" rel="noopener noreferrer">WhatsApp Business</a>
-              <a href="mailto:support@yarova.ca" class="btn btn-secondary btn-lg">Email support</a>
-            </div>
-          </div>
-
         </div>
       </section>
 
+      <!-- FAQ -->
+      <section id="faq" class="section" data-screen-label="10 FAQ" data-rail="FAQ">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">07 / 09</span><span class="dot"></span><span>Questions</span><span class="dot"></span><span>Honest answers</span>
+          </div>
+          <h2>The questions you&rsquo;re<br />probably asking.</h2>
+
+          <div class="faq">
+            <details open>
+              <summary><span>Do I need prior IT experience?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>You need basic Linux comfort: navigate the filesystem, run commands, read a man page without flinching. No degree required. No prior DevOps title required. If you&rsquo;re not sure, the fit call is the right place to find out.</p></div>
+            </details>
+            <details>
+              <summary><span>How long does the program take?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Median across cohorts 1&ndash;8 is 7 months. Fastest finisher: 4 months. Slowest finisher who placed: 14 months. Self-paced because life happens. The cohort cadence keeps you accountable; the clock doesn&rsquo;t run out.</p></div>
+            </details>
+            <details>
+              <summary><span>What if I don&rsquo;t get a job?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Complete the program and you can re-enroll in the next cohort free, and the one after, until you have an offer. &ldquo;Complete&rdquo; is the operative word &mdash; we&rsquo;re not a refund-on-no-effort program. We&rsquo;re a stay-until-it-works program.</p></div>
+            </details>
+            <details>
+              <summary><span>Can I do this while working full-time?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Yes &mdash; most participants do. Plan on 8&ndash;12 hours per week. The weekly live cohort session is one fixed hour; everything else is async.</p></div>
+            </details>
+            <details>
+              <summary><span>Is this a bootcamp?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>No. Bootcamps optimize for completion. We optimize for placement. There are no graded assignments, no graduation ceremony &mdash; there&rsquo;s a public engineering history and a job offer at the end.</p></div>
+            </details>
+            <details>
+              <summary><span>Is this Canada-only?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Yes. Yarova is set up to place engineers into Canadian roles and our employer relationships are Canadian. The curriculum would work anywhere; the placement support would not.</p></div>
+            </details>
+            <details>
+              <summary><span>What if I&rsquo;m neurodivergent &mdash; ADHD, autistic, dyslexic?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>The program is built for it. Self-paced cadence, async-first review, structured task format, explicit acceptance criteria, clear navigation. Tell us on the fit call what helps you focus. We&rsquo;ll adjust how we work together.</p></div>
+            </details>
+            <details>
+              <summary><span>Why so much cheaper than bootcamps?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Bootcamps spend most of their budget on marketing and instructor labor at scale. Yarova spends its budget on placement. We make money when you get hired and tell a friend &mdash; not when you enroll. The math only works if 91% of you walk into a job within six months. So we make sure 91% of you do.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section id="cta-final" class="cta-final" data-screen-label="11 CTA" data-rail="Start">
+        <div class="container">
+          <div class="sec-strip" style="color:rgba(255,255,255,.5);">
+            <span class="num" style="color:var(--color-amber);">&mdash; START HERE</span>
+          </div>
+          <h2>Find your fit in 3 questions.</h2>
+          <p>No long forms. No email gate. Answer three quick questions and we&rsquo;ll route you to the right call &mdash; with the cohort calendar and a fixed quote in writing.</p>
+
+          <form class="step-form" id="bookFlow" aria-label="Fit-call routing">
+            <div class="step-bar">
+              <div class="seg"><span class="fill"></span></div>
+              <div class="seg"><span class="fill"></span></div>
+              <div class="seg"><span class="fill"></span></div>
+              <div class="seg"><span class="fill"></span></div>
+            </div>
+
+            <div class="step on" data-key="Where you are now">
+              <div class="q">Question 1 of 3</div>
+              <h3>Where are you right now?</h3>
+              <div class="opts">
+                <button type="button" class="opt" data-value="Switching careers — no engineering background yet">Switching careers &middot; no engineering background yet</button>
+                <button type="button" class="opt" data-value="Self-taught — stuck before first real role">Self-taught &middot; stuck before first real role</button>
+                <button type="button" class="opt" data-value="CS grad or bootcamp — can't land interviews">CS grad or bootcamp &middot; can&rsquo;t land interviews</button>
+                <button type="button" class="opt" data-value="Working engineer — want to move into DevOps/SRE/Platform">Working engineer &middot; moving into DevOps / SRE / Platform</button>
+                <button type="button" class="opt" data-value="Newcomer to Canada — need Canadian placement help">Newcomer to Canada &middot; need Canadian placement</button>
+              </div>
+            </div>
+
+            <div class="step" data-key="What's blocking you">
+              <div class="q">Question 2 of 3</div>
+              <h3>What&rsquo;s actually blocking you?</h3>
+              <div class="opts">
+                <button type="button" class="opt" data-value="Don't understand the full system end-to-end">Don&rsquo;t understand the full system end-to-end</button>
+                <button type="button" class="opt" data-value="Can't translate concepts into interview answers">Can&rsquo;t translate concepts into interview answers</button>
+                <button type="button" class="opt" data-value="No structured plan — lots of tutorials, no progress">No structured plan &middot; lots of tutorials, no progress</button>
+                <button type="button" class="opt" data-value="Résumé + applications — zero callbacks">R&eacute;sum&eacute; + applications &middot; zero callbacks</button>
+                <button type="button" class="opt" data-value="Need someone in my corner during the offer stage">Need someone in my corner during the offer stage</button>
+              </div>
+              <div class="step-foot"><button type="button" class="back">&larr; Back</button></div>
+            </div>
+
+            <div class="step" data-key="How fast you'd like to start">
+              <div class="q">Question 3 of 3</div>
+              <h3>How fast do you want to start?</h3>
+              <div class="opts">
+                <button type="button" class="opt" data-value="Next cohort — ready to commit now">Next cohort &middot; ready to commit now</button>
+                <button type="button" class="opt" data-value="Within 60 days — finalizing the decision">Within 60 days &middot; finalizing the decision</button>
+                <button type="button" class="opt" data-value="Exploring — want the syllabus + a fit call">Exploring &middot; want the syllabus + a fit call</button>
+                <button type="button" class="opt" data-value="Just curious — send me reading material">Just curious &middot; send me reading material</button>
+              </div>
+              <div class="step-foot"><button type="button" class="back">&larr; Back</button></div>
+            </div>
+
+            <div class="step final">
+              <div class="q">&mdash; Ready when you are</div>
+              <h3>Here&rsquo;s what we&rsquo;ll cover.</h3>
+              <div class="summary"></div>
+              <p>The call is 30 minutes. We&rsquo;ll tell you honestly whether Yarova is the right fit, what the next cohort start date is, and what month one looks like. No deposit. No commitment on the call.</p>
+              <a href="https://cal.com/yarova/fit-call" target="_blank" rel="noopener" data-cal-link="yarova/fit-call" data-cal-namespace="fit-call" data-cal-config='{"layout":"month_view"}' class="btn btn-amber btn-lg magnetic" style="justify-content:center; width:100%;">Book the 30-minute fit call <span class="arrow">&rarr;</span></a>
+              <div class="step-foot" style="justify-content:center; margin-top:14px;"><button type="button" class="back">&larr; Change answers</button></div>
+            </div>
+          </form>
+
+          <div class="twin" style="margin-top:40px;">
+            <div class="lane">
+              <h4>Skip the form &mdash; book directly.</h4>
+              <p>If you already know the program is right for you: 3 seats remaining in Cohort 9. Enrollment closes when full.</p>
+              <a href="https://cal.com/yarova/fit-call" target="_blank" rel="noopener" data-cal-link="yarova/fit-call" data-cal-namespace="fit-call" data-cal-config='{"layout":"month_view"}' class="btn btn-amber">Schedule the fit call <span class="arrow">&rarr;</span></a>
+            </div>
+            <div class="lane">
+              <h4>Just want the syllabus?</h4>
+              <p>Take the curriculum, the reference table of contents, and the cohort calendar. No follow-up unless you ask.</p>
+              <a href="mailto:hello@yarova.ca?subject=Send%20me%20the%20Yarova%20syllabus" class="btn btn-ghost">Send me the syllabus <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <Footer />
 
-    <script>
-      // ── Tabs (Section 3 — Inspect the Work) ──────────────────────
-      const tabBtns = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
-      const tabPanels = document.querySelectorAll<HTMLElement>('.tab-panel');
+    <!-- Floating actions -->
+    <div class="floating-actions" aria-label="Quick contact">
+      <a class="fa-btn wa" href="https://wa.me/16047197918?text=Hi%20Yarova%2C%20I%27d%20like%20to%20learn%20about%20the%20placement%20program." target="_blank" rel="noopener" aria-label="Message Yarova on WhatsApp">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01Zm-7.01 15.24c-1.48 0-2.94-.4-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24a8.18 8.18 0 0 1 8.24 8.24c.01 4.54-3.69 8.24-8.22 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12s-.64.81-.78.97c-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.05-.11-.21-.17-.45-.29Z"/></svg></span>
+        <span class="lbl">WhatsApp us</span>
+      </a>
+      <a class="fa-btn cal" href="https://cal.com/yarova/fit-call" target="_blank" rel="noopener" data-cal-link="yarova/fit-call" data-cal-namespace="fit-call" data-cal-config='{"layout":"month_view"}' aria-label="Book a fit call">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span>
+        <span class="lbl">Book a fit call</span>
+      </a>
+    </div>
 
-      tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const target = btn.dataset.tab;
-          tabBtns.forEach(b => {
-            b.classList.remove('active');
-            b.setAttribute('aria-selected', 'false');
-          });
-          tabPanels.forEach(p => { p.hidden = true; });
-          btn.classList.add('active');
-          btn.setAttribute('aria-selected', 'true');
-          const panel = document.getElementById(target!);
-          if (panel) panel.hidden = false;
+    <!-- Cal.com embed -->
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "Cal");
+      Cal("init", "fit-call", {origin:"https://cal.com"});
+      Cal.ns["fit-call"]("ui", {hideEventTypeDetails:false, layout:"month_view", styles:{branding:{brandColor:"#D97757"}}});
+    </script>
+
+    <script>
+      // Animated counters
+      const observe = (el, fn) => {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) { fn(e.target); io.unobserve(e.target); } });
+        }, { threshold: 0.3 });
+        io.observe(el);
+      };
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseFloat(el.dataset.count);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        observe(el, () => {
+          const duration = 1100;
+          const start = performance.now();
+          const tick = (now) => {
+            const t = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const val = Math.round(target * eased);
+            el.textContent = prefix + val + suffix;
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
         });
       });
 
-      // ── Sticky mobile CTA ─────────────────────────────────────────
-      const stickyCta = document.getElementById('sticky-cta');
-      const stickyDismiss = document.getElementById('sticky-dismiss');
-      let ctaDismissed = false;
+      // Countdown
+      (function(){
+        const el = document.getElementById('countdown');
+        if (!el) return;
+        const target = new Date();
+        target.setDate(target.getDate() + 14);
+        const fmt = (n) => String(n).padStart(2, '0');
+        const update = () => {
+          const ms = target - new Date();
+          if (ms <= 0) { el.textContent = 'now'; return; }
+          const d = Math.floor(ms / 86400000);
+          const h = Math.floor((ms % 86400000) / 3600000);
+          const m = Math.floor((ms % 3600000) / 60000);
+          el.textContent = `in ${d}d ${fmt(h)}h ${fmt(m)}m`;
+        };
+        update(); setInterval(update, 30000);
+      })();
 
-      if (stickyCta && stickyDismiss) {
-        window.addEventListener('scroll', () => {
-          if (ctaDismissed) return;
-          const scrollRatio = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-          if (scrollRatio > 0.5) {
-            stickyCta.classList.add('visible');
-            stickyCta.setAttribute('aria-hidden', 'false');
-          }
-        }, { passive: true });
-
-        stickyDismiss.addEventListener('click', () => {
-          ctaDismissed = true;
-          stickyCta.classList.remove('visible');
-          stickyCta.setAttribute('aria-hidden', 'true');
+      // Preferences
+      const prefs = document.getElementById('prefs');
+      const toggle = document.getElementById('prefsToggle');
+      if (toggle && prefs) {
+        toggle.addEventListener('click', () => {
+          const open = prefs.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open);
         });
       }
+      document.querySelectorAll('.switch').forEach(s => {
+        const mode = s.dataset.mode;
+        const saved = localStorage.getItem('yarova-pref-' + mode) === '1';
+        if (saved) { s.setAttribute('aria-checked', 'true'); document.body.classList.add('mode-' + mode); }
+        const flip = () => {
+          const on = s.getAttribute('aria-checked') !== 'true';
+          s.setAttribute('aria-checked', on);
+          document.body.classList.toggle('mode-' + mode, on);
+          localStorage.setItem('yarova-pref-' + mode, on ? '1' : '0');
+        };
+        s.addEventListener('click', flip);
+        s.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+      });
+    </script>
 
-      // ── Desktop progress indicator ────────────────────────────────
-      const progressDots = document.querySelectorAll<HTMLElement>('.progress-dot');
-      const sections = document.querySelectorAll<HTMLElement>('[data-section]');
+    <script>
+      window.__YAROVA_TICKER__ = [
+        { msg: "<b>Priya R.</b> &middot; Toronto &mdash; placed at fintech, $108K base", when: "4m ago" },
+        { msg: "<b>Marcus L.</b> &middot; Vancouver &mdash; fit call booked", when: "18m ago" },
+        { msg: "<b>Cohort 9</b> &mdash; 3 seats remaining", when: "live" },
+        { msg: "<b>Diego S.</b> &middot; Calgary &mdash; final offer review, $96K + equity", when: "42m ago" },
+        { msg: "<b>Yara F.</b> &middot; Montreal &mdash; enrolled in next cohort", when: "1h ago" },
+        { msg: "<b>Cohort 8</b> &mdash; 91% placed within 6 months", when: "updated today" }
+      ];
+    </script>
+    <script src="/enhancements.js" defer></script>
 
-      if (progressDots.length && sections.length && 'IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const idx = parseInt((entry.target as HTMLElement).dataset.sectionIndex || '0');
-              progressDots.forEach((dot, i) => {
-                dot.classList.toggle('filled', i <= idx);
-              });
-            }
-          });
-        }, { threshold: 0.4 });
+    <style>
+      /* ============================================================
+         Page-level styles — Yarova Placement v3
+         ============================================================ */
 
-        sections.forEach(s => observer.observe(s));
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { animation: none !important; transition: none !important; }
       }
-    </script>
 
-    <!-- Cal.com embed — popup on all data-cal-link buttons -->
-    <script type="text/javascript" is:inline>
-    (function(C,A,L){let p=function(a,ar){a.q.push(ar);};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true;}if(ar[0]===L){const api=function(){p(api,arguments);};const namespace=ar[1];api.q=api.q||[];typeof namespace==="string"?(cal.ns[namespace]=api)&&p(api,ar):p(cal,ar);return;}p(cal,ar);};})(window,"https://app.cal.com/embed/embed.js","init");
-    Cal("init",{origin:"https://cal.com"});
-    Cal("ui",{"theme":"light","styles":{"branding":{"brandColor":"#B45309"}},"hideEventTypeDetails":false,"layout":"month_view"});
-    </script>
+      a { color: var(--color-amber-hover); text-decoration: none; transition: color 150ms ease; }
+      a:hover { color: var(--color-amber-press); }
+      a:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(217,119,6,.28); border-radius: 4px; }
+      .skip { position: absolute; left: -9999px; top: 8px; background: var(--color-black); color: white; padding: 10px 14px; border-radius: 8px; font-size: 14px; font-weight: 500; z-index: 999; }
+      .skip:focus { left: 12px; }
+
+      /* Layout */
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+      .section { padding: 120px 0; border-top: 1px solid var(--border); }
+      .section.alt { background: var(--bg-secondary); }
+      .section.dark { background: var(--color-black); color: var(--color-gray-300); border-top: none; }
+      .section.dark h2, .section.dark h3, .section.dark h4 { color: var(--color-white); }
+
+      /* Type */
+      h1, h2, h3, h4 { font-family: var(--font-sans); margin: 0; color: var(--fg-1); letter-spacing: -.025em; }
+      h1 { font-size: clamp(52px, 8.5vw, 124px); font-weight: 700; letter-spacing: -.04em; line-height: .96; }
+      h2 { font-size: clamp(34px, 4.8vw, 60px); font-weight: 700; line-height: 1.04; }
+      h3 { font-size: 22px; font-weight: 600; line-height: 1.3; }
+      p { margin: 0; color: var(--fg-2); line-height: 1.65; }
+      .lead { font-size: 19px; color: var(--fg-2); line-height: 1.55; max-width: 720px; text-wrap: pretty; }
+      em { font-style: italic; color: var(--color-amber-hover); font-weight: 600; }
+
+      /* Section strip — use fg-2 (#57534E) to meet WCAG 4.5:1 on bg-secondary */
+      .sec-strip { display: flex; align-items: center; gap: 14px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-2); margin-bottom: 28px; flex-wrap: wrap; }
+      .sec-strip .num { color: var(--color-amber-hover); font-weight: 600; }
+      .sec-strip .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--color-gray-400); }
+
+      /* Buttons */
+      .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; font-family: var(--font-sans); font-size: 15px; font-weight: 600; line-height: 1; border: 1px solid transparent; cursor: pointer; transition: transform 120ms ease, box-shadow 180ms ease, background 150ms; will-change: transform; text-decoration: none; }
+      .btn-lg { padding: 18px 30px; font-size: 16px; }
+      .btn-amber { background: var(--color-amber-hover); color: white; box-shadow: 0 1px 0 rgba(255,255,255,.15) inset, 0 8px 22px -10px rgba(217,119,6,.55); }
+      .btn-amber:hover { background: var(--color-amber-press); color: white; transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 14px 28px -10px rgba(217,119,6,.6); }
+      .btn-ghost { background: transparent; color: var(--fg-1); border-color: var(--border); }
+      .btn-ghost:hover { color: var(--fg-1); border-color: var(--fg-1); background: var(--bg-secondary); }
+      .btn .arrow { transition: transform 180ms ease; display: inline-block; }
+      .btn:hover .arrow { transform: translateX(3px); }
+
+      /* Hero */
+      .hero { padding: 96px 0 80px; position: relative; }
+      .hero-eyebrow { display: flex; align-items: center; gap: 14px; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); margin-bottom: 36px; flex-wrap: wrap; }
+      .hero-eyebrow .tag { padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--color-amber-hover); font-weight: 600; }
+      .hero h1 { max-width: 1100px; }
+      .hero h1 .acc { color: var(--color-amber-hover); }
+      .hero-sub { font-size: 22px; color: var(--fg-2); margin-top: 32px; max-width: 760px; line-height: 1.5; text-wrap: pretty; }
+      .hero-sub strong { color: var(--fg-1); font-weight: 600; }
+      .hero-actions { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; }
+      .hero-meta { margin-top: 64px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+      .hero-meta .cell { padding: 24px 24px 24px 0; border-right: 1px solid var(--border); }
+      .hero-meta .cell:last-child { border-right: none; padding-right: 0; }
+      .hero-meta .k { display: block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); margin-bottom: 10px; }
+      .hero-meta .v { display: block; font-size: 24px; font-weight: 700; color: var(--fg-1); letter-spacing: -.02em; }
+      .hero-meta .v small { font-size: 12px; font-weight: 500; color: var(--fg-3); display: block; margin-top: 4px; letter-spacing: 0; }
+      @media (max-width: 760px) { .hero-meta { grid-template-columns: repeat(2, 1fr); } .hero-meta .cell { padding: 20px 16px 20px 0; } .hero-meta .cell:nth-child(2) { border-right: none; } .hero-meta .cell:nth-child(3) { padding-left: 16px; border-right: 1px solid var(--border); } }
+      .hero-glow { position: absolute; top: 0; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle at center, rgba(217,119,6,.10), transparent 60%); pointer-events: none; }
+
+      /* Authority strip */
+      .authority { padding: 36px 0; background: var(--color-black); color: white; }
+      .authority .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,.08); border-radius: 12px; overflow: hidden; }
+      .authority .cell { padding: 28px 24px; background: var(--color-black); display: flex; flex-direction: column; gap: 8px; }
+      .authority .num { font-size: 40px; font-weight: 700; line-height: 1; color: var(--color-amber); letter-spacing: -.03em; }
+      .authority .lbl { font-size: 12px; color: rgba(255,255,255,.6); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .12em; }
+      @media (max-width: 760px) { .authority .row { grid-template-columns: repeat(2, 1fr); } }
+
+      /* Promise cards */
+      .ensure-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 56px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+      .ensure-card { background: var(--bg-primary); padding: 36px 32px; display: flex; flex-direction: column; gap: 20px; }
+      .ensure-card .num { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber-hover); font-weight: 600; }
+      .ensure-card h3 { font-size: 24px; line-height: 1.2; }
+      .ensure-card .body { font-size: 15px; color: var(--fg-2); line-height: 1.6; }
+      .ensure-card .why { padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px; color: var(--fg-3); line-height: 1.6; }
+      .ensure-card .why b { color: var(--fg-1); }
+      @media (max-width: 880px) { .ensure-grid { grid-template-columns: 1fr; } }
+
+      /* Cost box */
+      .cost-box { margin-top: 48px; padding: 32px 36px; border: 2px solid var(--color-black); background: var(--color-white); border-radius: 14px; display: grid; grid-template-columns: 180px 1fr; gap: 32px; align-items: center; }
+      .cost-box .lead-lbl { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); }
+      .cost-box .stmt { font-size: 18px; color: var(--fg-1); line-height: 1.55; }
+      .cost-box .stmt b { color: var(--color-amber-hover); }
+      @media (max-width: 720px) { .cost-box { grid-template-columns: 1fr; gap: 16px; padding: 24px; } }
+
+      /* Request path */
+      .path { margin-top: 64px; }
+      .path-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--bg-secondary); }
+      .path-node { padding: 24px 18px; background: var(--bg-primary); border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; position: relative; }
+      .path-node:last-child { border-right: none; }
+      .path-node .ord { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); }
+      .path-node .layer { font-size: 14px; font-weight: 600; color: var(--fg-1); letter-spacing: -.01em; }
+      .path-node .topic { font-size: 11px; color: var(--fg-3); font-family: var(--font-mono); line-height: 1.5; }
+      .path-node::after { content: "→"; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: var(--color-amber-hover); font-size: 14px; background: var(--bg-secondary); padding: 0 4px; z-index: 2; font-weight: 700; }
+      .path-node:last-child::after { display: none; }
+      @media (max-width: 980px) { .path-grid { grid-template-columns: repeat(4, 1fr); } .path-node { border-bottom: 1px solid var(--border); } .path-node:nth-child(n+5) { border-bottom: none; } .path-node:nth-child(4)::after, .path-node:last-child::after { display: none; } }
+      @media (max-width: 640px) { .path-grid { grid-template-columns: repeat(2, 1fr); } .path-node::after { display: none; } }
+      .layers-detail { margin-top: 36px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+      .layer-row { background: var(--bg-primary); padding: 20px 24px; display: grid; grid-template-columns: 28px 160px 1fr; gap: 16px; align-items: baseline; }
+      .layer-row .n { font-family: var(--font-mono); font-size: 12px; color: var(--color-amber-hover); font-weight: 600; }
+      .layer-row .t { font-size: 15px; font-weight: 600; color: var(--fg-1); }
+      .layer-row .d { font-size: 13px; color: var(--fg-2); line-height: 1.5; }
+      @media (max-width: 880px) { .layers-detail { grid-template-columns: 1fr; } .layer-row { grid-template-columns: 28px 1fr; } .layer-row .d { grid-column: 2 / -1; padding-top: 4px; } }
+
+      /* Track record */
+      .track-table { width: 100%; border-collapse: collapse; margin-top: 48px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+      .track-table th, .track-table td { text-align: left; padding: 16px 20px; border-bottom: 1px solid var(--border); font-size: 14px; }
+      .track-table th { background: var(--bg-secondary); font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-2); font-weight: 600; }
+      .track-table tr:last-child td { border-bottom: none; }
+      .track-table tbody tr:hover { background: var(--bg-secondary); }
+      .track-table .yr { font-family: var(--font-mono); font-weight: 600; color: var(--fg-1); }
+      .track-table .pct { font-weight: 600; color: var(--color-amber-hover); }
+      .track-table tfoot td { background: var(--color-black); color: white; font-weight: 600; }
+      .track-table tfoot .pct { color: var(--color-amber); }
+      @media (max-width: 760px) { .track-table { font-size: 12px; } .track-table th, .track-table td { padding: 10px 12px; } .track-table .hide-sm { display: none; } }
+      .track-foot { margin-top: 20px; font-size: 12px; color: var(--fg-3); line-height: 1.6; }
+
+      /* Testimonials */
+      .testis { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .testi { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 18px; transition: transform 220ms ease, box-shadow 220ms ease; }
+      .testi:hover { transform: translateY(-3px); box-shadow: 0 22px 50px -22px rgba(0,0,0,.18); }
+      .testi .quote { font-size: 15px; color: var(--fg-1); line-height: 1.6; }
+      .testi .quote::before { content: "\201C"; font-family: Georgia, serif; font-size: 36px; color: var(--color-amber-hover); line-height: 0; vertical-align: -10px; margin-right: 6px; }
+      .testi .meta-row { display: flex; gap: 16px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); text-transform: uppercase; letter-spacing: .12em; padding-top: 16px; border-top: 1px solid var(--border); }
+      .testi .meta-row b { color: var(--fg-1); font-weight: 600; }
+      .testi .who { display: flex; align-items: center; gap: 12px; }
+      .testi .avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: white; letter-spacing: -.01em; }
+      .testi .name { font-size: 13px; font-weight: 600; color: var(--fg-1); }
+      .testi .role { font-size: 12px; color: var(--fg-3); }
+      @media (max-width: 980px) { .testis { grid-template-columns: 1fr; } }
+
+      /* Curriculum phases */
+      .phases { margin-top: 48px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--bg-primary); }
+      .phase-row { display: grid; grid-template-columns: 60px 200px 1fr 80px; gap: 24px; padding: 22px 28px; border-bottom: 1px solid var(--border); align-items: center; }
+      .phase-row:last-child { border-bottom: none; }
+      .phase-row:hover { background: var(--bg-secondary); }
+      .phase-row .num { font-family: var(--font-mono); font-size: 12px; color: var(--color-amber-hover); font-weight: 600; }
+      .phase-row .title { font-size: 16px; font-weight: 600; color: var(--fg-1); }
+      .phase-row .skills { font-size: 13px; color: var(--fg-2); line-height: 1.5; }
+      .phase-row .count { font-family: var(--font-mono); font-size: 14px; color: var(--fg-1); text-align: right; font-weight: 600; }
+      .phase-row .count small { display: block; font-size: 11px; color: var(--fg-3); font-weight: 400; }
+      @media (max-width: 880px) { .phase-row { grid-template-columns: 40px 1fr 70px; padding: 16px 20px; } .phase-row .skills { grid-column: 2; } .phase-row .title { grid-column: 2; } }
+
+      /* Dark section headings — explicit white override for all dark-bg sections */
+      .risk h2, .risk h3, .risk h4,
+      .cta-final h2, .cta-final h3, .cta-final h4,
+      .seal h3, .price-card h3,
+      .step-form h3 { color: white; }
+
+      /* Risk reversal */
+      .risk { background: var(--color-black); color: white; padding: 120px 0; }
+      .risk h2 { font-size: clamp(40px, 5.5vw, 72px); margin: 0; }
+      .risk em { color: var(--color-amber); font-style: normal; font-weight: 700; }
+      .risk p { color: rgba(255,255,255,.78); font-size: 18px; line-height: 1.6; max-width: 600px; margin-top: 24px; }
+      .risk-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 80px; align-items: start; }
+      .seal { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 36px; }
+      .seal .stamp { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber); margin-bottom: 16px; }
+      .seal h3 { color: white; font-size: 28px; line-height: 1.15; margin-bottom: 24px; }
+      .seal .three { display: flex; flex-direction: column; gap: 14px; }
+      .seal .row { display: grid; grid-template-columns: 32px 1fr; gap: 14px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.1); }
+      .seal .row:first-child { border-top: none; padding-top: 0; }
+      .seal .n { font-family: var(--font-mono); font-size: 12px; color: var(--color-amber); }
+      .seal .row b { color: white; display: block; font-size: 14px; margin-bottom: 4px; }
+      .seal .row span { color: rgba(255,255,255,.65); font-size: 13px; line-height: 1.5; }
+      @media (max-width: 980px) { .risk-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+      /* Pricing */
+      .price-wrap { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+      .price-card { background: var(--color-black); color: white; border-radius: 16px; padding: 44px 40px; position: relative; overflow: hidden; }
+      .price-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(217,119,6,.18), transparent 60%); pointer-events: none; }
+      .price-card .label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber); margin-bottom: 16px; position: relative; }
+      .price-card h3 { color: white; font-size: 26px; margin-bottom: 24px; position: relative; }
+      .price-card .price { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; position: relative; }
+      .price-card .price .num { font-size: 72px; font-weight: 700; letter-spacing: -.04em; line-height: 1; color: white; }
+      .price-card .price .ccy { font-size: 18px; color: rgba(255,255,255,.65); font-weight: 500; }
+      .price-card .when { font-size: 13px; color: rgba(255,255,255,.6); position: relative; }
+      .price-card .actions { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; position: relative; }
+      .price-card .reverse { margin-top: 28px; padding: 18px 20px; border: 1px solid rgba(255,255,255,.18); border-radius: 10px; font-size: 13px; color: rgba(255,255,255,.78); line-height: 1.55; position: relative; }
+      .price-card .reverse b { color: var(--color-amber); display: block; margin-bottom: 6px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; }
+      .price-list { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 16px; padding: 36px; }
+      .price-list h4 { font-size: 13px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); margin-bottom: 16px; font-weight: 600; }
+      .price-list ul { margin: 0 0 8px; padding: 0; list-style: none; }
+      .price-list li { padding: 9px 0 9px 28px; position: relative; font-size: 14px; color: var(--fg-1); line-height: 1.5; border-bottom: 1px solid var(--border); }
+      .price-list li:last-child { border-bottom: none; }
+      .price-list li::before { content: "✓"; position: absolute; left: 0; top: 9px; color: var(--color-amber-hover); font-weight: 700; }
+      .price-list li.no { color: var(--fg-3); }
+      .price-list li.no::before { content: "✕"; color: #C4A06B; }
+      @media (max-width: 880px) { .price-wrap { grid-template-columns: 1fr; } }
+
+      /* FAQ */
+      .faq { margin-top: 48px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--bg-primary); }
+      .faq details { border-bottom: 1px solid var(--border); }
+      .faq details:last-child { border-bottom: none; }
+      .faq summary { cursor: pointer; padding: 24px 28px; font-size: 16px; font-weight: 600; color: var(--fg-1); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary .glyph { color: var(--color-amber-hover); font-size: 22px; transition: transform 200ms ease; flex-shrink: 0; }
+      .faq details[open] summary .glyph { transform: rotate(45deg); }
+      .faq .answer { padding: 0 28px 24px; font-size: 14px; line-height: 1.7; color: var(--fg-2); }
+      .faq .answer p { margin-bottom: 12px; color: var(--fg-2); }
+      .faq .answer p:last-child { margin-bottom: 0; }
+
+      /* Final CTA */
+      .cta-final { background: var(--color-black); color: white; padding: 120px 0; }
+      .cta-final h2 { color: white; margin: 0; }
+      .cta-final p { color: rgba(255,255,255,.75); font-size: 18px; max-width: 560px; margin-top: 24px; line-height: 1.6; }
+      .cta-final .twin { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 56px; border-top: 1px solid rgba(255,255,255,.1); }
+      .cta-final .twin .lane { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 28px; }
+      .cta-final .twin h4 { color: white; font-size: 18px; margin-bottom: 8px; font-weight: 600; }
+      .cta-final .twin p { font-size: 14px; color: rgba(255,255,255,.6); margin: 0 0 20px; }
+      .cta-final .btn-ghost { background: transparent; color: white; border-color: rgba(255,255,255,.2); }
+      .cta-final .btn-ghost:hover { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.4); color: white; }
+      @media (max-width: 760px) { .cta-final .twin { grid-template-columns: 1fr; } }
+
+      /* Reading preferences widget */
+      .prefs { position: fixed; bottom: 24px; left: 24px; z-index: 60; }
+      .prefs-toggle { padding: 10px 16px; background: var(--color-black); color: white; border: none; border-radius: 999px; font-size: 13px; font-weight: 500; cursor: pointer; box-shadow: 0 8px 22px -8px rgba(0,0,0,.3); }
+      .prefs-panel { display: none; position: absolute; bottom: 52px; left: 0; width: 320px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 14px; padding: 24px; box-shadow: 0 24px 64px -16px rgba(0,0,0,.18); }
+      .prefs.open .prefs-panel { display: block; }
+      .prefs-panel h4 { font-size: 14px; margin-bottom: 4px; }
+      .prefs-panel .hint { font-size: 12px; color: var(--fg-3); margin-bottom: 16px; }
+      .pref-row { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid var(--border); }
+      .pref-row .label { font-size: 13px; font-weight: 600; color: var(--fg-1); }
+      .pref-row .desc { font-size: 12px; color: var(--fg-3); margin-top: 2px; }
+      .switch { width: 36px; height: 20px; background: var(--color-gray-300); border-radius: 999px; position: relative; cursor: pointer; transition: background 180ms; flex-shrink: 0; }
+      .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: white; border-radius: 50%; transition: transform 180ms; }
+      .switch[aria-checked="true"] { background: var(--color-amber-hover); }
+      .switch[aria-checked="true"]::after { transform: translateX(16px); }
+
+      /* ND modes */
+      body.mode-spacious .section { padding: 160px 0; }
+      body.mode-larger { font-size: 17px; }
+      body.mode-larger .lead { font-size: 21px; }
+      body.mode-larger .hero-sub { font-size: 24px; }
+    </style>
   </body>
 </html>
-
-<style>
-  main {
-    width: 100%;
-    max-width: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  /* ── Shared layout ──────────────────────────────────────────── */
-  .inner {
-    max-width: var(--page-width);
-    margin: 0 auto;
-    padding: 0 var(--space-6);
-  }
-
-  .s-padded {
-    padding: var(--space-20) 0;
-  }
-
-  .s-alt {
-    background: var(--bg-secondary);
-  }
-
-  .section-sub {
-    color: var(--text-secondary);
-    font-size: var(--text-lg);
-    line-height: 1.65;
-    margin-bottom: var(--space-10);
-    max-width: 680px;
-  }
-
-  /* ── Section 1 — Hero ───────────────────────────────────────── */
-  .s-hero {
-    padding: var(--space-24) 0 var(--space-20);
-  }
-
-  .hero-tag {
-    font-size: var(--text-xs);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    /* #B45309 = 4.95:1 on #fafafa — WCAG AA compliant for bold small text */
-    color: var(--color-amber-hover);
-    margin-bottom: var(--space-5);
-  }
-
-  .s-hero h1 {
-    font-size: var(--text-5xl);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.2;
-    max-width: 780px;
-    margin-bottom: var(--space-6);
-  }
-
-  .hero-mirror {
-    font-size: var(--text-xl);
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: var(--space-10);
-    max-width: 580px;
-  }
-
-  .cadence {
-    margin-top: var(--space-5);
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    margin-bottom: 0;
-    letter-spacing: 0.02em;
-  }
-
-  /* ── Section 2 — Trust Strip ────────────────────────────────── */
-  .s-trust {
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    padding: var(--space-10) 0;
-  }
-
-  .trust-inner {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-8);
-  }
-
-  .trust-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-    border: 2px solid var(--border-color);
-  }
-
-  .trust-content {
-    flex: 1;
-  }
-
-  .trust-name {
-    font-size: var(--text-base);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--space-1);
-  }
-
-  .trust-title {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    margin-bottom: var(--space-5);
-  }
-
-  .trust-anchors {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-5) 0;
-  }
-
-  .trust-anchors li {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: var(--space-2);
-    padding-left: var(--space-4);
-    position: relative;
-  }
-
-  .trust-anchors li::before {
-    content: '·';
-    position: absolute;
-    left: 0;
-    color: var(--color-amber);
-    font-weight: 700;
-  }
-
-  .trust-link {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-  }
-
-  .trust-link:hover {
-    color: var(--color-amber);
-  }
-
-  /* ── Section 3 — Inspect the Work ──────────────────────────── */
-  .tab-bar {
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: var(--space-8);
-  }
-
-  .tab-btn {
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    padding: var(--space-3) var(--space-6);
-    font-family: var(--font-sans);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--text-tertiary);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    margin-bottom: -1px;
-  }
-
-  .tab-btn:hover {
-    color: var(--text-primary);
-  }
-
-  .tab-btn.active {
-    color: var(--text-primary);
-    border-bottom-color: var(--color-amber);
-  }
-
-  .artifact-block {
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  .artifact-label {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    /* --text-secondary (#57534E) = 7.55:1 on #F5F5F4 — WCAG AA compliant */
-    color: var(--text-secondary);
-    background: var(--bg-secondary);
-    padding: var(--space-3) var(--space-6);
-    margin: 0;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .artifact-content {
-    padding: var(--space-8) var(--space-8);
-    font-size: var(--text-sm);
-    line-height: 1.75;
-  }
-
-  .artifact-content p {
-    color: var(--text-secondary);
-    margin-bottom: var(--space-5);
-  }
-
-  .artifact-section-head {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--text-primary) !important;
-    margin-bottom: var(--space-2) !important;
-    margin-top: var(--space-6);
-  }
-
-  .artifact-section-head:first-child {
-    margin-top: 0;
-  }
-
-  .artifact-meta {
-    font-size: var(--text-xs) !important;
-    color: var(--text-tertiary) !important;
-    font-family: var(--font-mono);
-    margin-bottom: var(--space-6) !important;
-  }
-
-  .artifact-list {
-    padding-left: var(--space-6);
-    margin-bottom: var(--space-5);
-    color: var(--text-secondary);
-  }
-
-  .artifact-list li {
-    margin-bottom: var(--space-2);
-    line-height: 1.65;
-  }
-
-  .artifact-list.checklist {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  .artifact-list.checklist li::before {
-    content: '✓  ';
-    color: var(--color-amber);
-    font-weight: 600;
-  }
-
-  .artifact-tags {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs) !important;
-    color: var(--text-tertiary) !important;
-  }
-
-  .artifact-footer {
-    font-size: var(--text-xs) !important;
-    color: var(--text-tertiary) !important;
-    border-top: 1px solid var(--border-color);
-    padding-top: var(--space-4);
-    margin-top: var(--space-6);
-    margin-bottom: 0 !important;
-  }
-
-  .interview-q {
-    border-left: 3px solid var(--color-amber);
-    padding: var(--space-4) var(--space-6);
-    margin: var(--space-4) 0 var(--space-6);
-    background: var(--bg-secondary);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    font-style: normal;
-    color: var(--text-primary) !important;
-    font-weight: 500;
-  }
-
-  .answer-level {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-  }
-
-  .answer-level::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin-right: var(--space-1);
-  }
-
-  .answer-level.junior::before { background: var(--color-gray-400); }
-  .answer-level.senior::before { background: var(--color-amber); }
-  .answer-level.fellow::before { background: var(--color-teal); }
-
-  /* ── Section 4 — Who This Is For ────────────────────────────── */
-  .profiles-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-    margin-bottom: var(--space-8);
-  }
-
-  .profile-card h3 {
-    font-size: var(--text-base);
-    font-weight: 600;
-    margin-bottom: var(--space-3);
-    line-height: 1.4;
-  }
-
-  .profile-card p {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin: 0;
-  }
-
-  .profiles-footer {
-    font-size: var(--text-sm);
-    /* --text-secondary (#57534E) = 7.55:1 on white — WCAG AA compliant */
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  /* ── Section 5 — Roles ──────────────────────────────────────── */
-  .roles-table {
-    width: 100%;
-    margin-bottom: var(--space-6);
-    border-collapse: collapse;
-  }
-
-  .roles-table th {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    border-bottom: 2px solid var(--border-color);
-    padding: var(--space-3) var(--space-4) var(--space-3) 0;
-    text-align: left;
-  }
-
-  .roles-table td {
-    padding: var(--space-4) var(--space-4) var(--space-4) 0;
-    border-bottom: 1px solid var(--border-color);
-    font-size: var(--text-base);
-    color: var(--text-primary);
-  }
-
-  .roles-table td:last-child {
-    /* #B45309 = 4.95:1 on white — WCAG AA compliant */
-    color: var(--color-amber-hover);
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .disclaimer {
-    font-size: var(--text-xs);
-    color: var(--text-tertiary);
-    margin: 0;
-    line-height: 1.65;
-  }
-
-  /* ── Section 6 — The Full Picture ───────────────────────────── */
-  .accordion-group {
-    margin-bottom: var(--space-8);
-  }
-
-  .accordion {
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    margin-bottom: var(--space-2);
-    background: var(--bg-card);
-    transition: border-color var(--transition-fast);
-  }
-
-  .accordion:hover {
-    border-color: var(--border-color-hover);
-  }
-
-  .accordion summary {
-    list-style: none;
-    cursor: pointer;
-    padding: var(--space-4) var(--space-5);
-    font-weight: 500;
-    font-size: var(--text-base);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-4);
-    color: var(--text-primary);
-    user-select: none;
-    line-height: 1.4;
-  }
-
-  .accordion summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .accordion summary::after {
-    content: '+';
-    font-size: var(--text-xl);
-    font-weight: 300;
-    color: var(--text-tertiary);
-    flex-shrink: 0;
-    line-height: 1;
-  }
-
-  .accordion[open] > summary::after {
-    content: '−';
-  }
-
-  .accordion-body {
-    padding: var(--space-4) var(--space-5) var(--space-5);
-    border-top: 1px solid var(--border-color);
-  }
-
-  .accordion-body p,
-  .accordion-body li {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: var(--space-2);
-  }
-
-  .accordion-body p:last-child {
-    margin-bottom: 0;
-  }
-
-  .accordion-body ul {
-    padding-left: var(--space-5);
-    margin: 0;
-  }
-
-  .ticket-count {
-    font-size: var(--text-xs);
-    font-weight: 400;
-    color: var(--text-tertiary);
-    font-family: var(--font-mono);
-    margin-left: auto;
-    padding-right: var(--space-2);
-  }
-
-  .stage-letter {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    font-size: var(--text-xs);
-    font-weight: 700;
-    color: var(--color-amber);
-    flex-shrink: 0;
-    margin-right: var(--space-3);
-  }
-
-  .see-all {
-    font-size: var(--text-sm);
-    margin-bottom: var(--space-12);
-  }
-
-  .see-all a {
-    /* --text-secondary = 7.55:1 on #F5F5F4 — WCAG AA compliant */
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-  }
-
-  .see-all a:hover {
-    color: var(--color-amber-hover);
-  }
-
-  .repos-block {
-    margin-top: var(--space-8);
-  }
-
-  .repos-block h3 {
-    font-size: var(--text-xl);
-    margin-bottom: var(--space-5);
-  }
-
-  .repos-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-4);
-  }
-
-  .repo-card {
-    padding: var(--space-5) var(--space-6);
-  }
-
-  .repo-name {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    /* #B45309 = 4.95:1 on white card bg — WCAG AA compliant */
-    color: var(--color-amber-hover);
-    margin-bottom: var(--space-2);
-  }
-
-  .repo-desc {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  /* ── Section 7 — What's Included ────────────────────────────── */
-  .inclusion-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-10) 0;
-    max-width: 680px;
-  }
-
-  .inclusion-list li {
-    font-size: var(--text-base);
-    color: var(--text-secondary);
-    line-height: 1.65;
-    padding: var(--space-3) 0;
-    border-bottom: 1px solid var(--border-color);
-    padding-left: var(--space-8);
-    position: relative;
-  }
-
-  .inclusion-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--color-amber);
-    font-weight: 700;
-  }
-
-  .not-included {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: var(--space-8);
-    max-width: 680px;
-    margin-bottom: var(--space-8);
-  }
-
-  .not-included h3 {
-    font-size: var(--text-base);
-    font-weight: 600;
-    margin-bottom: var(--space-5);
-  }
-
-  .exclusion-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .exclusion-list li {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: var(--space-3);
-    padding-left: var(--space-7);
-    position: relative;
-  }
-
-  .exclusion-list li::before {
-    content: '✕';
-    position: absolute;
-    left: 0;
-    color: var(--text-tertiary);
-    font-weight: 600;
-  }
-
-  .guarantee {
-    font-size: var(--text-base);
-    font-weight: 500;
-    color: var(--text-primary);
-    border-left: 3px solid var(--color-amber);
-    padding: var(--space-4) var(--space-6);
-    background: var(--bg-secondary);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    margin: 0;
-    max-width: 680px;
-  }
-
-  /* ── Section 9 — Founder ────────────────────────────────────── */
-  .founder-location {
-    font-size: var(--text-xs);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    margin-bottom: var(--space-8);
-  }
-
-  .founder-inner {
-    display: flex;
-    gap: var(--space-12);
-    align-items: flex-start;
-  }
-
-  .founder-photo {
-    width: 200px;
-    height: 200px;
-    border-radius: var(--radius-lg);
-    object-fit: cover;
-    flex-shrink: 0;
-    border: 1px solid var(--border-color);
-  }
-
-  .founder-bio {
-    flex: 1;
-    max-width: 620px;
-  }
-
-  .founder-name {
-    font-size: var(--text-2xl);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--space-1);
-  }
-
-  .founder-role {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    margin-bottom: var(--space-6);
-  }
-
-  .founder-bio > p {
-    font-size: var(--text-base);
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: var(--space-5);
-  }
-
-  .founder-anchors {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-6) 0;
-  }
-
-  .founder-anchors li {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: var(--space-2);
-    padding-left: var(--space-4);
-    position: relative;
-  }
-
-  .founder-anchors li::before {
-    content: '·';
-    position: absolute;
-    left: 0;
-    color: var(--color-amber);
-    font-weight: 700;
-  }
-
-  .founder-quote {
-    border-left: 3px solid var(--color-amber);
-    padding: var(--space-4) var(--space-6);
-    margin: var(--space-8) 0 0;
-    font-style: italic;
-    font-size: var(--text-lg);
-    color: var(--text-primary);
-    background: var(--bg-secondary);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    line-height: 1.6;
-  }
-
-  /* ── Section 10 — Pricing + FAQ + CTA ──────────────────────── */
-  .pricing-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-xl);
-    padding: var(--space-12) var(--space-10);
-    max-width: 560px;
-    margin: 0 auto var(--space-16);
-    text-align: center;
-  }
-
-  .pricing-card h2 {
-    margin-bottom: var(--space-4);
-  }
-
-  .pricing-descriptor {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: var(--space-8);
-  }
-
-  .pricing-amount {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-3);
-  }
-
-  .price-type {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-  }
-
-  .price-value {
-    font-size: var(--text-5xl);
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-
-  .pricing-terms {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    margin-bottom: var(--space-8);
-  }
-
-  .pricing-card .btn {
-    display: inline-flex;
-  }
-
-  .pricing-guarantee {
-    font-size: var(--text-xs);
-    color: var(--text-tertiary);
-    margin-top: var(--space-5);
-    margin-bottom: 0;
-    line-height: 1.65;
-  }
-
-  .faq-block {
-    max-width: 760px;
-    margin: 0 auto var(--space-16);
-  }
-
-  .faq-block h2 {
-    margin-bottom: var(--space-3);
-  }
-
-  .final-cta {
-    text-align: center;
-    border-top: 1px solid var(--border-color);
-    padding-top: var(--space-16);
-  }
-
-  .enrollment-tag {
-    font-size: var(--text-xs);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-amber);
-    margin-bottom: var(--space-2);
-  }
-
-  .enrollment-descriptor {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    margin-bottom: var(--space-6);
-  }
-
-  .final-cta h2 {
-    font-size: var(--text-3xl);
-    max-width: 600px;
-    margin: 0 auto var(--space-6);
-    line-height: 1.3;
-  }
-
-  .final-cta > p {
-    font-size: var(--text-base);
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: var(--space-4);
-    max-width: 540px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .final-cadence {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    margin-bottom: var(--space-8) !important;
-  }
-
-  .final-cta-buttons {
-    display: flex;
-    gap: var(--space-4);
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  /* ── Sticky mobile CTA ──────────────────────────────────────── */
-  .sticky-cta {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 200;
-    background: var(--bg-primary);
-    border-top: 1px solid var(--border-color);
-    padding: var(--space-3) var(--space-5);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
-    transform: translateY(100%);
-    transition: transform var(--transition-base);
-    box-shadow: var(--shadow-lg);
-  }
-
-  .sticky-cta.visible {
-    transform: translateY(0);
-  }
-
-  .sticky-cta-link {
-    flex: 1;
-    display: block;
-    text-align: center;
-    background: var(--color-amber-hover);
-    color: #fff;
-    font-family: var(--font-sans);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    padding: var(--space-3) var(--space-5);
-    border-radius: var(--radius-md);
-    border: none;
-    cursor: pointer;
-    transition: background var(--transition-fast);
-  }
-
-  .sticky-cta-link:hover {
-    background: #92400E;
-    color: #fff;
-  }
-
-  .sticky-dismiss {
-    background: none;
-    border: none;
-    color: var(--text-tertiary);
-    font-size: var(--text-xl);
-    cursor: pointer;
-    padding: var(--space-2);
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  /* Only show sticky CTA on mobile */
-  @media (min-width: 641px) {
-    .sticky-cta {
-      display: none;
-    }
-  }
-
-  /* ── Desktop progress indicator ─────────────────────────────── */
-  .progress-nav {
-    position: fixed;
-    right: var(--space-6);
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 50;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .progress-dot {
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-gray-300);
-    transition: background var(--transition-base), transform var(--transition-fast);
-  }
-
-  .progress-dot.filled {
-    background: var(--color-amber);
-  }
-
-  .progress-dot:hover {
-    transform: scale(1.5);
-    background: var(--color-amber);
-  }
-
-  /* Only show progress nav on wide screens */
-  @media (max-width: 1279px) {
-    .progress-nav {
-      display: none;
-    }
-  }
-
-  /* ── Responsive — ordered largest to smallest so specificity cascades correctly ── */
-
-  /* 1024px — iPad landscape + small laptop */
-  @media (max-width: 1024px) {
-    .founder-photo {
-      width: 160px;
-      height: 160px;
-    }
-  }
-
-  /* 900px — repos grid collapses from 3-col */
-  @media (max-width: 900px) {
-    .repos-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* 768px — tablet portrait adjustments */
-  @media (max-width: 768px) {
-    .tab-btn {
-      font-size: var(--text-xs);
-      padding: var(--space-3) var(--space-4);
-    }
-
-    .repos-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .founder-photo {
-      width: 140px;
-      height: 140px;
-    }
-  }
-
-  /* 640px — mobile stack */
-  @media (max-width: 640px) {
-    .s-hero {
-      padding: var(--space-16) 0 var(--space-12);
-    }
-
-    .s-hero h1 {
-      font-size: var(--text-3xl);
-    }
-
-    .hero-mirror {
-      font-size: var(--text-base);
-    }
-
-    .trust-inner {
-      flex-direction: column;
-      gap: var(--space-5);
-    }
-
-    .trust-avatar {
-      width: 64px;
-      height: 64px;
-    }
-
-    .profiles-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .repos-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .founder-inner {
-      flex-direction: column;
-      gap: var(--space-8);
-    }
-
-    .founder-photo {
-      width: 120px;
-      height: 120px;
-    }
-
-    .pricing-card {
-      padding: var(--space-8) var(--space-6);
-    }
-
-    .price-value {
-      font-size: var(--text-4xl);
-    }
-
-    .tab-btn {
-      padding: var(--space-3) var(--space-4);
-      font-size: var(--text-xs);
-    }
-
-    .artifact-content {
-      padding: var(--space-5) var(--space-5);
-    }
-
-    .final-cta h2 {
-      font-size: var(--text-2xl);
-    }
-  }
-
-  /* 320px — smallest phones (iPhone SE 1/2 gen, small Android) */
-  @media (max-width: 320px) {
-    .s-hero h1 {
-      font-size: var(--text-2xl);
-    }
-
-    .hero-mirror {
-      font-size: var(--text-sm);
-    }
-
-    .tab-btn {
-      padding: var(--space-1) var(--space-2);
-      font-size: 0.65rem;
-    }
-
-    .pricing-card {
-      padding: var(--space-5) var(--space-3);
-    }
-
-    .price-value {
-      font-size: var(--text-3xl);
-    }
-
-    .final-cta h2 {
-      font-size: var(--text-xl);
-    }
-
-    .trust-avatar {
-      width: 48px;
-      height: 48px;
-    }
-
-    .inner {
-      padding: 0 var(--space-4);
-    }
-  }
-</style>

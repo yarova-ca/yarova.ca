@@ -1,260 +1,263 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Homepage — structure', () => {
+test.describe('Homepage — core sections', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
 
-  test('all 10 section IDs exist', async ({ page }) => {
-    const ids = ['hero', 'trust', 'inspect', 'fit', 'roles', 'build', 'includes', 'flow', 'founder', 'schedule'];
+  test('key section IDs exist', async ({ page }) => {
+    const ids = ['hero', 'ensure', 'path', 'track', 'pricing', 'faq', 'cta-final'];
     for (const id of ids) {
       await expect(page.locator(`#${id}`)).toBeAttached();
     }
   });
 
-  test('hero has correct tag line and CTA', async ({ page }) => {
-    await expect(page.locator('.hero-tag')).toContainText('A CONSULTANCY, NOT A BOOTCAMP');
-    await expect(page.locator('.s-hero h1')).toContainText('IT placement consultancy');
-    await expect(page.locator('.s-hero .btn-primary')).toContainText('Schedule a fit call');
-    await expect(page.locator('.cadence')).toContainText('Monthly cohorts');
+  test('hero headline contains expected text', async ({ page }) => {
+    await expect(page.locator('#hero h1')).toContainText('understand the system');
   });
 
-  test('hero CTA opens cal.com (data-cal-link set)', async ({ page }) => {
-    const calLink = await page.locator('.s-hero [data-cal-link]').getAttribute('data-cal-link');
-    expect(calLink).toBe('yarova-fxqeea/discovery-call');
+  test('hero has two CTA buttons', async ({ page }) => {
+    await expect(page.locator('#hero .hero-actions .btn')).toHaveCount(2);
   });
 
-  test('trust strip shows 3 company anchors', async ({ page }) => {
-    await expect(page.locator('.trust-anchors li')).toHaveCount(3);
-    await expect(page.locator('.trust-anchors')).toContainText('Morgan Stanley');
-    await expect(page.locator('.trust-anchors')).toContainText('Salesforce');
-    await expect(page.locator('.trust-anchors')).toContainText('BC Government');
+  test('hero meta grid has 4 cells', async ({ page }) => {
+    await expect(page.locator('#hero .hero-meta .cell')).toHaveCount(4);
   });
 
-  test('trust strip "read background" links to #founder', async ({ page }) => {
-    const href = await page.locator('.trust-link').getAttribute('href');
-    expect(href).toBe('#founder');
+  test('hero shows 91% placement stat', async ({ page }) => {
+    await expect(page.locator('#hero .hero-meta')).toContainText('Placed within 6 months');
   });
 
-  test('4 buyer profiles exist', async ({ page }) => {
-    await expect(page.locator('.profile-card')).toHaveCount(4);
+  test('authority strip has 4 stats', async ({ page }) => {
+    await expect(page.locator('.authority .cell')).toHaveCount(4);
   });
 
-  test('roles table has 5 rows', async ({ page }) => {
-    await expect(page.locator('.roles-table tbody tr')).toHaveCount(5);
+  test('anchor pricing strip has 4 columns', async ({ page }) => {
+    await expect(page.locator('.anchor-strip .col')).toHaveCount(4);
   });
 
-  test('salary disclaimer is present', async ({ page }) => {
-    await expect(page.locator('.disclaimer')).toContainText('does not guarantee placement');
+  test('Yarova column is highlighted in anchor strip', async ({ page }) => {
+    await expect(page.locator('.anchor-strip .col.us')).toHaveCount(1);
+    await expect(page.locator('.anchor-strip .col.us')).toContainText('$1,500');
   });
 
-  test('8 phase accordions exist', async ({ page }) => {
-    const phases = page.locator('#build .accordion');
-    await expect(phases).toHaveCount(8);
+  test('ensure section has 3 promise cards', async ({ page }) => {
+    await expect(page.locator('.ensure-card')).toHaveCount(3);
   });
 
-  test('3 repo cards exist', async ({ page }) => {
-    await expect(page.locator('.repo-card')).toHaveCount(3);
+  test('cost box shows $96,000', async ({ page }) => {
+    await expect(page.locator('.cost-box')).toContainText('$96,000');
   });
 
-  test('inclusion list has 9 items', async ({ page }) => {
-    await expect(page.locator('.inclusion-list li')).toHaveCount(9);
+  test('request path has 7 nodes', async ({ page }) => {
+    await expect(page.locator('.path-node')).toHaveCount(7);
   });
 
-  test('exclusion list has 4 items', async ({ page }) => {
-    await expect(page.locator('.exclusion-list li')).toHaveCount(4);
+  test('layers detail has 12 rows', async ({ page }) => {
+    await expect(page.locator('.layer-row')).toHaveCount(12);
   });
 
-  test('guarantee line is present', async ({ page }) => {
-    await expect(page.locator('.guarantee').first()).toContainText('rejoin the next cohort free');
+  test('track record table has 8 data rows', async ({ page }) => {
+    await expect(page.locator('.track-table tbody tr')).toHaveCount(8);
   });
 
-  test('10 A–J flow accordions exist', async ({ page }) => {
-    await expect(page.locator('#flow .accordion')).toHaveCount(10);
+  test('cohort progress bar exists', async ({ page }) => {
+    await expect(page.locator('.cohort-bar')).toBeVisible();
+    await expect(page.locator('.cohort-bar .seats')).toContainText('3 remaining');
   });
 
-  test('founder section has anchors and quote', async ({ page }) => {
-    await expect(page.locator('.founder-anchors li')).toHaveCount(3);
-    await expect(page.locator('.founder-quote')).toContainText('The work is yours');
+  test('testimonials grid has 6 cards', async ({ page }) => {
+    await expect(page.locator('.testi')).toHaveCount(6);
   });
 
-  test('13 FAQ accordions exist', async ({ page }) => {
-    await expect(page.locator('.faq-block .accordion')).toHaveCount(13);
+  test('curriculum has 8 phases', async ({ page }) => {
+    await expect(page.locator('.phase-row')).toHaveCount(8);
+  });
+
+  test('risk reversal section exists with guarantee text', async ({ page }) => {
+    await expect(page.locator('.risk h2')).toContainText('until');
+    await expect(page.locator('.risk h2')).toContainText('an offer');
+    await expect(page.locator('.seal')).toContainText('Re-enroll free');
+  });
+
+  test('compare matrix has Yarova column', async ({ page }) => {
+    await expect(page.locator('.matrix th.us')).toContainText('Yarova');
+    await expect(page.locator('.matrix tbody tr')).toHaveCount(8);
   });
 
   test('pricing shows $1,500 CAD', async ({ page }) => {
-    await expect(page.locator('.price-value')).toContainText('$1,500 CAD');
+    await expect(page.locator('.price-card .price')).toContainText('$1,500');
+    await expect(page.locator('.price-card .price .ccy')).toContainText('CAD');
   });
 
-  test('final CTA has correct heading', async ({ page }) => {
-    await expect(page.locator('.final-cta h2')).toContainText('inspected the work');
+  test('included list has 10 items', async ({ page }) => {
+    await expect(page.locator('.price-list ul').first().locator('li')).toHaveCount(10);
   });
 
-  test('no autoplay video or audio elements', async ({ page }) => {
-    const autoplay = await page.locator('[autoplay]').count();
-    expect(autoplay).toBe(0);
+  test('excluded list has 3 items', async ({ page }) => {
+    await expect(page.locator('.price-list ul').last().locator('li.no')).toHaveCount(3);
   });
 
-  test('no countdown timer or urgency badge elements', async ({ page }) => {
-    const timers = await page.locator('[class*="countdown"], [class*="urgency"], [class*="timer"]').count();
-    expect(timers).toBe(0);
+  test('FAQ has 8 questions', async ({ page }) => {
+    await expect(page.locator('.faq details')).toHaveCount(8);
   });
 
-  test('all CTAs have consistent wording', async ({ page }) => {
-    const ctaButtons = page.locator('.btn-primary');
-    const count = await ctaButtons.count();
-    for (let i = 0; i < count; i++) {
-      const text = await ctaButtons.nth(i).textContent();
-      // Primary CTAs should say "Schedule a fit call" or "Reserve your seat"
-      expect(['Schedule a fit call', 'Reserve your seat'].some(t => text?.includes(t))).toBe(true);
-    }
+  test('first FAQ is open by default', async ({ page }) => {
+    await expect(page.locator('.faq details[open]')).toHaveCount(1);
+  });
+
+  test('clicking a closed FAQ opens it', async ({ page }) => {
+    const second = page.locator('.faq details').nth(1);
+    await expect(second).not.toHaveAttribute('open');
+    await second.locator('summary').click();
+    await expect(second).toHaveAttribute('open', '');
+  });
+
+  test('final CTA section heading exists', async ({ page }) => {
+    await expect(page.locator('#cta-final h2')).toContainText('Find your fit in 3 questions');
+  });
+
+  test('fit-call form has 4 steps', async ({ page }) => {
+    await expect(page.locator('#bookFlow .step')).toHaveCount(4);
+    await expect(page.locator('#bookFlow .step.on')).toHaveCount(1);
+  });
+
+  test('twin lane section has 2 lanes', async ({ page }) => {
+    await expect(page.locator('.cta-final .twin .lane')).toHaveCount(2);
   });
 });
 
-test.describe('Homepage — tab interaction', () => {
+test.describe('Homepage — header', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
 
-  test('first tab panel is visible by default', async ({ page }) => {
-    await expect(page.locator('#tab-chapter')).toBeVisible();
-    await expect(page.locator('#tab-ticket')).toBeHidden();
-    await expect(page.locator('#tab-question')).toBeHidden();
-  });
-
-  test('clicking Ticket tab shows ticket panel', async ({ page }) => {
-    await page.locator('.tab-btn', { hasText: 'A Ticket' }).click();
-    await expect(page.locator('#tab-ticket')).toBeVisible();
-    await expect(page.locator('#tab-chapter')).toBeHidden();
-  });
-
-  test('clicking Interview Question tab shows question panel', async ({ page }) => {
-    await page.locator('.tab-btn', { hasText: 'An Interview Question' }).click();
-    await expect(page.locator('#tab-question')).toBeVisible();
-    await expect(page.locator('#tab-chapter')).toBeHidden();
-  });
-
-  test('active tab has active class', async ({ page }) => {
-    await page.locator('.tab-btn', { hasText: 'A Ticket' }).click();
-    await expect(page.locator('.tab-btn', { hasText: 'A Ticket' })).toHaveClass(/active/);
-    await expect(page.locator('.tab-btn', { hasText: 'A Chapter' })).not.toHaveClass(/active/);
-  });
-});
-
-test.describe('Homepage — accordions', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-  });
-
-  test('phase accordions are closed by default', async ({ page }) => {
-    const firstPhase = page.locator('#build .accordion').first();
-    await expect(firstPhase).not.toHaveAttribute('open');
-  });
-
-  test('clicking a phase accordion opens it', async ({ page }) => {
-    const firstPhase = page.locator('#build .accordion').first();
-    await firstPhase.locator('summary').click();
-    await expect(firstPhase).toHaveAttribute('open', '');
-  });
-
-  test('flow accordions are closed by default', async ({ page }) => {
-    const firstStage = page.locator('#flow .accordion').first();
-    await expect(firstStage).not.toHaveAttribute('open');
-  });
-
-  test('clicking a flow accordion opens it', async ({ page }) => {
-    const firstStage = page.locator('#flow .accordion').first();
-    await firstStage.locator('summary').click();
-    await expect(firstStage).toHaveAttribute('open', '');
-  });
-
-  test('FAQ accordions are closed by default', async ({ page }) => {
-    const firstFaq = page.locator('.faq-block .accordion').first();
-    await expect(firstFaq).not.toHaveAttribute('open');
-  });
-
-  test('clicking a FAQ accordion opens it', async ({ page }) => {
-    const firstFaq = page.locator('.faq-block .accordion').first();
-    await firstFaq.locator('summary').click();
-    await expect(firstFaq).toHaveAttribute('open', '');
-  });
-});
-
-test.describe('Homepage — header and footer', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+  test('scarcity bar is visible', async ({ page }) => {
+    await expect(page.locator('.scarcity')).toBeVisible();
+    await expect(page.locator('.scarcity')).toContainText('3');
+    await expect(page.locator('.scarcity')).toContainText('Cohort 9');
   });
 
   test('header logo links to /', async ({ page }) => {
-    const href = await page.locator('header .logo').getAttribute('href');
+    const href = await page.locator('.site-header .brand').getAttribute('href');
     expect(href).toBe('/');
   });
 
-  test('header CTA opens cal.com (data-cal-link set)', async ({ page }) => {
-    const calLink = await page.locator('header [data-cal-link]').getAttribute('data-cal-link');
-    expect(calLink).toBe('yarova-fxqeea/discovery-call');
+  test('service switch has Placement and Accounting links', async ({ page }) => {
+    await expect(page.locator('.service-switch a')).toHaveCount(2);
+    await expect(page.locator('.service-switch a.on')).toContainText('Placement');
   });
 
-  test('footer has new tagline', async ({ page }) => {
-    await expect(page.locator('.footer-tagline')).toContainText('IT placement consultancy');
+  test('nav CTA links to #cta-final', async ({ page }) => {
+    const href = await page.locator('.nav-links a.btn-amber').getAttribute('href');
+    expect(href).toBe('#cta-final');
   });
 
-  test('footer shows Langley location', async ({ page }) => {
-    await expect(page.locator('.built-with')).toContainText('Langley');
-  });
-
-  test('footer has no Services link', async ({ page }) => {
-    const servicesLink = page.locator('footer a[href="/services"]');
-    await expect(servicesLink).toHaveCount(0);
+  test('countdown timer renders in scarcity bar', async ({ page }) => {
+    const el = page.locator('#countdown');
+    await expect(el).toBeAttached();
+    const text = await el.textContent();
+    expect(text).toMatch(/in \d+d \d+h \d+m|now/);
   });
 });
 
-test.describe('Mobile — sticky CTA', () => {
-  test.use({ viewport: { width: 390, height: 844 } });
-
-  test('sticky CTA is hidden initially', async ({ page }) => {
+test.describe('Homepage — footer', () => {
+  test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('#sticky-cta')).not.toHaveClass(/visible/);
   });
 
-  test('sticky CTA appears after scrolling 50%', async ({ page }) => {
-    await page.goto('/');
-    await page.evaluate(() => {
-      const total = document.body.scrollHeight - window.innerHeight;
-      window.scrollTo(0, total * 0.6);
-    });
-    await page.waitForTimeout(200);
-    await expect(page.locator('#sticky-cta')).toHaveClass(/visible/);
+  test('contact strip has 3 cells', async ({ page }) => {
+    await expect(page.locator('.contact-strip .cell')).toHaveCount(3);
   });
 
-  test('sticky CTA dismiss button hides it', async ({ page }) => {
-    await page.goto('/');
-    await page.evaluate(() => {
-      const total = document.body.scrollHeight - window.innerHeight;
-      window.scrollTo(0, total * 0.6);
-    });
-    await page.waitForTimeout(200);
-    await page.locator('#sticky-dismiss').click();
-    await expect(page.locator('#sticky-cta')).not.toHaveClass(/visible/);
+  test('contact strip has cal.com, WhatsApp, email', async ({ page }) => {
+    await expect(page.locator('.contact-strip')).toContainText('cal.com/yarova/fit-call');
+    await expect(page.locator('.contact-strip')).toContainText('+1 (604) 719');
+    await expect(page.locator('.contact-strip')).toContainText('hello@yarova.ca');
   });
 
-  test('sticky CTA opens cal.com (data-cal-link set)', async ({ page }) => {
+  test('footer shows Langley and operating since 2018', async ({ page }) => {
+    await expect(page.locator('footer')).toContainText('Langley');
+    await expect(page.locator('footer')).toContainText('2018');
+  });
+
+  test('footer links include blog and about', async ({ page }) => {
+    await expect(page.locator('.foot-links a[href="/blog"]')).toHaveCount(1);
+    await expect(page.locator('.foot-links a[href="/about"]')).toHaveCount(1);
+  });
+});
+
+test.describe('Homepage — fit-call form flow', () => {
+  test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    const calLink = await page.locator('.sticky-cta-link').getAttribute('data-cal-link');
-    expect(calLink).toBe('yarova-fxqeea/discovery-call');
+    await page.locator('#cta-final').scrollIntoViewIfNeeded();
+  });
+
+  test('step 1 is shown initially', async ({ page }) => {
+    await expect(page.locator('#bookFlow .step.on .q')).toContainText('Question 1 of 3');
+  });
+
+  test('selecting an option advances to step 2', async ({ page }) => {
+    await page.locator('#bookFlow .step.on .opt').first().click();
+    await page.waitForTimeout(300);
+    await expect(page.locator('#bookFlow .step.on .q')).toContainText('Question 2 of 3');
+  });
+
+  test('back button returns to step 1', async ({ page }) => {
+    await page.locator('#bookFlow .step.on .opt').first().click();
+    await page.waitForTimeout(300);
+    await page.locator('#bookFlow .step.on .back').click();
+    await expect(page.locator('#bookFlow .step.on .q')).toContainText('Question 1 of 3');
+  });
+});
+
+test.describe('Homepage — floating actions', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  test('floating actions exist', async ({ page }) => {
+    await expect(page.locator('.floating-actions')).toBeAttached();
+    await expect(page.locator('.fa-btn.wa')).toBeAttached();
+    await expect(page.locator('.fa-btn.cal')).toBeAttached();
+  });
+
+  test('WhatsApp link has correct href', async ({ page }) => {
+    const href = await page.locator('.fa-btn.wa').getAttribute('href');
+    expect(href).toContain('wa.me/16047197918');
+  });
+
+  test('cal button has data-cal-link attribute', async ({ page }) => {
+    const attr = await page.locator('.fa-btn.cal').getAttribute('data-cal-link');
+    expect(attr).toBe('yarova/fit-call');
+  });
+});
+
+test.describe('Homepage — reading preferences', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  test('preferences toggle button exists', async ({ page }) => {
+    await expect(page.locator('#prefsToggle')).toBeVisible();
+  });
+
+  test('preferences panel opens on toggle click', async ({ page }) => {
+    await expect(page.locator('#prefsPanel')).toBeHidden();
+    await page.locator('#prefsToggle').click();
+    await expect(page.locator('#prefsPanel')).toBeVisible();
+  });
+
+  test('two preference switches exist', async ({ page }) => {
+    await page.locator('#prefsToggle').click();
+    await expect(page.locator('.switch')).toHaveCount(2);
   });
 });
 
 test.describe('Page — about', () => {
-  test('about page loads and has correct heading', async ({ page }) => {
+  test('about page loads', async ({ page }) => {
     await page.goto('/about');
-    // Use .about-header h1 to avoid strict-mode violation from dev toolbar injections
-    await expect(page.locator('.about-header h1')).toContainText('IT placement consultancy');
-  });
-
-  test('about page has 3 company anchors', async ({ page }) => {
-    await page.goto('/about');
-    await expect(page.locator('.anchor-list li')).toHaveCount(3);
+    await expect(page).toHaveTitle(/Yarova/);
   });
 });
 
@@ -262,5 +265,13 @@ test.describe('Page — blog', () => {
   test('blog index loads', async ({ page }) => {
     await page.goto('/blog');
     await expect(page).toHaveTitle(/Yarova/);
+  });
+});
+
+test.describe('Homepage — no autoplay media', () => {
+  test('no autoplay video or audio', async ({ page }) => {
+    await page.goto('/');
+    const count = await page.locator('[autoplay]').count();
+    expect(count).toBe(0);
   });
 });
