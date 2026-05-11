@@ -47,7 +47,7 @@
 @media (max-width: 560px) { .anchor-strip .grid { grid-template-columns: 1fr; } .anchor-strip .col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); } .anchor-strip .col:last-child { border-bottom: none; } }
 
 /* Live ticker */
-.ticker { position: fixed; left: 22px; bottom: 22px; z-index: 45; max-width: 320px; background: var(--color-black); color: white; border-radius: 14px; padding: 14px 16px; box-shadow: 0 24px 60px -20px rgba(0,0,0,.45); transform: translateY(140%); opacity: 0; transition: transform 380ms cubic-bezier(.22,.7,.18,1), opacity 280ms ease; }
+.ticker { position: fixed; left: 22px; bottom: 86px; z-index: 45; max-width: 320px; background: var(--color-black); color: white; border-radius: 14px; padding: 14px 16px; box-shadow: 0 24px 60px -20px rgba(0,0,0,.45); transform: translateY(140%); opacity: 0; transition: transform 380ms cubic-bezier(.22,.7,.18,1), opacity 280ms ease; }
 .ticker.show { transform: translateY(0); opacity: 1; }
 .ticker .head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
 .ticker .live { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #34D399; }
@@ -58,7 +58,7 @@
 .ticker .msg b { color: white; font-weight: 600; }
 .ticker .x { position: absolute; top: 6px; right: 8px; background: none; border: none; color: var(--color-gray-400); font-size: 14px; cursor: pointer; padding: 4px 6px; line-height: 1; }
 .ticker .x:hover { color: white; }
-@media (max-width: 720px) { .ticker { left: 12px; right: 12px; bottom: 12px; max-width: none; } }
+@media (max-width: 720px) { .ticker { left: 12px; right: 12px; bottom: 80px; max-width: none; } }
 
 /* Multi-step booking form */
 .step-form { max-width: 720px; margin: 56px auto 0; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 20px; padding: 40px; position: relative; min-height: 460px; }

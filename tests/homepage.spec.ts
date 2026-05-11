@@ -171,7 +171,7 @@ test.describe('Homepage — footer', () => {
   });
 
   test('contact strip has cal.com, WhatsApp, email', async ({ page }) => {
-    await expect(page.locator('.contact-strip')).toContainText('cal.com/yarova/fit-call');
+    await expect(page.locator('.contact-strip')).toContainText('cal.com/yarova-fxqeea/discovery-call');
     await expect(page.locator('.contact-strip')).toContainText('+1 (604) 719');
     await expect(page.locator('.contact-strip')).toContainText('hello@yarova.ca');
   });
@@ -229,7 +229,7 @@ test.describe('Homepage — floating actions', () => {
 
   test('cal button has data-cal-link attribute', async ({ page }) => {
     const attr = await page.locator('.fa-btn.cal').getAttribute('data-cal-link');
-    expect(attr).toBe('yarova/fit-call');
+    expect(attr).toBe('yarova-fxqeea/discovery-call');
   });
 });
 
