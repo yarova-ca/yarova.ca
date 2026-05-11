@@ -94,7 +94,7 @@
 .cohort-bar { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 20px 22px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
 .cohort-bar .left { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .cohort-bar .lbl { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); }
-.cohort-bar .track { width: 100%; height: 8px; background: var(--border); border-radius: 999px; overflow: hidden; position: relative; }
+.cohort-bar .track { width: 100%; height: 8px; background: var(--border); border-radius: 999px; overflow: visible; position: relative; }
 .cohort-bar .track .fill { display: block; height: 100%; background: var(--color-amber-hover); border-radius: 999px; transform-origin: left center; }
 .cohort-bar .seats { font-family: var(--font-mono); font-size: 13px; color: var(--fg-2); white-space: nowrap; }
 .cohort-bar .seats b { color: var(--color-amber-hover); font-weight: 700; }

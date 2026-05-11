@@ -35,6 +35,26 @@ test.describe('Homepage — core sections', () => {
     expect(text).not.toContain('all graduates');
   });
 
+  test('hero primary CTA opens cal.com directly', async ({ page }) => {
+    const cta = page.locator('#hero .hero-actions .btn-amber');
+    const calLink = await cta.getAttribute('data-cal-link');
+    expect(calLink).toBe('yarova-fxqeea/discovery-call');
+  });
+
+  test('hero eyebrow shows engineers placed count', async ({ page }) => {
+    await expect(page.locator('#hero .hero-eyebrow')).toContainText('engineers placed');
+  });
+
+  test('placement stream chips exist below hero actions', async ({ page }) => {
+    await expect(page.locator('.placement-stream')).toBeAttached();
+    await expect(page.locator('.chip')).toHaveCount(10);
+  });
+
+  test('trust anchor line exists below hero CTAs', async ({ page }) => {
+    await expect(page.locator('.trust-anchor')).toContainText('No commission');
+    await expect(page.locator('.trust-anchor')).toContainText('Flat $1,500');
+  });
+
   test('authority strip has 4 stats', async ({ page }) => {
     await expect(page.locator('.authority .cell')).toHaveCount(4);
   });
@@ -81,9 +101,23 @@ test.describe('Homepage — core sections', () => {
     await expect(page.locator('.track-table .covid-pause')).toHaveCount(1);
   });
 
-  test('cohort bar shows June 2026', async ({ page }) => {
+  test('cohort bar shows June 2026 and pulse dot', async ({ page }) => {
     await expect(page.locator('.cohort-bar')).toContainText('June 2026');
     await expect(page.locator('.cohort-bar .seats')).toContainText('1 remaining');
+    await expect(page.locator('.pulse-dot')).toBeAttached();
+  });
+
+  test('track record celebration row exists', async ({ page }) => {
+    await expect(page.locator('.celebrate-row')).toBeAttached();
+    await expect(page.locator('.celebrate-row')).toContainText('370 engineers placed');
+  });
+
+  test('guarantee seal badge exists', async ({ page }) => {
+    await expect(page.locator('.seal-badge')).toContainText('GUARANTEED');
+  });
+
+  test('CTA section heading is Tell us about yourself', async ({ page }) => {
+    await expect(page.locator('#cta-final h2')).toContainText('Tell us about yourself');
   });
 
   test('testimonials grid has 6 cards', async ({ page }) => {
@@ -112,6 +146,12 @@ test.describe('Homepage — core sections', () => {
     await expect(page.locator('.price-card .price')).toContainText('$1,500');
     await expect(page.locator('.price-card .price .ccy')).toContainText('CAD');
     await expect(page.locator('.price-card .label')).toContainText('June 2026');
+  });
+
+  test('pricing CTA has data-cal-link (opens cal.com directly)', async ({ page }) => {
+    const cta = page.locator('.price-card .btn-amber');
+    const calLink = await cta.getAttribute('data-cal-link');
+    expect(calLink).toBe('yarova-fxqeea/discovery-call');
   });
 
   test('included list has 10 items', async ({ page }) => {
@@ -145,7 +185,7 @@ test.describe('Homepage — core sections', () => {
   });
 
   test('final CTA section heading exists', async ({ page }) => {
-    await expect(page.locator('#cta-final h2')).toContainText('Find your fit in 3 questions');
+    await expect(page.locator('#cta-final h2')).toBeAttached();
   });
 
   test('fit-call form has 4 steps', async ({ page }) => {

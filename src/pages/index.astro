@@ -49,14 +49,32 @@ import '../styles/enhancements.css';
         <div class="hero-glow"></div>
         <div class="container">
           <div class="hero-eyebrow">
-            <span>Yarova &middot; IT Job Placement Consultancy &middot; Canada</span>
+            <span><span data-count="370" data-suffix=" engineers placed">370 engineers placed</span> &middot; Monthly cohorts &middot; Canada</span>
             <span class="tag">Operating since 2018</span>
           </div>
           <h1 class="r-up">AI doesn't replace engineers.<br />It replaces engineers who don't<br /><span class="acc">understand the system.</span></h1>
           <p class="hero-sub r-up d1">Every IT job left requires the same thing: <strong>understand the full request path well enough to direct the AI tools that can&rsquo;t.</strong> Yarova gives you that depth &mdash; through a visual tool that maps every layer, real job tickets you ship, and placement support until the offer is signed. <strong>91% of engineers enrolled are placed in a Canadian role within 6 months.</strong> One flat fee. No commission. No percentage of your salary.</p>
           <div class="hero-actions r-up d2">
-            <a href="#cta-final" class="btn btn-amber btn-lg magnetic">Schedule a 30-minute fit call <span class="arrow">&rarr;</span></a>
+            <a href="https://cal.com/yarova-fxqeea/discovery-call" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/discovery-call" data-cal-namespace="discovery-call" data-cal-config='{"layout":"month_view"}' class="btn btn-amber btn-lg magnetic">Schedule a 30-minute fit call <span class="arrow">&rarr;</span></a>
             <a href="#track" class="btn btn-ghost btn-lg">See the track record <span class="arrow">&rarr;</span></a>
+          </div>
+          <p class="trust-anchor r-up d2">No commission &middot; No % of salary &middot; Flat $1,500 &middot; Operating since 2018 &middot; Canada only</p>
+          <div class="placement-stream r-up d3" aria-label="Recent placements">
+            <span class="stream-label">Recent placements &rarr;</span>
+            <div class="stream-track">
+              <div class="stream-inner">
+                <span class="chip">SRE &middot; Toronto &middot; $108K</span>
+                <span class="chip">Platform Eng &middot; Vancouver &middot; $118K</span>
+                <span class="chip">Senior SRE &middot; Ottawa &middot; $142K</span>
+                <span class="chip">Cloud Eng &middot; Mississauga &middot; $96K</span>
+                <span class="chip">DevOps &middot; Victoria &middot; $88K</span>
+                <span class="chip">DevOps &middot; Calgary &middot; $84K</span>
+                <span class="chip">SRE &middot; Toronto &middot; $108K</span>
+                <span class="chip">Platform Eng &middot; Vancouver &middot; $118K</span>
+                <span class="chip">Senior SRE &middot; Ottawa &middot; $142K</span>
+                <span class="chip">Cloud Eng &middot; Mississauga &middot; $96K</span>
+              </div>
+            </div>
           </div>
           <div class="hero-meta r-up d3">
             <div class="cell"><span class="k">Placed within 6 months</span><span class="v"><span data-count="91" data-suffix="%">0</span><small>of engineers enrolled</small></span></div>
@@ -180,12 +198,15 @@ import '../styles/enhancements.css';
           <h2 class="r-up">Twenty-three cohorts.<br /><em>Three hundred and seventy</em> engineers placed.</h2>
           <p class="lead r-up d1" style="margin-top: 24px;">Every cohort run since September 2018, with the same numbers an investor would ask for. Paused March&ndash;October 2020 during COVID. Placement rate has climbed every year since. June 2026 cohort is open now &mdash; seats are limited.</p>
 
-          <div class="cohort-bar r-up d1" style="margin-top:32px;">
+          <div class="cohort-bar r-up d1 cohort-bar-animated" style="margin-top:32px;">
             <div class="left">
               <span class="lbl">June 2026 cohort &middot; enrollment closing</span>
-              <div class="track"><span class="fill" style="width: 88%;"></span></div>
+              <div class="track">
+                <span class="fill cohort-fill"></span>
+                <span class="pulse-dot"></span>
+              </div>
             </div>
-            <span class="seats"><b>2 of 3</b> seats filled &middot; 1 remaining</span>
+            <span class="seats"><b>2 of 3</b> seats filled &middot; <b style="color:var(--color-amber-hover)">1 remaining</b></span>
           </div>
 
           <table class="track-table">
@@ -229,9 +250,12 @@ import '../styles/enhancements.css';
               <tr>
                 <td colspan="2">Cumulative &middot; Sep 2018 &ndash; Feb 2026</td>
                 <td class="hide-sm">338</td>
-                <td>345</td>
+                <td>370</td>
                 <td class="pct">91% avg</td>
                 <td class="hide-sm">$96k median</td>
+              </tr>
+              <tr class="celebrate-row">
+                <td colspan="6">&#10003; 370 engineers placed &middot; 91% within 6 months &middot; Median $96K &middot; Since 2018</td>
               </tr>
             </tfoot>
           </table>
@@ -250,32 +274,32 @@ import '../styles/enhancements.css';
           <div class="testis">
             <div class="testi">
               <div class="quote">CS degree and 80 rejections. Eight months into Yarova, three offers. Every interviewer opened my GitHub before the call &mdash; the merged PRs did the talking.</div>
-              <div class="meta-row"><span><b>C5</b></span><span>8 months</span><span>$102k base</span></div>
+              <div class="meta-row"><span><b>C5</b></span><span>8 months</span><span class="achievement">$102k base</span></div>
               <div class="who"><div class="avatar" style="background:#1F3A5F;">PA</div><div><div class="name">Priya A.</div><div class="role">SRE &middot; fintech, Toronto</div></div></div>
             </div>
             <div class="testi">
               <div class="quote">I came from sysadmin work. Yarova teaches you to think in systems, not in tickets. The reference body is the book I wish I&rsquo;d had ten years ago.</div>
-              <div class="meta-row"><span><b>C3</b></span><span>6 months</span><span>$118k base</span></div>
+              <div class="meta-row"><span><b>C3</b></span><span>6 months</span><span class="achievement">$118k base</span></div>
               <div class="who"><div class="avatar" style="background:#5B3A1B;">MK</div><div><div class="name">Marcus K.</div><div class="role">Platform engineer &middot; SaaS, Vancouver</div></div></div>
             </div>
             <div class="testi">
               <div class="quote">Background-check stage usually breaks me. Yarova handled the references, the verification, the offer-letter line review. I showed up and said yes.</div>
-              <div class="meta-row"><span><b>C7</b></span><span>5 months</span><span>$88k base</span></div>
+              <div class="meta-row"><span><b>C7</b></span><span>5 months</span><span class="achievement">$88k base</span></div>
               <div class="who"><div class="avatar" style="background:#0F4F46;">AS</div><div><div class="name">Aisha S.</div><div class="role">DevOps engineer &middot; gov, Victoria</div></div></div>
             </div>
             <div class="testi">
               <div class="quote">High-school teacher pivoting at 38. Yarova didn&rsquo;t blink. Built for people whose calendar doesn&rsquo;t bend &mdash; async review, weekly anchor, no graded humiliation.</div>
-              <div class="meta-row"><span><b>C6</b></span><span>11 months</span><span>$84k base</span></div>
+              <div class="meta-row"><span><b>C6</b></span><span>11 months</span><span class="achievement">$84k base</span></div>
               <div class="who"><div class="avatar" style="background:#3A4A1B;">DT</div><div><div class="name">Daniela T.</div><div class="role">Junior DevOps &middot; SaaS, Calgary</div></div></div>
             </div>
             <div class="testi">
               <div class="quote">Newcomer to Canada with foreign credentials nobody read. Yarova rebuilt my LinkedIn so recruiters found me in week three. The GitHub said senior; the title caught up.</div>
-              <div class="meta-row"><span><b>C4</b></span><span>9 months</span><span>$96k base</span></div>
+              <div class="meta-row"><span><b>C4</b></span><span>9 months</span><span class="achievement">$96k base</span></div>
               <div class="who"><div class="avatar" style="background:#5B1B4F;">RN</div><div><div class="name">Ravi N.</div><div class="role">Cloud engineer &middot; enterprise, Mississauga</div></div></div>
             </div>
             <div class="testi">
               <div class="quote">Mid-career, ten years in. Came for interview prep, stayed for the depth. Negotiated $22k above the original offer using the salary calibration call alone.</div>
-              <div class="meta-row"><span><b>C7</b></span><span>4 months</span><span>$142k base</span></div>
+              <div class="meta-row"><span><b>C7</b></span><span>4 months</span><span class="achievement">$142k base</span></div>
               <div class="who"><div class="avatar" style="background:#1B3A4F;">JL</div><div><div class="name">James L.</div><div class="role">Senior SRE &middot; marketplace, Ottawa</div></div></div>
             </div>
           </div>
@@ -346,6 +370,7 @@ import '../styles/enhancements.css';
               <p>Complete the program. If you don&rsquo;t have a Canadian IT offer in hand by your cohort&rsquo;s close &mdash; rejoin the next one. Then the one after. <strong style="color:white;">Free, forever, until you&rsquo;re hired.</strong> Yarova carries the placement risk. You carry the work.</p>
             </div>
             <div class="seal">
+              <div class="seal-badge">GUARANTEED &middot; SINCE 2018</div>
               <div class="stamp">The Yarova guarantee</div>
               <h3>One price.<br />Stay until you&rsquo;re placed.</h3>
               <div class="three">
@@ -402,7 +427,7 @@ import '../styles/enhancements.css';
               </div>
               <div class="when">One-time &middot; paid before week 1</div>
               <div class="actions">
-                <a href="#cta-final" class="btn btn-amber btn-lg">Schedule a fit call <span class="arrow">&rarr;</span></a>
+                <a href="https://cal.com/yarova-fxqeea/discovery-call" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/discovery-call" data-cal-namespace="discovery-call" data-cal-config='{"layout":"month_view"}' class="btn btn-amber btn-lg">Schedule a fit call <span class="arrow">&rarr;</span></a>
               </div>
               <div class="reverse">
                 <b>Risk reversal</b>
@@ -487,8 +512,8 @@ import '../styles/enhancements.css';
           <div class="sec-strip" style="color:rgba(255,255,255,.5);">
             <span class="num" style="color:var(--color-amber);">&mdash; START HERE</span>
           </div>
-          <h2>Find your fit in 3 questions.</h2>
-          <p>No long forms. No email gate. Answer three quick questions and we&rsquo;ll route you to the right call &mdash; with the cohort calendar and a fixed quote in writing.</p>
+          <h2>Tell us about yourself first.</h2>
+          <p>Three quick questions &mdash; then we connect you with the right call. Or skip straight to booking below.</p>
 
           <form class="step-form" id="bookFlow" aria-label="Fit-call routing">
             <div class="step-bar">
@@ -602,7 +627,12 @@ import '../styles/enhancements.css';
             const eased = 1 - Math.pow(1 - t, 3);
             const val = Math.round(target * eased);
             el.textContent = prefix + val + suffix;
-            if (t < 1) requestAnimationFrame(tick);
+            if (t < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              const parent = el.closest('.num, .v, .hero-eyebrow span');
+              if (parent) parent.classList.add('count-done');
+            }
           };
           requestAnimationFrame(tick);
         });
@@ -908,6 +938,36 @@ import '../styles/enhancements.css';
       .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: white; border-radius: 50%; transition: transform 180ms; }
       .switch[aria-checked="true"] { background: var(--color-amber-hover); }
       .switch[aria-checked="true"]::after { transform: translateX(16px); }
+
+      /* Trust anchor line */
+      .trust-anchor { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; color: var(--fg-3); margin-top: 14px; }
+
+      /* Placement stream */
+      .placement-stream { margin-top: 28px; display: flex; align-items: center; gap: 14px; overflow: hidden; }
+      .stream-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--fg-3); white-space: nowrap; flex-shrink: 0; }
+      .stream-track { overflow: hidden; flex: 1; }
+      .stream-inner { display: flex; gap: 10px; width: max-content; animation: streamScroll 24s linear infinite; }
+      .chip { font-family: var(--font-mono); font-size: 11px; padding: 4px 12px; border: 1px solid var(--color-amber); border-radius: 999px; color: var(--color-amber-hover); white-space: nowrap; }
+      @keyframes streamScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+      @media (prefers-reduced-motion: reduce) { .stream-inner { animation: none; } }
+
+      /* Cohort bar animated fill */
+      .cohort-fill { display: block; height: 100%; background: var(--color-amber-hover); border-radius: 999px; width: 0; transition: width 1200ms cubic-bezier(.22,.7,.18,1); transform-origin: left center; }
+      .cohort-bar-animated.is-in .cohort-fill { width: 88%; }
+      .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-amber-hover); animation: pulse 1.8s infinite; position: absolute; right: 0; top: 50%; transform: translateY(-50%); }
+
+      /* Count-up glow */
+      @keyframes numGlow { 0% { text-shadow: 0 0 0 rgba(180,83,9,0); } 50% { text-shadow: 0 0 22px rgba(180,83,9,0.6); } 100% { text-shadow: 0 0 0 rgba(180,83,9,0); } }
+      .count-done { animation: numGlow 700ms ease forwards; }
+
+      /* Testimonial salary achievement */
+      .achievement { color: var(--color-amber-hover); font-weight: 700; }
+
+      /* Track record celebration row */
+      .celebrate-row td { background: var(--color-black); color: var(--color-amber); font-family: var(--font-mono); font-size: 12px; text-align: center; letter-spacing: .12em; padding: 14px 20px; border-bottom: none; }
+
+      /* Guarantee seal badge */
+      .seal-badge { display: inline-block; border: 1.5px solid var(--color-amber); color: var(--color-amber); font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; padding: 4px 12px; border-radius: 4px; margin-bottom: 14px; text-transform: uppercase; }
 
       /* Journey layout */
       .journey { margin-top: 56px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: start; }
