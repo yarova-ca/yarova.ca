@@ -223,9 +223,9 @@ test.describe('Homepage — header', () => {
     await expect(page.locator('.service-switch a.on')).toContainText('Placement');
   });
 
-  test('nav CTA links to #cta-final', async ({ page }) => {
-    const href = await page.locator('.nav-links a.btn-amber').getAttribute('href');
-    expect(href).toBe('#cta-final');
+  test('nav CTA opens cal.com directly', async ({ page }) => {
+    const calLink = await page.locator('.nav-links a.btn-amber').getAttribute('data-cal-link');
+    expect(calLink).toBe('yarova-fxqeea/discovery-call');
   });
 
   test('countdown timer renders in scarcity bar', async ({ page }) => {
