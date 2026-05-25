@@ -1,36 +1,14 @@
 ---
 // The Header is shared with /accounting (which passes page="accounting"
 // to switch the scarcity bar + nav links). On the main site (page="main"),
-// no accounting link is shown anywhere.
-import { nextBatch } from '../data/batches';
-
+// no accounting link is shown anywhere, and there is no scarcity bar —
+// live seat availability lives in the Enroll section instead.
 interface Props {
   page?: 'main' | 'accounting';
 }
 const { page = 'main' } = Astro.props;
 ---
 
-<!-- Scarcity / deadline bar -->
-{page === 'main' && nextBatch && (
-  <div class="scarcity" role="region" aria-label="Next batch availability">
-    <div class="container inner">
-      <span class="pulse">Live</span>
-      <span class="sep">/</span>
-      <span><b>Next batch:</b> {nextBatch.dayLabel} &middot; {nextBatch.track} &middot; <b>{nextBatch.seatsLeft} of {nextBatch.seatsTotal} seats left</b></span>
-      <span class="sep hide-sm">/</span>
-      <a href="/#batches" class="hide-sm">See all batches &rarr;</a>
-    </div>
-  </div>
-)}
-{page === 'main' && !nextBatch && (
-  <div class="scarcity" role="region" aria-label="Next batch availability">
-    <div class="container inner">
-      <span class="pulse">Live</span>
-      <span class="sep">/</span>
-      <span><b>All current batches are full.</b> Book a call to get on the waitlist.</span>
-    </div>
-  </div>
-)}
 {page === 'accounting' && (
   <div class="scarcity acct" role="region" aria-label="Filing deadline">
     <div class="container inner">
@@ -49,10 +27,10 @@ const { page = 'main' } = Astro.props;
     <a href="/" class="brand"><span class="y">Y</span> Yarova</a>
     <nav class="nav-links" aria-label="Primary">
       {page === 'main' && <>
-        <a href="/#how">How it works</a>
-        <a href="/#batches">Batches</a>
-        <a href="/#support">Support</a>
-        <a href="/#pricing">Pricing</a>
+        <a href="/#tracks">Tracks</a>
+        <a href="/#day">How it works</a>
+        <a href="/#runway">Career support</a>
+        <a href="/#enroll">Enroll</a>
         <a href="/#faq">FAQ</a>
         <a href="https://cal.com/yarova-fxqeea/discovery-call" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/discovery-call" data-cal-namespace="discovery-call" data-cal-config='{"layout":"month_view"}' class="btn btn-amber">Book a call <span class="arrow">&rarr;</span></a>
       </>}
@@ -70,7 +48,7 @@ const { page = 'main' } = Astro.props;
 <style>
   .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
 
-  /* Scarcity bar */
+  /* Scarcity bar (accounting only on the main site) */
   .scarcity { background: var(--color-black); color: var(--color-gray-300); }
   .scarcity .inner { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 10px 24px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; text-align: center; flex-wrap: wrap; }
   .scarcity b { color: white; font-weight: 600; }
@@ -84,7 +62,7 @@ const { page = 'main' } = Astro.props;
   @media (max-width: 700px) { .scarcity .hide-sm { display: none; } }
 
   /* Header */
-  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(250,250,249,.86); backdrop-filter: saturate(150%) blur(14px); -webkit-backdrop-filter: saturate(150%) blur(14px); border-bottom: 1px solid var(--border); }
+  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(250,250,249,.92); backdrop-filter: saturate(150%) blur(14px); -webkit-backdrop-filter: saturate(150%) blur(14px); border-bottom: 1px solid var(--border); }
   .site-header .inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 24px; }
   .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; color: var(--fg-1); letter-spacing: -.02em; text-decoration: none; }
   .brand .y { width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; background: var(--color-black); color: white; border-radius: 6px; font-weight: 700; font-size: 14px; letter-spacing: -.02em; }
@@ -97,5 +75,5 @@ const { page = 'main' } = Astro.props;
   .btn-amber:hover { background: var(--color-amber-press); color: #FFFFFF !important; }
   .arrow { transition: transform 180ms ease; display: inline-block; }
   .btn:hover .arrow { transform: translateX(3px); }
-  @media (max-width: 880px) { .nav-links a:not(.btn) { display: none; } }
+  @media (max-width: 980px) { .nav-links a:not(.btn) { display: none; } }
 </style>

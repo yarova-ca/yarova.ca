@@ -85,10 +85,10 @@ test.describe('Accessibility — homepage', () => {
 
   test('keyboard: can reach hero CTA via Tab', async ({ page }) => {
     await page.goto('/');
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 10; i++) {
       await page.keyboard.press('Tab');
       const focused = await page.evaluate(() => document.activeElement?.textContent?.trim());
-      if (focused?.includes('Book your enrollment call')) break;
+      if (focused?.includes('Book a 30-Min Enrollment Call')) break;
     }
     const focused = await page.evaluate(() => document.activeElement?.textContent?.trim());
     expect(focused).toBeTruthy();
