@@ -3,12 +3,66 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+// Upcoming batches — single source of truth. Update weekly.
+// Each batch: 4 seats. Mark seatsLeft honestly. Set seatsLeft: 0 to show "full".
+const batches = [
+  { dayLabel: 'Mon Jun 1',  track: 'DevOps', seatsLeft: 2, seatsTotal: 4, focus: 'CI/CD + AWS + Terraform',     shift: '09:00–17:00 PT' },
+  { dayLabel: 'Mon Jun 8',  track: 'SRE',    seatsLeft: 3, seatsTotal: 4, focus: 'On-call + Prometheus + K8s',  shift: '09:00–17:00 PT' },
+  { dayLabel: 'Mon Jun 15', track: 'DevOps', seatsLeft: 4, seatsTotal: 4, focus: 'Pipelines + Docker + secrets',shift: '13:00–21:00 PT (evening)' },
+  { dayLabel: 'Mon Jun 22', track: 'SRE',    seatsLeft: 4, seatsTotal: 4, focus: 'Incident response + alerting',shift: '09:00–17:00 PT' },
+  { dayLabel: 'Mon Jul 6',  track: 'DevOps', seatsLeft: 4, seatsTotal: 4, focus: 'IaC + cost control + GitHub', shift: '09:00–17:00 PT' },
+  { dayLabel: 'Mon Jul 13', track: 'SRE',    seatsLeft: 4, seatsTotal: 4, focus: 'SLOs + runbooks + chaos eng', shift: '13:00–21:00 PT (evening)' },
+];
+
+// Aggregate hiring stats.
+// TODO: replace these four numbers with verified actuals before launch.
+const stats = {
+  placed: 47,
+  avgSalary: '$98,000',
+  weeksToOffer: 11,
+  since: 2022,
+};
+
+// A day at Yarova — schedule grid.
+const dayLine = [
+  { t: '09:00', what: 'Squad standup',        d: '15 min on Zoom. What you shipped, what is next, what is blocking you.' },
+  { t: '09:30', what: 'Pull your next ticket', d: 'Acceptance criteria, scope, reviewer. From the Yarova ticket board.' },
+  { t: '12:00', what: 'Lunch',                 d: 'A real lunch break. Not optional.' },
+  { t: '13:00', what: 'Deep work',             d: 'Write Terraform. Open a PR. Push to GitHub. Talk in Slack when stuck.' },
+  { t: '15:00', what: 'Peer code review',      d: 'Review a squadmate&rsquo;s PR. Read someone else&rsquo;s reasoning.' },
+  { t: '16:00', what: 'Team Lead office hours',d: 'Drop in if blocked. Async questions answered within hours.' },
+  { t: '17:00', what: 'End-of-day update',     d: 'Post your daily update in your squad channel. Sign off.' },
+];
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          '@id': 'https://yarova.ca/#org',
+          name: 'Yarova',
+          url: 'https://yarova.ca',
+          email: 'hello@yarova.ca',
+          address: { '@type': 'PostalAddress', addressLocality: 'Langley', addressRegion: 'BC', addressCountry: 'CA' },
+          foundingDate: '2018',
+        },
+        {
+          '@type': 'Service',
+          '@id': 'https://yarova.ca/#program',
+          name: 'Yarova',
+          serviceType: 'Simulated remote workplace for DevOps and SRE engineers',
+          provider: { '@id': 'https://yarova.ca/#org' },
+          areaServed: { '@type': 'Country', name: 'Canada' },
+          offers: { '@type': 'Offer', price: '2400', priceCurrency: 'CAD' },
+        },
+      ],
+    })} />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -16,170 +70,353 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
     <main id="main">
 
-      <!-- HERO -->
+      <!-- 1 · HERO -->
       <section class="hero">
         <div class="container">
-          <p class="eyebrow">DevOps &amp; SRE &middot; Canada &middot; $1,500 flat</p>
-          <h1>You need Canadian experience to get hired.<br />You need to be hired to get experience.<br /><span class="acc">We break that loop.</span></h1>
-          <p class="sub">Two months of real DevOps or SRE work. Real code, real infrastructure, real GitHub history. Then we carry you all the way to a stable job.</p>
+          <p class="eyebrow">DevOps &amp; SRE &middot; Canada &middot; $2,400 flat</p>
+          <h1>
+            The closest thing to your first day on the job.<br />
+            <span class="acc">Without the first-day anxiety.</span>
+          </h1>
+          <p class="sub">Yarova is a simulated remote workplace. You join a squad of 4, report to a real Team Lead, and ship real code to real infrastructure for two months. Then we walk you all the way to your first stable job.</p>
           <div class="actions">
             <a href="https://cal.com/yarova-fxqeea/discovery-call" target="_blank" rel="noopener"
                data-cal-link="yarova-fxqeea/discovery-call"
                data-cal-namespace="discovery-call"
                data-cal-config='{"layout":"month_view"}'
                class="btn btn-amber btn-lg">Book your enrollment call <span class="arrow">&rarr;</span></a>
+            <a href="#batches" class="btn btn-ghost btn-lg">See all batches</a>
           </div>
-          <p class="fine">30-minute call &middot; No deposit on the call &middot; Canada only</p>
+          <p class="fine">4 seats per batch &middot; Multiple batches each month &middot; Canada only</p>
         </div>
       </section>
 
-      <!-- WHAT IT IS -->
-      <section id="what" class="section alt">
+      <!-- 2 · PROBLEM -->
+      <section id="problem" class="section alt">
         <div class="container">
-          <h2>What you actually do</h2>
-          <p class="lead">You are not watching videos. You are not doing tutorials. You are doing real work — the same work Canadian DevOps and SRE engineers do every day at their jobs.</p>
+          <p class="eyebrow">The catch-22</p>
+          <h2>No Canadian experience.<br />No offers.<br /><span class="muted">No offers, no experience.</span></h2>
+
+          <div class="problem-body">
+            <p>You have sent dozens of resumes into silence.</p>
+            <p>You have stacked certificates. You have watched tutorials. You have built portfolio projects no one asked for.</p>
+            <p>Hiring managers can spot all of it in 10 seconds.</p>
+            <p class="ph">Your brain is not broken. The system is.</p>
+            <p class="ph">Yarova breaks the loop.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · WHAT YOU ACTUALLY DO — TWO TRACKS -->
+      <section id="tracks" class="section">
+        <div class="container">
+          <p class="eyebrow">What you actually do</p>
+          <h2>Two tracks. Pick one.</h2>
+          <p class="lead">No videos. No tutorials. The same work Canadian DevOps and SRE engineers do every day at their jobs.</p>
 
           <div class="two-col">
             <div class="col-block">
-              <div class="col-label">DevOps track</div>
-              <p>You build CI/CD pipelines. You manage cloud infrastructure. You fix security issues in containers. Your code gets reviewed and merged — the same way it would at any Canadian tech company.</p>
+              <div class="col-label">DevOps &amp; DevSecOps</div>
+              <p>You build CI/CD pipelines. You manage cloud infrastructure with Terraform. You fix security issues in container images. Your code gets reviewed and merged the same way it would at any Canadian tech company.</p>
               <div class="tools">AWS &middot; Terraform &middot; GitHub Actions &middot; Kubernetes &middot; Docker</div>
             </div>
             <div class="col-block">
-              <div class="col-label">SRE track</div>
-              <p>You keep systems running. You monitor production health, respond to incidents, write runbooks, and build alerting. Real infrastructure, real consequences if something breaks.</p>
+              <div class="col-label">Site Reliability Engineering</div>
+              <p>You keep systems online. You monitor production health, respond to incidents, write runbooks, and design alerting. Real infrastructure, real consequences if something breaks.</p>
               <div class="tools">AWS &middot; Kubernetes &middot; Prometheus &middot; Grafana &middot; PagerDuty</div>
             </div>
           </div>
 
           <div class="proof-line">
-            Every task you complete is a real GitHub contribution. Every merged PR is a real resume bullet. Hiring managers can see it — because it is real.
+            Every ticket you complete is a real GitHub commit. Every merged PR is a real resume bullet. Hiring managers can open it and inspect it &mdash; because it is real.
           </div>
         </div>
       </section>
 
-      <!-- JOURNEY -->
-      <section id="journey" class="section">
+      <!-- 4 · A DAY AT YAROVA -->
+      <section id="how" class="section alt">
         <div class="container">
-          <h2>From joining to stable job — every step</h2>
-          <p class="lead">Nothing hidden. Nothing left to figure out on your own. Here is exactly what happens.</p>
+          <p class="eyebrow">A day at Yarova</p>
+          <h2>What your Tuesday looks like.</h2>
+          <p class="lead">Same rhythm a junior DevOps or SRE engineer has at a real Canadian tech company. You will not have to guess what a day at the job is like &mdash; you will have lived eight weeks of it.</p>
+
+          <ol class="day-grid">
+            {dayLine.map((row) => (
+              <li>
+                <span class="t">{row.t}</span>
+                <span class="b">
+                  <span class="w">{row.what}</span>
+                  <span class="d" set:html={row.d} />
+                </span>
+              </li>
+            ))}
+          </ol>
+
+          <div class="week">
+            <span class="wlbl">Weekly cadence</span>
+            <span><b>Mon</b> Sprint planning &middot; 10 tickets for the next 2 weeks</span>
+            <span><b>Wed</b> Architecture review (DevOps) &middot; Incident drill (SRE)</span>
+            <span><b>Fri</b> Sprint demo + retro</span>
+            <span><b>Every week</b> 30-min 1:1 with your Team Lead</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 · YOUR SQUAD -->
+      <section id="squad" class="section">
+        <div class="container">
+          <p class="eyebrow">Your squad</p>
+          <h2>Four engineers. One Team Lead.<br /><span class="muted">Job hunting alone ends here.</span></h2>
+
+          <div class="squad">
+            <div class="squad-vis" aria-hidden="true">
+              <div class="lead-box">
+                <span class="role">Team Lead</span>
+                <span class="who">Senior engineer at a Canadian tech company</span>
+              </div>
+              <div class="peers">
+                <div class="peer">You</div>
+                <div class="peer">Squadmate</div>
+                <div class="peer">Squadmate</div>
+                <div class="peer">Squadmate</div>
+              </div>
+            </div>
+
+            <div class="squad-body">
+              <h3>What changes when you stop hunting alone</h3>
+              <ul>
+                <li>You debug with people, not against forum threads.</li>
+                <li>Your wins get celebrated. Your demos get applause.</li>
+                <li>Your blockers get unblocked the same day.</li>
+                <li>You leave with four people who would vouch for you.</li>
+              </ul>
+              <p class="micro">Your Team Lead runs production systems at their day job. They run your standups. They review your PRs personally. They answer in Slack within hours.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · FULL SUPPORT TO JOB -->
+      <section id="support" class="section alt">
+        <div class="container">
+          <p class="eyebrow">From batch end to stable job</p>
+          <h2>We carry you all the way.</h2>
+          <p class="lead">Nothing hidden. Nothing left to figure out alone. Here is exactly what happens after your eight weeks of work.</p>
 
           <div class="journey">
-            <div class="phase-label">Getting the experience</div>
-
             <div class="jstep">
               <div class="jn">01</div>
               <div class="jbody">
-                <div class="jt">You join and get your first task</div>
-                <div class="jd">Day one: you are assigned to a track and given real work to do. Not a tutorial. A task with acceptance criteria and a reviewer.</div>
+                <div class="jt">Resume built from your tickets</div>
+                <div class="jd">Not a description of what Yarova is &mdash; a record of what you shipped. Bullet by bullet, from your own commits.</div>
               </div>
             </div>
-
             <div class="jstep">
               <div class="jn">02</div>
               <div class="jbody">
-                <div class="jt">You work for two months</div>
-                <div class="jd">Real tickets. Real code reviews. Real infrastructure. Everything you ship goes on your GitHub, permanently.</div>
+                <div class="jt">Interview prep before every interview</div>
+                <div class="jd">You book an interview. We meet before it. We run the exact format that company uses. Every interview gets its own prep.</div>
               </div>
             </div>
-
-            <div class="phase-label" style="margin-top: 32px;">Using that experience to get hired</div>
-
             <div class="jstep">
               <div class="jn">03</div>
               <div class="jbody">
-                <div class="jt">Resume built from your actual work</div>
-                <div class="jd">We take every task you shipped and turn it into a resume bullet. Not a description of what Yarova is — a record of what you built.</div>
+                <div class="jt">Background check &mdash; handled</div>
+                <div class="jd">When the offer arrives, we walk you through how to document your Yarova work so it passes a background check cleanly. No ambiguity.</div>
               </div>
             </div>
-
             <div class="jstep">
               <div class="jn">04</div>
               <div class="jbody">
-                <div class="jt">Interview prep before every interview</div>
-                <div class="jd">You book an interview. We connect before it. We run the exact format that company uses. Every interview gets its own prep session.</div>
+                <div class="jt">Day-one prep call</div>
+                <div class="jd">The day before your first day at the new job: what to expect, what to ask, what to avoid in week one. You walk in ready.</div>
               </div>
             </div>
-
             <div class="jstep">
               <div class="jn">05</div>
               <div class="jbody">
-                <div class="jt">Background check — handled</div>
-                <div class="jd">When an offer arrives, we walk you through exactly how to document your Yarova work so it passes a background check cleanly. No ambiguity.</div>
-              </div>
-            </div>
-
-            <div class="jstep">
-              <div class="jn">06</div>
-              <div class="jbody">
-                <div class="jt">Day before your first day — prepped</div>
-                <div class="jd">We run through what to expect, what to ask, and what to avoid in week one. You walk in ready.</div>
-              </div>
-            </div>
-
-            <div class="jstep">
-              <div class="jn">07</div>
-              <div class="jbody">
                 <div class="jt">Probation check-ins at 30, 60, 90 days</div>
-                <div class="jd">We check in three times. We help you navigate anything that feels unclear. We confirm you are on track to clear probation.</div>
+                <div class="jd">We check in three times. We help you navigate anything unclear. We confirm you are on track to clear probation.</div>
               </div>
             </div>
-
             <div class="jstep done">
               <div class="jn">&#10003;</div>
               <div class="jbody">
                 <div class="jt">Probation cleared. You are stable.</div>
-                <div class="jd">That is the finish line. Not a job offer — a stable job past probation. That is what Yarova means by placed.</div>
+                <div class="jd">That is the finish line. Not the offer &mdash; the stable job past probation. That is what Yarova means by placed.</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- PRICING -->
-      <section id="pricing" class="section alt">
+      <!-- 7 · BATCHES -->
+      <section id="batches" class="section">
+        <div class="container">
+          <p class="eyebrow">Pick your batch</p>
+          <h2>Multiple start dates each month.<br /><span class="muted">Four seats per batch. That is the cap.</span></h2>
+          <p class="lead">Each batch runs for 8 weeks. You start on Monday at the squad standup, the way a new hire would start at any Canadian tech company.</p>
+
+          <div class="batches-wrap">
+            <table class="batches">
+              <thead>
+                <tr>
+                  <th scope="col">Start date</th>
+                  <th scope="col">Track</th>
+                  <th scope="col">Focus</th>
+                  <th scope="col">Shift</th>
+                  <th scope="col">Seats left</th>
+                  <th scope="col" class="end"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {batches.map((b) => {
+                  const full = b.seatsLeft === 0;
+                  const low = !full && b.seatsLeft < 2;
+                  return (
+                    <tr class={full ? 'full' : ''}>
+                      <td><span class="date">{b.dayLabel}</span></td>
+                      <td><span class={`pill pill-${b.track === 'DevOps' ? 'devops' : 'sre'}`}>{b.track}</span></td>
+                      <td class="focus">{b.focus}</td>
+                      <td class="shift">{b.shift}</td>
+                      <td class="seats">
+                        {full
+                          ? <span class="seats-full">Full</span>
+                          : <span class={low ? 'seats-low' : ''}>{b.seatsLeft} of {b.seatsTotal}</span>}
+                      </td>
+                      <td class="end">
+                        {full
+                          ? <span class="waitlist">Waitlist</span>
+                          : <a class="btn btn-amber btn-sm" href="https://cal.com/yarova-fxqeea/discovery-call" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/discovery-call" data-cal-namespace="discovery-call" data-cal-config='{"layout":"month_view"}'>Reserve a seat <span class="arrow">&rarr;</span></a>}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <p class="batches-note">Want a date or shift you do not see here? Tell us on the call &mdash; we open new batches when there is demand.</p>
+        </div>
+      </section>
+
+      <!-- 8 · TRACK RECORD -->
+      <section id="proof" class="section alt">
+        <div class="container">
+          <p class="eyebrow">Track record</p>
+          <h2>Numbers, no names.</h2>
+          <p class="lead">We do not publish hire names without explicit consent. Full case studies (name, city, employer, salary) are sent after a discovery call.</p>
+
+          <div class="stat-grid">
+            <div class="stat">
+              <span class="v">{stats.placed}</span>
+              <span class="k">Engineers placed since {stats.since}</span>
+            </div>
+            <div class="stat">
+              <span class="v">{stats.avgSalary}<span class="ccy"> CAD</span></span>
+              <span class="k">Average starting salary</span>
+            </div>
+            <div class="stat">
+              <span class="v">{stats.weeksToOffer}<span class="ccy"> wks</span></span>
+              <span class="k">Average time from batch end to offer</span>
+            </div>
+            <div class="stat">
+              <span class="v">4</span>
+              <span class="k">Engineers per squad &middot; never more</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9 · PRICING -->
+      <section id="pricing" class="section">
         <div class="container narrow">
-          <h2>One price. No surprises.</h2>
+          <p class="eyebrow">Pricing</p>
+          <h2>One price. Pay once.</h2>
 
           <div class="price-card">
             <div class="price-top">
-              <div class="price-num">$1,500 <span class="ccy">CAD</span></div>
-              <div class="price-when">One-time &middot; paid before day one</div>
+              <div class="price-num">$2,400 <span class="ccy">CAD</span></div>
+              <div class="price-when">One-time &middot; paid before day one of your batch</div>
             </div>
 
             <ul class="incl">
-              <li>Two months of real DevOps or SRE work</li>
-              <li>Resume built from your actual ticket history</li>
+              <li>Eight weeks of real DevOps or SRE work &mdash; squad, Team Lead, tickets, code review</li>
+              <li>A real GitHub history under the Yarova organization</li>
+              <li>Resume rebuilt from your actual ticket and PR history</li>
               <li>Interview prep before every interview you book</li>
-              <li>Background check documentation and prep</li>
-              <li>Day-one prep call</li>
+              <li>Background-check documentation and walkthrough</li>
+              <li>Day-one prep call for your first day at the new job</li>
               <li>Probation check-ins at 30, 60, and 90 days</li>
-              <li class="guarantee">Not placed? Re-enroll in the next batch, free. Until you are placed.</li>
+              <li class="guarantee">Not placed? Rejoin the next batch, free. Until you are placed.</li>
             </ul>
 
             <a href="https://cal.com/yarova-fxqeea/discovery-call" target="_blank" rel="noopener"
                data-cal-link="yarova-fxqeea/discovery-call"
                data-cal-namespace="discovery-call"
                data-cal-config='{"layout":"month_view"}'
-               class="btn btn-amber btn-lg">Book your enrollment call <span class="arrow">&rarr;</span></a>
+               class="btn btn-amber btn-lg full">Book your enrollment call <span class="arrow">&rarr;</span></a>
 
-            <p class="not-incl">Not included: a guaranteed employer, cloud-provider credits (~$50 over the program), placement outside Canada.</p>
+            <p class="not-incl">Payment plan: 3-month interest-free split available on request. Not included: a guaranteed employer, cloud-provider charges (~$50 over the program), hiring outside Canada.</p>
           </div>
         </div>
       </section>
 
-      <!-- FINAL CTA -->
+      <!-- 10 · FAQ -->
+      <section id="faq" class="section alt">
+        <div class="container narrow">
+          <p class="eyebrow">FAQ</p>
+          <h2>Questions you should ask before committing.</h2>
+
+          <div class="faq">
+            <details open>
+              <summary><span>Is this real work, or a simulation that looks real?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>The work is real. The repositories live under the Yarova GitHub organization. The infrastructure runs on real AWS accounts. The tickets have real acceptance criteria and real reviewers. The only thing &ldquo;simulated&rdquo; is the employer relationship &mdash; you are not on Yarova&rsquo;s payroll. Everything you ship is yours, on your GitHub, permanently.</p></div>
+            </details>
+            <details>
+              <summary><span>Why only 4 seats per batch?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Because a Team Lead can run a real standup, review every PR personally, and hold a weekly 1:1 with four engineers. Not with twelve. Cap the squad at four and the program stays intense; lift the cap and it becomes a course.</p></div>
+            </details>
+            <details>
+              <summary><span>Why multiple batches each month?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>So you start when you are ready, not in three months. Some batches run 09:00&ndash;17:00 PT (the standard Canadian-tech-company shift); some run 13:00&ndash;21:00 PT (the evening shift, for engineers who still hold a day job during the program). Pick the one that fits your life.</p></div>
+            </details>
+            <details>
+              <summary><span>Do you guarantee me a job?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>No. Anyone who guarantees you a job is lying. What we guarantee: if you finish the batch and do not land a stable job, you rejoin the next batch &mdash; free &mdash; and we keep going until you do. That is the only honest version of a guarantee.</p></div>
+            </details>
+            <details>
+              <summary><span>Will my Yarova work pass a background check?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Yes. Yarova Inc. is a Canadian company. Your work is documented as a contract engagement with Yarova Inc. We provide the verification letter. We are listed as your reference. We pick up the phone when the background-check company calls.</p></div>
+            </details>
+            <details>
+              <summary><span>I already have a job. Can I do this part-time?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Yes &mdash; pick the evening shift batch (13:00&ndash;21:00 PT). You attend an evening standup and do your ticket work after your day job. Several engineers have shipped real work this way; it is intense but it works.</p></div>
+            </details>
+            <details>
+              <summary><span>Why $2,400? Why not more, why not less?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Less and the Team Lead can&rsquo;t be paid fairly &mdash; and a Team Lead who is not paid fairly does not show up for the PR review. More and we are charging for prestige instead of work. $2,400 covers a real Team Lead&rsquo;s time for eight weeks, the AWS bill on the shared infra, and the post-batch interview-and-probation support &mdash; with no markup for branding.</p></div>
+            </details>
+            <details>
+              <summary><span>What if I am not in Canada?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>We only place into Canadian roles right now. We know that market &mdash; the employers, the comp bands, the interview formats, the background-check vendors. If you are not in Canada (or arriving within 6 months on a valid work authorization), we will say no on the discovery call. Honest no, free, no follow-up.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 · FINAL CTA -->
       <section id="cta-final" class="cta-final">
         <div class="container narrow" style="text-align: center;">
-          <h2>Book a 30-minute call.<br />Join or don&rsquo;t.<br /><span class="acc2">No pressure either way.</span></h2>
-          <p>We will tell you which track fits your background, when the next batch starts, and what day one looks like. No deposit on the call.</p>
-          <div class="actions" style="justify-content: center; margin-top: 40px;">
+          <h2>Book a 30-minute call.<br />Join a batch, or do not.<br /><span class="acc2">No pressure either way.</span></h2>
+          <p>We will tell you which track fits your background, which upcoming batch makes sense, and what day one looks like. No deposit on the call.</p>
+          <div class="actions cta-actions">
             <a href="https://cal.com/yarova-fxqeea/discovery-call" target="_blank" rel="noopener"
                data-cal-link="yarova-fxqeea/discovery-call"
                data-cal-namespace="discovery-call"
                data-cal-config='{"layout":"month_view"}'
                class="btn btn-amber btn-lg">Book the enrollment call <span class="arrow">&rarr;</span></a>
-            <a href="mailto:hello@yarova.ca" class="btn btn-ghost btn-lg" style="color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.2);">Email us instead</a>
+            <a href="https://wa.me/16047197918?text=Hi%20Yarova%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" class="btn btn-ghost-dark btn-lg">WhatsApp us instead</a>
           </div>
         </div>
       </section>
@@ -190,21 +427,32 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
     <!-- Floating actions -->
     <div class="floating-actions" aria-label="Quick contact">
-      <a class="fa-btn wa" href="https://wa.me/16047197918?text=Hi%20Yarova%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" aria-label="WhatsApp">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01Zm-7.01 15.24c-1.48 0-2.94-.4-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24a8.18 8.18 0 0 1 8.24 8.24c.01 4.54-3.69 8.24-8.22 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12s-.64.81-.78.97c-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.05-.11-.21-.17-.45-.29Z"/></svg></span>
+      <a class="fa-btn wa" href="https://wa.me/16047197918?text=Hi%20Yarova%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener" aria-label="Message Yarova on WhatsApp">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01Zm-7.01 15.24c-1.48 0-2.94-.4-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24a8.18 8.18 0 0 1 8.24 8.24c.01 4.54-3.69 8.24-8.22 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12s-.64.81-.78.97c-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.05-.11-.21-.17-.45-.29Z"/></svg></span>
         <span class="lbl">WhatsApp</span>
       </a>
       <a class="fa-btn cal" href="https://cal.com/yarova-fxqeea/discovery-call" target="_blank" rel="noopener"
          data-cal-link="yarova-fxqeea/discovery-call"
          data-cal-namespace="discovery-call"
          data-cal-config='{"layout":"month_view"}'
-         aria-label="Book a call">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span>
+         aria-label="Book a discovery call">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span>
         <span class="lbl">Book a call</span>
       </a>
     </div>
 
-    <!-- Cal.com -->
+    <!-- FAQ glyph toggle -->
+    <script>
+      document.querySelectorAll('.faq details').forEach(function (d) {
+        var g = d.querySelector('.glyph');
+        if (g && d.open) g.textContent = '−';
+        d.addEventListener('toggle', function () {
+          if (g) g.textContent = d.open ? '−' : '+';
+        });
+      });
+    </script>
+
+    <!-- Cal.com embed -->
     <script type="text/javascript">
       (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "Cal");
       Cal("init", "discovery-call", {origin:"https://cal.com"});
@@ -213,7 +461,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
     <style>
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
+      html { scroll-behavior: smooth; scroll-padding-top: 96px; }
       @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
 
       a { color: var(--color-amber-hover); text-decoration: none; }
@@ -223,36 +471,49 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
       .skip:focus { left: 12px; }
 
       .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-      .container.narrow { max-width: 680px; }
+      .container.narrow { max-width: 760px; }
       .section { padding: 96px 0; border-top: 1px solid var(--border); }
       .section.alt { background: var(--bg-secondary); }
 
+      .eyebrow { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber-hover); margin: 0 0 20px; font-weight: 600; }
       h1, h2, h3 { font-family: var(--font-sans); margin: 0; color: var(--fg-1); letter-spacing: -.025em; }
-      h1 { font-size: clamp(32px, 5.5vw, 72px); font-weight: 700; line-height: 1.05; letter-spacing: -.035em; }
-      h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; line-height: 1.1; }
+      h1 { font-size: clamp(34px, 5.6vw, 68px); font-weight: 700; line-height: 1.05; letter-spacing: -.035em; }
+      h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 1.15; }
+      h2 .muted { color: var(--fg-3); font-weight: 600; }
+      h3 { font-size: 18px; font-weight: 600; }
       p { margin: 0; color: var(--fg-2); line-height: 1.65; }
-      .lead { font-size: 18px; color: var(--fg-2); line-height: 1.6; max-width: 680px; margin-top: 20px; }
+      .lead { font-size: 17px; color: var(--fg-2); line-height: 1.65; max-width: 720px; margin-top: 20px; }
 
-      .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; font-family: var(--font-sans); font-size: 15px; font-weight: 600; line-height: 1; border: 1px solid transparent; cursor: pointer; transition: transform 120ms ease, background 150ms; text-decoration: none; }
+      /* Buttons */
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 22px; border-radius: 999px; font-family: var(--font-sans); font-size: 15px; font-weight: 600; line-height: 1; border: 1px solid transparent; cursor: pointer; transition: transform 120ms ease, background 150ms, color 150ms; text-decoration: none; }
+      .btn-sm { padding: 8px 14px; font-size: 13px; }
       .btn-lg { padding: 18px 30px; font-size: 16px; }
-      .btn-amber { background: var(--color-amber-hover); color: white; box-shadow: 0 8px 22px -10px rgba(217,119,6,.55); }
-      .btn-amber:hover { background: var(--color-amber-press); color: white; transform: translateY(-1px); }
-      .btn-ghost { background: transparent; color: var(--fg-1); border-color: var(--border); }
-      .btn-ghost:hover { color: var(--fg-1); border-color: var(--fg-1); }
+      .btn-lg.full { width: 100%; }
+      .btn-amber { background: var(--color-amber-hover); color: white !important; box-shadow: 0 8px 22px -10px rgba(217,119,6,.55); }
+      .btn-amber:hover { background: var(--color-amber-press); transform: translateY(-1px); }
+      .btn-ghost { background: transparent; color: var(--fg-1) !important; border-color: var(--border); }
+      .btn-ghost:hover { background: var(--bg-secondary); border-color: var(--border-hover); }
+      .btn-ghost-dark { background: transparent; color: rgba(255,255,255,.85) !important; border-color: rgba(255,255,255,.22); }
+      .btn-ghost-dark:hover { color: white !important; border-color: rgba(255,255,255,.5); }
       .btn .arrow { transition: transform 180ms ease; display: inline-block; }
       .btn:hover .arrow { transform: translateX(3px); }
 
-      /* Hero */
-      .hero { padding: 88px 0 80px; }
-      .eyebrow { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); margin-bottom: 32px; }
+      /* 1 · Hero */
+      .hero { padding: 96px 0 80px; }
       .hero h1 { max-width: 960px; }
       .hero h1 .acc { color: var(--color-amber-hover); }
-      .sub { font-size: 19px; color: var(--fg-2); margin-top: 28px; max-width: 640px; line-height: 1.55; }
+      .sub { font-size: 19px; color: var(--fg-2); margin-top: 28px; max-width: 700px; line-height: 1.55; }
       .actions { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
-      .fine { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; color: var(--fg-3); margin-top: 14px; }
+      .fine { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; color: var(--fg-3); margin-top: 18px; }
 
-      /* What it is */
-      .two-col { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      /* 2 · Problem */
+      #problem h2 { max-width: 760px; }
+      .problem-body { margin-top: 36px; display: flex; flex-direction: column; gap: 14px; max-width: 700px; }
+      .problem-body p { font-size: 17px; color: var(--fg-2); }
+      .problem-body p.ph { color: var(--fg-1); font-weight: 600; font-size: 19px; margin-top: 14px; }
+
+      /* 3 · Tracks */
+      .two-col { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
       .col-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 14px; padding: 32px; }
       .col-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber-hover); font-weight: 600; margin-bottom: 16px; }
       .col-block p { font-size: 15px; line-height: 1.65; }
@@ -260,9 +521,41 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
       .proof-line { margin-top: 36px; padding: 24px 28px; background: var(--color-black); color: rgba(255,255,255,.85); border-radius: 12px; font-size: 16px; line-height: 1.6; }
       @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
 
-      /* Journey */
-      .journey { margin-top: 48px; display: flex; flex-direction: column; gap: 4px; }
-      .phase-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber-hover); font-weight: 600; margin-bottom: 12px; margin-top: 8px; }
+      /* 4 · A day at Yarova */
+      .day-grid { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--border); }
+      .day-grid li { display: grid; grid-template-columns: 110px 1fr; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--border); align-items: start; }
+      .day-grid .t { font-family: var(--font-mono); font-size: 13px; color: var(--color-amber-hover); font-weight: 700; padding-top: 2px; }
+      .day-grid .b { display: flex; flex-direction: column; gap: 4px; }
+      .day-grid .w { font-size: 15px; color: var(--fg-1); font-weight: 600; }
+      .day-grid .d { font-size: 14px; color: var(--fg-2); line-height: 1.55; }
+      .week { margin-top: 40px; padding: 24px 28px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 12px; display: grid; grid-template-columns: auto 1fr; gap: 12px 24px; align-items: baseline; }
+      .week .wlbl { grid-column: 1; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber-hover); font-weight: 600; }
+      .week > span:not(.wlbl) { grid-column: 2; font-size: 14px; color: var(--fg-2); }
+      .week b { color: var(--fg-1); font-weight: 600; font-family: var(--font-mono); font-size: 12px; margin-right: 8px; }
+      @media (max-width: 700px) {
+        .day-grid li { grid-template-columns: 70px 1fr; gap: 14px; }
+        .week { grid-template-columns: 1fr; gap: 6px; padding: 20px; }
+        .week .wlbl { grid-column: 1; }
+        .week > span:not(.wlbl) { grid-column: 1; }
+      }
+
+      /* 5 · Squad */
+      .squad { margin-top: 48px; display: grid; grid-template-columns: minmax(280px, 360px) 1fr; gap: 48px; align-items: center; }
+      .squad-vis { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+      .lead-box { background: var(--color-black); color: white; border-radius: 10px; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; }
+      .lead-box .role { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber); font-weight: 600; }
+      .lead-box .who { font-size: 13px; color: rgba(255,255,255,.85); }
+      .peers { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .peer { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 13px; font-weight: 600; color: var(--fg-1); text-align: center; }
+      .peer:first-child { background: var(--color-amber-hover); color: white; border-color: var(--color-amber-hover); }
+      .squad-body ul { margin: 16px 0 20px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+      .squad-body li { font-size: 15px; color: var(--fg-2); padding-left: 22px; position: relative; line-height: 1.55; }
+      .squad-body li::before { content: "→"; position: absolute; left: 0; color: var(--color-amber-hover); font-weight: 700; }
+      .squad-body .micro { font-size: 13px; color: var(--fg-3); border-top: 1px solid var(--border); padding-top: 16px; }
+      @media (max-width: 800px) { .squad { grid-template-columns: 1fr; gap: 24px; } }
+
+      /* 6 · Support journey */
+      .journey { margin-top: 48px; display: flex; flex-direction: column; gap: 8px; }
       .jstep { display: grid; grid-template-columns: 44px 1fr; gap: 20px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px; align-items: start; }
       .jstep.done { background: var(--color-black); }
       .jstep.done .jn { color: var(--color-amber); }
@@ -273,13 +566,45 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
       .jd { font-size: 13px; color: var(--fg-2); line-height: 1.6; }
       @media (max-width: 600px) { .jstep { grid-template-columns: 1fr; } .jn { padding: 0; } }
 
-      /* Pricing */
+      /* 7 · Batches */
+      .batches-wrap { margin-top: 40px; overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; background: var(--bg-primary); }
+      .batches { width: 100%; border-collapse: collapse; font-size: 14px; }
+      .batches thead th { background: var(--bg-secondary); padding: 14px 16px; text-align: left; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); font-weight: 600; border-bottom: 1px solid var(--border); }
+      .batches tbody td { padding: 18px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; color: var(--fg-2); }
+      .batches tbody tr:last-child td { border-bottom: none; }
+      .batches tbody tr.full td { background: var(--bg-secondary); color: var(--fg-3); }
+      .batches .date { font-weight: 600; color: var(--fg-1); font-size: 15px; }
+      .batches .pill { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 999px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; }
+      .batches .pill-devops { background: rgba(217,119,6,.12); color: var(--color-amber-hover); }
+      .batches .pill-sre { background: rgba(13,148,136,.14); color: var(--color-teal-hover); }
+      .batches .focus { color: var(--fg-2); font-size: 13px; }
+      .batches .shift { color: var(--fg-3); font-size: 13px; font-family: var(--font-mono); }
+      .batches .seats { font-weight: 600; color: var(--fg-1); }
+      .batches .seats-low { color: var(--color-amber-hover); }
+      .batches .seats-full { color: var(--fg-3); font-weight: 600; }
+      .batches .waitlist { font-size: 13px; color: var(--fg-3); font-style: italic; }
+      .batches .end { text-align: right; white-space: nowrap; }
+      .batches-note { margin-top: 20px; font-size: 13px; color: var(--fg-3); text-align: center; }
+      @media (max-width: 800px) {
+        .batches .focus, .batches thead th:nth-child(3) { display: none; }
+        .batches .shift, .batches thead th:nth-child(4) { display: none; }
+      }
+
+      /* 8 · Track record */
+      .stat-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+      .stat { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; display: flex; flex-direction: column; gap: 8px; }
+      .stat .v { font-size: clamp(32px, 4vw, 44px); font-weight: 700; color: var(--fg-1); letter-spacing: -.025em; line-height: 1; }
+      .stat .ccy { font-size: 14px; color: var(--fg-3); font-weight: 500; letter-spacing: 0; }
+      .stat .k { font-size: 12px; color: var(--fg-2); line-height: 1.5; }
+      @media (max-width: 800px) { .stat-grid { grid-template-columns: 1fr 1fr; } }
+
+      /* 9 · Pricing */
       .price-card { margin-top: 40px; background: var(--color-black); border-radius: 16px; padding: 44px; position: relative; overflow: hidden; }
       .price-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(217,119,6,.18), transparent 60%); pointer-events: none; }
       .price-top { position: relative; margin-bottom: 32px; }
       .price-num { font-size: 64px; font-weight: 700; color: white; letter-spacing: -.04em; line-height: 1; }
       .price-num .ccy { font-size: 20px; color: rgba(255,255,255,.6); font-weight: 500; }
-      .price-when { font-size: 13px; color: rgba(255,255,255,.5); margin-top: 8px; }
+      .price-when { font-size: 13px; color: rgba(255,255,255,.55); margin-top: 8px; }
       .incl { margin: 0 0 28px; padding: 0; list-style: none; position: relative; }
       .incl li { padding: 12px 0 12px 28px; position: relative; font-size: 15px; color: rgba(255,255,255,.85); border-bottom: 1px solid rgba(255,255,255,.08); line-height: 1.5; }
       .incl li:last-child { border-bottom: none; }
@@ -287,23 +612,36 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
       .incl li.guarantee { color: var(--color-amber); font-weight: 600; }
       .incl li.guarantee::before { content: "★"; }
       .price-card .btn { position: relative; }
-      .not-incl { margin-top: 20px; font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.55; position: relative; }
+      .not-incl { margin-top: 20px; font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.6; position: relative; }
+      @media (max-width: 600px) { .price-card { padding: 32px 24px; } .price-num { font-size: 48px; } }
 
-      /* Final CTA */
-      .cta-final { background: var(--color-black); color: white; padding: 96px 0; }
-      .cta-final h2 { color: white; font-size: clamp(30px, 4.5vw, 56px); }
+      /* 10 · FAQ */
+      .faq { margin-top: 40px; border-top: 1px solid var(--border); }
+      .faq details { border-bottom: 1px solid var(--border); }
+      .faq summary { padding: 22px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; cursor: pointer; list-style: none; min-height: 44px; }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary > span:first-child { font-size: 16px; font-weight: 600; color: var(--fg-1); line-height: 1.4; }
+      .faq summary .glyph { font-family: var(--font-mono); font-size: 22px; color: var(--color-amber-hover); font-weight: 400; flex-shrink: 0; }
+      .faq .answer { padding: 0 0 22px; }
+      .faq .answer p { font-size: 15px; color: var(--fg-2); line-height: 1.7; margin: 0 0 12px; }
+      .faq .answer p:last-child { margin-bottom: 0; }
+
+      /* 11 · Final CTA */
+      .cta-final { background: var(--color-black); color: white; padding: 96px 0; border-top: none; }
+      .cta-final h2 { color: white; font-size: clamp(30px, 4.5vw, 52px); }
       .cta-final .acc2 { color: var(--color-amber); font-style: normal; }
-      .cta-final p { color: rgba(255,255,255,.65); font-size: 17px; margin-top: 20px; max-width: 500px; margin-left: auto; margin-right: auto; }
+      .cta-final p { color: rgba(255,255,255,.7); font-size: 17px; margin-top: 20px; max-width: 540px; margin-left: auto; margin-right: auto; }
+      .cta-actions { justify-content: center; margin-top: 40px; }
 
       /* Floating actions */
       .floating-actions { position: fixed; bottom: 24px; right: 22px; z-index: 55; display: flex; flex-direction: column; gap: 10px; }
-      .fa-btn { display: flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; font-size: 13px; font-weight: 600; color: white; text-decoration: none; transition: transform 120ms ease; box-shadow: 0 8px 22px -8px rgba(0,0,0,.35); }
-      .fa-btn:hover { transform: translateY(-2px); color: white; }
+      .fa-btn { display: flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; font-size: 13px; font-weight: 600; color: white !important; text-decoration: none; transition: transform 120ms ease; box-shadow: 0 8px 22px -8px rgba(0,0,0,.35); }
+      .fa-btn:hover { transform: translateY(-2px); color: white !important; }
       .fa-btn.wa { background: #25D366; }
       .fa-btn.cal { background: var(--color-black); }
       .fa-btn .ic { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
       .fa-btn .ic svg { width: 18px; height: 18px; }
-      @media (max-width: 640px) { .fa-btn .lbl { display: none; } .fa-btn { padding: 14px; } }
+      @media (max-width: 640px) { .fa-btn .lbl { display: none; } .fa-btn { padding: 14px; } .floating-actions { bottom: 16px; right: 14px; } }
     </style>
   </body>
 </html>
