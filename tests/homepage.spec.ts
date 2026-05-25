@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 /**
  * Smoke + content tests for the main site.
- * Asserts the structure and copy that actually ships in src/pages/index.astro.
+ * Asserts the literal section structure and copy that ships in src/pages/index.astro.
  * Update this file when sections are added, removed, or renamed.
  */
 
@@ -12,26 +12,25 @@ test.describe('Home — structure', () => {
   });
 
   test('all primary section IDs exist', async ({ page }) => {
-    const ids = ['main', 'problem', 'tracks', 'how', 'squad', 'support', 'batches', 'proof', 'pricing', 'faq', 'cta-final'];
+    const ids = ['main', 'wall', 'tracks', 'day', 'runway', 'enroll', 'faq'];
     for (const id of ids) {
       await expect(page.locator(`#${id}`), `Section #${id} missing`).toBeAttached();
     }
   });
 
-  test('hero contains the tagline', async ({ page }) => {
-    await expect(page.locator('.hero h1')).toContainText('The closest thing to your first day on the job');
-    await expect(page.locator('.hero h1')).toContainText('Without the first-day anxiety');
+  test('hero H1 is the literal-truth headline', async ({ page }) => {
+    await expect(page.locator('.hero h1')).toContainText('Get Real Canadian DevOps or SRE Production Experience in 8 Weeks');
   });
 
-  test('hero shows the $2,400 flat eyebrow', async ({ page }) => {
-    await expect(page.locator('.hero .eyebrow')).toContainText('$2,400 flat');
+  test('hero price label is visible and direct', async ({ page }) => {
+    await expect(page.locator('.hero .price-label')).toContainText('$2,400 CAD Flat');
+    await expect(page.locator('.hero .price-label')).toContainText('No hidden fees');
   });
 
-  test('hero has primary and secondary CTAs', async ({ page }) => {
-    const ctas = page.locator('.hero .actions .btn');
-    await expect(ctas).toHaveCount(2);
-    const calLink = await page.locator('.hero .btn-amber').getAttribute('data-cal-link');
-    expect(calLink).toBe('yarova-fxqeea/discovery-call');
+  test('hero CTA scrolls to enrollment', async ({ page }) => {
+    const cta = page.locator('.hero .actions a.btn').first();
+    await expect(cta).toBeVisible();
+    expect(await cta.getAttribute('href')).toBe('#enroll');
   });
 });
 
@@ -40,16 +39,12 @@ test.describe('Home — header & footer', () => {
     await page.goto('/');
   });
 
-  test('header has no accounting toggle', async ({ page }) => {
-    await expect(page.locator('header .service-switch')).toHaveCount(0);
-    await expect(page.locator('header a[href="/accounting"]')).toHaveCount(0);
+  test('no scarcity bar on the main page', async ({ page }) => {
+    await expect(page.locator('.scarcity')).toHaveCount(0);
   });
 
-  test('scarcity bar shows the next batch and seat count', async ({ page }) => {
-    const bar = page.locator('.scarcity').first();
-    await expect(bar).toBeVisible();
-    await expect(bar).toContainText('Next batch:');
-    await expect(bar).toContainText('seats left');
+  test('header has no accounting toggle', async ({ page }) => {
+    await expect(page.locator('header a[href="/accounting"]')).toHaveCount(0);
   });
 
   test('header CTA opens the discovery call directly', async ({ page }) => {
@@ -57,7 +52,7 @@ test.describe('Home — header & footer', () => {
     expect(calLink).toBe('yarova-fxqeea/discovery-call');
   });
 
-  test('header nav anchors all point to real section IDs', async ({ page }) => {
+  test('header nav anchors all resolve to real section IDs', async ({ page }) => {
     const anchors = await page.locator('header .nav-links a:not(.btn)').evaluateAll(
       (els) => els.map((e) => (e as HTMLAnchorElement).getAttribute('href')),
     );
@@ -74,7 +69,7 @@ test.describe('Home — header & footer', () => {
     await expect(page.locator('footer')).toContainText('Langley, BC');
   });
 
-  test('footer nav anchors all resolve', async ({ page }) => {
+  test('footer nav anchors resolve to real section IDs', async ({ page }) => {
     const anchors = await page.locator('footer .foot-links a').evaluateAll(
       (els) => els.map((e) => (e as HTMLAnchorElement).getAttribute('href')),
     );
@@ -84,39 +79,72 @@ test.describe('Home — header & footer', () => {
       await expect(page.locator(`#${id}`), `Footer anchor #${id} has no matching section`).toBeAttached();
     }
   });
+});
 
-  test('contact strip has 3 cells (cal, whatsapp, email)', async ({ page }) => {
-    await expect(page.locator('.contact-strip .cell')).toHaveCount(3);
-    await expect(page.locator('.contact-strip')).toContainText('yarova-fxqeea/discovery-call');
-    await expect(page.locator('.contact-strip')).toContainText('hello@yarova.ca');
+test.describe('Home — wall (catch-22)', () => {
+  test('three labeled blocks: Loop, Problem, Fix', async ({ page }) => {
+    await page.goto('/');
+    const labels = await page.locator('#wall .wall-label').allTextContents();
+    expect(labels).toEqual(['The Loop', 'The Problem', 'The Fix']);
   });
 });
 
-test.describe('Home — batches table', () => {
+test.describe('Home — tracks', () => {
+  test('two track blocks with Focus, What you build, Tool Stack', async ({ page }) => {
+    await page.goto('/');
+    const tracks = page.locator('#tracks .track-block');
+    await expect(tracks).toHaveCount(2);
+    await expect(tracks.nth(0)).toContainText('DevOps');
+    await expect(tracks.nth(1)).toContainText('Site Reliability Engineering');
+    const labels = await page.locator('#tracks .track-block dt').allTextContents();
+    for (const label of ['The Focus', 'What you build', 'The Tool Stack']) {
+      expect(labels).toContain(label);
+    }
+  });
+});
+
+test.describe('Home — day schedule', () => {
+  test('exactly 7 schedule entries', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#day .day-grid li')).toHaveCount(7);
+  });
+
+  test('schedule starts at 09:00 and ends at 17:00', async ({ page }) => {
+    await page.goto('/');
+    const times = await page.locator('#day .day-grid .t').allTextContents();
+    expect(times[0]).toBe('09:00');
+    expect(times[times.length - 1]).toBe('17:00');
+  });
+});
+
+test.describe('Home — runway', () => {
+  test('exactly 5 numbered runway steps', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#runway .runway-list li')).toHaveCount(5);
+  });
+
+  test('finish line statement is present', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#runway .runway-finish')).toContainText('Probation cleared');
+  });
+});
+
+test.describe('Home — enrollment', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
 
   test('batches table renders at least one row', async ({ page }) => {
-    const rows = page.locator('.batches tbody tr');
-    expect(await rows.count()).toBeGreaterThan(0);
+    expect(await page.locator('.batches tbody tr').count()).toBeGreaterThan(0);
   });
 
-  test('batches table has the required columns', async ({ page }) => {
-    const headers = await page.locator('.batches thead th').allTextContents();
-    const joined = headers.join(' | ');
-    expect(joined).toContain('Start date');
-    expect(joined).toContain('Track');
-    expect(joined).toContain('Seats left');
-  });
-
-  test('every non-full row has a Reserve a seat CTA pointing to Cal.com', async ({ page }) => {
+  test('every non-full row links to Cal.com discovery call', async ({ page }) => {
     const rows = page.locator('.batches tbody tr:not(.full)');
     const count = await rows.count();
     for (let i = 0; i < count; i++) {
       const cta = rows.nth(i).locator('a.btn');
       const calLink = await cta.getAttribute('data-cal-link');
-      expect(calLink, `Row ${i} CTA is not wired to Cal.com`).toBe('yarova-fxqeea/discovery-call');
+      expect(calLink).toBe('yarova-fxqeea/discovery-call');
     }
   });
 
@@ -124,27 +152,19 @@ test.describe('Home — batches table', () => {
     const seats = await page.locator('.batches tbody td.seats').allTextContents();
     for (const s of seats) {
       const m = s.match(/of\s+(\d+)/);
-      if (m) expect(Number(m[1]), `Row should show "of 4" not "of ${m[1]}"`).toBe(4);
+      if (m) expect(Number(m[1])).toBe(4);
     }
   });
-});
 
-test.describe('Home — pricing', () => {
-  test('pricing block shows the $2,400 CAD price', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.locator('#pricing .price-num')).toContainText('$2,400');
-    await expect(page.locator('#pricing .price-num')).toContainText('CAD');
+  test('flat-rate terms list has the 3 expected items', async ({ page }) => {
+    await expect(page.locator('#enroll .terms li')).toHaveCount(3);
+    await expect(page.locator('#enroll .terms')).toContainText('$2,400 CAD');
+    await expect(page.locator('#enroll .terms')).toContainText('Safety Net');
+    await expect(page.locator('#enroll .terms')).toContainText('Exclusions');
   });
 
-  test('pricing CTA is wired to Cal.com', async ({ page }) => {
-    await page.goto('/');
-    const calLink = await page.locator('#pricing .btn-amber').getAttribute('data-cal-link');
-    expect(calLink).toBe('yarova-fxqeea/discovery-call');
-  });
-
-  test('included list has the guarantee row', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.locator('#pricing .incl li.guarantee')).toContainText('Rejoin the next batch');
+  test('inline Cal.com calendar container is rendered', async ({ page }) => {
+    await expect(page.locator('#cal-discovery-call-inline')).toBeAttached();
   });
 });
 
@@ -154,19 +174,18 @@ test.describe('Home — FAQ', () => {
   });
 
   test('FAQ has at least 6 questions', async ({ page }) => {
-    const details = page.locator('#faq details');
-    expect(await details.count()).toBeGreaterThanOrEqual(6);
+    expect(await page.locator('#faq details').count()).toBeGreaterThanOrEqual(6);
   });
 
-  test('first FAQ is open by default', async ({ page }) => {
-    await expect(page.locator('#faq details[open]')).toHaveCount(1);
+  test('all FAQ details start closed (accordion at bottom)', async ({ page }) => {
+    await expect(page.locator('#faq details[open]')).toHaveCount(0);
   });
 
   test('clicking a closed FAQ opens it', async ({ page }) => {
-    const second = page.locator('#faq details').nth(1);
-    await expect(second).not.toHaveAttribute('open', '');
-    await second.locator('summary').click();
-    await expect(second).toHaveAttribute('open', '');
+    const first = page.locator('#faq details').first();
+    await expect(first).not.toHaveAttribute('open', '');
+    await first.locator('summary').click();
+    await expect(first).toHaveAttribute('open', '');
   });
 });
 
@@ -184,11 +203,6 @@ test.describe('Home — floating actions', () => {
   test('WhatsApp link uses the business number', async ({ page }) => {
     const href = await page.locator('.fa-btn.wa').getAttribute('href');
     expect(href).toContain('wa.me/16047197918');
-  });
-
-  test('cal button is wired to discovery-call', async ({ page }) => {
-    const attr = await page.locator('.fa-btn.cal').getAttribute('data-cal-link');
-    expect(attr).toBe('yarova-fxqeea/discovery-call');
   });
 
   test('no autoplay video or audio', async ({ page }) => {

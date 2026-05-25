@@ -24,7 +24,7 @@ test.describe('Layout integrity', () => {
   });
 
   test('hero primary CTA meets 44x44 touch target (WCAG 2.5.5)', async ({ page }) => {
-    const cta = page.locator('.hero .btn-amber');
+    const cta = page.locator('.hero .actions a.btn').first();
     await expect(cta).toBeVisible();
     const box = await cta.boundingBox();
     expect(box?.width ?? 0, 'Hero CTA width < 44px').toBeGreaterThanOrEqual(44);
@@ -56,12 +56,12 @@ test.describe('Layout integrity', () => {
     expect(overflow, 'Batches section is pushing the document wider than the viewport').toBe(false);
   });
 
-  test('pricing card renders with non-zero width', async ({ page }) => {
-    const card = page.locator('#pricing .price-card');
+  test('pricing-equivalent (enroll section) renders with non-zero width', async ({ page }) => {
+    const card = page.locator('#enroll .terms');
     await card.scrollIntoViewIfNeeded();
     await expect(card).toBeVisible();
     const box = await card.boundingBox();
-    expect(box?.width ?? 0, 'Pricing card has zero width').toBeGreaterThan(0);
+    expect(box?.width ?? 0, 'Enrollment terms list has zero width').toBeGreaterThan(0);
   });
 
   test('footer is visible without horizontal overflow', async ({ page }) => {
