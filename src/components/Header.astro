@@ -1,63 +1,96 @@
 ---
+interface Props {
+  page?: 'placement' | 'accounting';
+}
+const { page = 'placement' } = Astro.props;
 ---
 
-<header>
-  <nav>
-    <a href="/" class="logo">Y &nbsp; Yarova</a>
-    <button type="button"
-      data-cal-link="yarova-fxqeea/discovery-call"
-      data-cal-origin="https://cal.com"
-      class="btn btn-primary btn-cta">
-      Schedule a fit call
-    </button>
-  </nav>
+<!-- Scarcity / deadline bar -->
+{page === 'placement' && (
+  <div class="scarcity" role="region" aria-label="Cohort availability">
+    <div class="container inner">
+      <span class="pulse">Live</span>
+      <span class="sep">/</span>
+      <span><b>2 seats left</b> &middot; DevOps batch &middot; September 2026</span>
+      <span class="sep hide-sm">/</span>
+      <span class="hide-sm">SRE batch also open &middot; <b>3 seats</b></span>
+      <span class="sep">/</span>
+      <a href="#cta-final">Reserve your seat &rarr;</a>
+    </div>
+  </div>
+)}
+{page === 'accounting' && (
+  <div class="scarcity acct" role="region" aria-label="Filing deadline">
+    <div class="container inner">
+      <span class="pulse">Tax season open</span>
+      <span class="sep">/</span>
+      <span><b>T1 deadline:</b> Apr&nbsp;30 &middot; <b>Self-employed:</b> Jun&nbsp;15 &middot; <b>T2:</b> 6&nbsp;mo after year-end</span>
+      <span class="sep hide-sm">/</span>
+      <a href="#pricing" class="hide-sm">See flat fees &rarr;</a>
+    </div>
+  </div>
+)}
+
+<!-- Header -->
+<header class="site-header" data-screen-label="Header">
+  <div class="container inner">
+    <a href="/" class="brand"><span class="y">Y</span> Yarova</a>
+    <div class="service-switch" role="tablist" aria-label="Yarova services">
+      <a href="/" class={page === 'placement' ? 'on' : ''} role="tab" aria-selected={page === 'placement' ? 'true' : 'false'}>Placement</a>
+      <a href="/accounting" class={page === 'accounting' ? 'on' : ''} role="tab" aria-selected={page === 'accounting' ? 'true' : 'false'}>Accounting</a>
+    </div>
+    <nav class="nav-links" aria-label="Primary">
+      {page === 'placement' && <>
+        <a href="#routine">How it works</a>
+        <a href="#tracks">Two tracks</a>
+        <a href="#support">Support calls</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://cal.com/yarova-fxqeea/discovery-call" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/discovery-call" data-cal-namespace="discovery-call" data-cal-config='{"layout":"month_view"}' class="btn btn-amber">Book a call <span class="arrow">&rarr;</span></a>
+      </>}
+      {page === 'accounting' && <>
+        <a href="#pricing">Pricing</a>
+        <a href="#process">Process</a>
+        <a href="#trust">Why Yarova</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://cal.com/yarova-fxqeea/tax-consult" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/tax-consult" data-cal-namespace="tax-consult" data-cal-config='{"layout":"month_view"}' class="btn btn-amber">Book your filing <span class="arrow">&rarr;</span></a>
+      </>}
+    </nav>
+  </div>
 </header>
 
 <style>
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--bg-primary);
-    border-bottom: 1px solid var(--border-color);
-    backdrop-filter: blur(12px);
-  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
 
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: var(--page-width);
-    margin: 0 auto;
-    padding: var(--space-4) var(--space-6);
-  }
+  /* Scarcity bar */
+  .scarcity { background: var(--color-black); color: var(--color-gray-300); }
+  .scarcity .inner { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 10px 24px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; text-align: center; flex-wrap: wrap; }
+  .scarcity b { color: white; font-weight: 600; }
+  .scarcity .pulse { display: inline-flex; align-items: center; gap: 8px; color: var(--color-amber); font-weight: 600; text-transform: uppercase; letter-spacing: .14em; }
+  .scarcity .pulse::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--color-amber); box-shadow: 0 0 0 0 rgba(245,158,11,.5); animation: pulse 1.8s infinite; }
+  .scarcity.acct .pulse { color: #34D399; }
+  .scarcity.acct .pulse::before { background: #34D399; box-shadow: 0 0 0 0 rgba(52,211,153,.7); }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(245,158,11,.5); } 70% { box-shadow: 0 0 0 8px rgba(245,158,11,0); } 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0); } }
+  .scarcity a { color: var(--color-amber); }
+  .scarcity .sep { color: #3A3A3D; }
+  @media (max-width: 700px) { .scarcity .hide-sm { display: none; } }
 
-  .logo {
-    font-weight: 600;
-    font-size: var(--text-base);
-    letter-spacing: 0.04em;
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-  }
-
-  .logo:hover {
-    color: var(--color-amber);
-  }
-
-  .btn-cta {
-    font-size: var(--text-sm);
-    padding: var(--space-2) var(--space-5);
-  }
-
-  @media (max-width: 640px) {
-    nav {
-      padding: var(--space-3) var(--space-4);
-    }
-
-    .btn-cta {
-      padding: var(--space-2) var(--space-4);
-      font-size: var(--text-xs);
-    }
-  }
+  /* Header */
+  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(250,250,249,.86); backdrop-filter: saturate(150%) blur(14px); -webkit-backdrop-filter: saturate(150%) blur(14px); border-bottom: 1px solid var(--border); }
+  .site-header .inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 24px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; color: var(--fg-1); letter-spacing: -.02em; text-decoration: none; }
+  .brand .y { width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; background: var(--color-black); color: white; border-radius: 6px; font-weight: 700; font-size: 14px; letter-spacing: -.02em; }
+  .brand:hover { color: var(--fg-1); }
+  .service-switch { display: inline-flex; padding: 4px; border-radius: 999px; background: rgba(0,0,0,.05); gap: 2px; }
+  .service-switch a { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--fg-2); text-decoration: none; }
+  .service-switch a.on { background: var(--bg-primary); color: var(--fg-1); box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+  .nav-links { display: flex; align-items: center; gap: 22px; }
+  .nav-links a:not(.btn) { color: var(--fg-2); font-size: 14px; font-weight: 500; text-decoration: none; }
+  .nav-links a:not(.btn):hover { color: var(--fg-1); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; font-family: var(--font-sans); font-size: 14px; font-weight: 600; line-height: 1; border: 1px solid transparent; cursor: pointer; text-decoration: none; transition: all 150ms ease; }
+  .btn-amber { background: var(--color-amber-hover); color: #FFFFFF !important; }
+  .btn-amber:hover { background: var(--color-amber-press); color: #FFFFFF !important; }
+  .arrow { transition: transform 180ms ease; display: inline-block; }
+  .btn:hover .arrow { transform: translateX(3px); }
+  @media (max-width: 880px) { .nav-links a:not(.btn) { display: none; } }
+  @media (max-width: 640px) { .service-switch { display: none; } }
 </style>

@@ -1,0 +1,781 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import '../styles/enhancements.css';
+
+const TITLE = 'Yarova Accounting — Personal, self-employed, and small-business tax filings, done by Canadian accountants.';
+const DESC = 'Personal T1, self-employed, T2 corporate, and incorporation filings — at flat Canadian-CPA-reviewed fees. CRA audit response included. Pay only after the return is filed.';
+const today = new Date();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={TITLE} description={DESC} />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@graph":[{"@type":"AccountingService","@id":"https://yarova.ca/accounting/#svc","name":"Yarova Accounting","url":"https://yarova.ca/accounting","description":"Flat-fee Canadian tax preparation. Personal, self-employed, corporate, and incorporation filings.","areaServed":{"@type":"Country","name":"Canada"},"address":{"@type":"PostalAddress","addressLocality":"Langley","addressRegion":"BC","addressCountry":"CA"},"priceRange":"$149–$1,499 CAD"}]}
+    </script>
+  </head>
+  <body data-screen-label="Yarova accounting">
+    <a href="#hero" class="skip">Skip to content</a>
+
+    <Header page="accounting" />
+
+    <main id="hero">
+
+      <!-- HERO -->
+      <section class="hero" data-screen-label="01 Hero" data-rail="Hero">
+        <div class="container">
+          <div class="hero-eyebrow r-up">
+            <span>Yarova Accounting &middot; Canadian tax filings</span>
+            <span class="tag">A division of Yarova Inc.</span>
+          </div>
+          <h1 class="r-up">Personal taxes,<br />filed properly.<br />Small business,<br /><span class="acc">filed on time.</span></h1>
+          <p class="hero-sub r-up d1">Yarova prepares <b>personal returns, self-employed filings, corporate T2s, and small-business incorporations</b> at flat Canadian fees &mdash; reviewed by a CPA-trained reviewer, e-filed direct to CRA, and backed by audit response at no extra charge. The same humans, year after year.</p>
+          <div class="hero-actions r-up d2">
+            <a href="#pricing" class="btn btn-amber btn-lg">See flat-fee pricing <span class="arrow">&rarr;</span></a>
+            <a href="#process" class="btn btn-ghost btn-lg">How it works <span class="arrow">&rarr;</span></a>
+          </div>
+          <div class="hero-stamps r-up d3">
+            <span class="stamp">Pay <b style="color:var(--color-amber-hover); margin:0 4px;">only after</b> the return is filed</span>
+            <span class="stamp amber">CRA audit response &middot; included</span>
+            <span class="stamp">CPA-reviewed &middot; NETFILE direct</span>
+          </div>
+          <div class="hero-meta r-up d4">
+            <div class="cell"><span class="k">Personal &middot; T1</span><span class="v"><span data-count="149" data-prefix="$">$149</span> <small>flat</small></span></div>
+            <div class="cell"><span class="k">Self-employed</span><span class="v"><span data-count="349" data-prefix="$">$349</span> <small>flat</small></span></div>
+            <div class="cell"><span class="k">Small business &middot; T2</span><span class="v"><span data-count="999" data-prefix="$">$999</span> <small>flat</small></span></div>
+            <div class="cell"><span class="k">Incorporation bundle</span><span class="v"><span data-count="1499" data-prefix="$">$1,499</span> <small>flat &middot; save $400</small></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIVE COUNTER STRIP -->
+      <section class="live-strip" data-screen-label="Live counter">
+        <div class="container">
+          <div class="ls-grid">
+            <div class="ls-cell amber"><span class="v"><span data-count="1847">1,847</span></span><span class="k">Returns filed &middot; since 2022</span></div>
+            <div class="ls-cell"><span class="v"><span data-count="312">312</span></span><span class="k">Small businesses &middot; active clients</span></div>
+            <div class="ls-cell"><span class="v"><span data-count="0" data-prefix="$" data-suffix="K">$0K</span></span><span class="k">Audit-response fees billed &middot; ever</span></div>
+            <div class="ls-cell"><span class="v"><span data-count="48">48</span><span class="ls-unit">hrs</span></span><span class="k">Average personal turnaround</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ANCHOR PRICING STRIP -->
+      <section class="anchor-strip" data-screen-label="02 What it costs elsewhere">
+        <div class="container">
+          <div class="head r-up">
+            <span class="eyebrow">&mdash; What you&rsquo;d pay elsewhere</span>
+            <h3>Filing your taxes shouldn&rsquo;t cost more than what it saves you.</h3>
+          </div>
+          <div class="grid r-up d1">
+            <div class="col">
+              <span class="lbl">Walk-in tax shops</span>
+              <span class="num">$80&ndash;$250</span>
+              <span class="desc">Files what you hand them. No audit defense. No strategy. A new preparer every year who&rsquo;s never seen your file before.</span>
+            </div>
+            <div class="col">
+              <span class="lbl">Big-firm CPA</span>
+              <span class="num">$300&ndash;$500<small>/hr</small></span>
+              <span class="desc">Hourly billing. Junior staff does the work, partner signs the bill. Personal returns become afterthoughts to the corporate clients who pay the rent.</span>
+            </div>
+            <div class="col">
+              <span class="lbl">DIY tax software</span>
+              <span class="num">$0&ndash;$60</span>
+              <span class="desc">Files what you typed. Misses what you didn&rsquo;t know to type. No one picks up when CRA writes a reassessment letter two years later.</span>
+            </div>
+            <div class="col us">
+              <span class="lbl">Yarova &middot; flat fee</span>
+              <span class="num">$149&ndash;$1,499</span>
+              <span class="desc">CPA-reviewed. NETFILE direct. Audit response included. Same human, same number, year after year. Pay only after the return is filed.</span>
+            </div>
+          </div>
+          <div class="foot">&mdash; Market quotes reflect typical Canadian preparer pricing for comparable scope, 2024&ndash;2025.</div>
+        </div>
+      </section>
+
+      <!-- PRICING — 4 TIERS -->
+      <section id="pricing" class="section alt" data-screen-label="03 Pricing" data-rail="Pricing">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">01 / 06</span><span class="dot"></span><span>Pricing</span><span class="dot"></span><span>Four services. Four flat fees. Pick the one that matches your filing.</span>
+          </div>
+          <div class="pricing-head r-up">
+            <h2>One flat fee per filing.<br />Same number next year.</h2>
+            <p class="lead" style="margin-top:24px;">No hourly billing. No &ldquo;starts at.&rdquo; No upsells once we&rsquo;ve started. The number on the card is the number on your invoice &mdash; and we don&rsquo;t raise it on existing clients.</p>
+          </div>
+
+          <div class="pricing-4">
+            <!-- PERSONAL -->
+            <div class="price-card r-up" id="personal">
+              <div>
+                <div class="pc-label">Personal &middot; T1</div>
+                <div class="who">Employees &middot; students &middot; newcomers &middot; retired &middot; most Canadians filing one tax slip set</div>
+              </div>
+              <div class="pc-price">
+                <span class="price-num">$149</span>
+                <span class="ccy">CAD</span>
+              </div>
+              <div class="market-context"><s>$80&ndash;$250 elsewhere</s> &middot; <b>flat $149.</b></div>
+              <ul>
+                <li>T1 federal + provincial filing</li>
+                <li>All slips: T4, T5, T3, T4A, T2202, RRSP, TFSA, FHSA</li>
+                <li>Credits optimized (climate, GST, CWB, medical)</li>
+                <li>NETFILE direct to CRA, refund tracked</li>
+                <li>CRA audit response &middot; included</li>
+                <li>Filed in 48 hours from full docs</li>
+              </ul>
+              <div class="pc-actions">
+                <a href="https://cal.com/yarova-fxqeea/tax-consult" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/tax-consult" data-cal-namespace="tax-consult" data-cal-config='{"layout":"month_view"}' class="btn btn-dark btn-lg" style="justify-content:center;">Book personal <span class="arrow">&rarr;</span></a>
+                <span class="micro">15-min booking &middot; pay after filing</span>
+              </div>
+            </div>
+
+            <!-- SELF-EMPLOYED -->
+            <div class="price-card r-up d1" id="self-employed">
+              <span class="badge">Most booked</span>
+              <div>
+                <div class="pc-label">Self-employed &middot; T1 + Business</div>
+                <div class="who">Sole proprietors &middot; freelancers &middot; contractors &middot; rental owners &middot; gig income</div>
+              </div>
+              <div class="pc-price">
+                <span class="price-num">$349</span>
+                <span class="ccy">CAD</span>
+              </div>
+              <div class="market-context"><s>$300&ndash;$700 elsewhere</s> &middot; <b>flat $349.</b></div>
+              <ul>
+                <li>Everything in Personal &middot; T1</li>
+                <li>T2125 business statement (revenue, expenses, CCA)</li>
+                <li>T776 rental statement &middot; foreign-income T1135</li>
+                <li>GST/HST filing if you&rsquo;re registered</li>
+                <li>Quarterly tax-instalment plan in writing</li>
+                <li>CRA audit response &middot; included</li>
+                <li>Filed in 48&ndash;72 hours from full books</li>
+              </ul>
+              <div class="pc-actions">
+                <a href="https://cal.com/yarova-fxqeea/tax-consult" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/tax-consult" data-cal-namespace="tax-consult" data-cal-config='{"layout":"month_view"}' class="btn btn-amber btn-lg" style="justify-content:center;">Book self-employed <span class="arrow">&rarr;</span></a>
+                <span class="micro">20-min booking &middot; books reviewed first</span>
+              </div>
+            </div>
+
+            <!-- SMALL BUSINESS T2 -->
+            <div class="price-card featured r-up d2" id="business">
+              <span class="badge green">Best value</span>
+              <div>
+                <div class="pc-label">Small Business &middot; T2</div>
+                <div class="who">CCPCs &middot; incorporated consultants &middot; operating corporations with books in order</div>
+              </div>
+              <div class="pc-price">
+                <span class="price-num">$999</span>
+                <span class="ccy">CAD</span>
+              </div>
+              <div class="market-context"><s>$1,200&ndash;$2,500 elsewhere</s> &middot; <b>flat $999.</b></div>
+              <ul>
+                <li>T2 corporate return (federal + provincial)</li>
+                <li>GIFI financial statements from your books</li>
+                <li>GST/HST quarterly or annual filing</li>
+                <li>T4 / T4A / T5 slip preparation</li>
+                <li>Salary-vs-dividend plan in writing</li>
+                <li>CRA audit response &middot; included</li>
+                <li>Filed in 5&ndash;7 business days from clean books</li>
+              </ul>
+              <div class="pc-actions">
+                <a href="https://cal.com/yarova-fxqeea/tax-consult" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/tax-consult" data-cal-namespace="tax-consult" data-cal-config='{"layout":"month_view"}' class="btn btn-amber btn-lg" style="justify-content:center;">Book T2 filing <span class="arrow">&rarr;</span></a>
+                <span class="micro" style="color:var(--color-gray-400);">30-min booking &middot; fixed quote in writing</span>
+              </div>
+            </div>
+
+            <!-- INCORPORATION BUNDLE -->
+            <div class="price-card r-up d3" id="incorporation">
+              <span class="badge">Save $400</span>
+              <div>
+                <div class="pc-label">Incorporation Bundle</div>
+                <div class="who">New incorporators &middot; first-year corporations &middot; consultants moving from sole-prop to CCPC</div>
+              </div>
+              <div class="pc-price">
+                <span class="price-num">$1,499</span>
+                <span class="ccy">CAD</span>
+              </div>
+              <div class="market-context"><s>$1,899 unbundled</s> &middot; <b>save $400 when together.</b></div>
+              <ul>
+                <li>Federal or provincial incorporation</li>
+                <li>Articles &middot; minute book &middot; NUANS &middot; registry</li>
+                <li>First-year T2 corporate return</li>
+                <li>GST/HST + payroll account setup</li>
+                <li>Bookkeeping chart of accounts (QBO or Xero)</li>
+                <li>Salary-vs-dividend plan &middot; year-one cashflow</li>
+                <li>CRA audit response &middot; included</li>
+              </ul>
+              <div class="pc-actions">
+                <a href="https://cal.com/yarova-fxqeea/tax-consult" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/tax-consult" data-cal-namespace="tax-consult" data-cal-config='{"layout":"month_view"}' class="btn btn-dark btn-lg" style="justify-content:center;">Book incorporation <span class="arrow">&rarr;</span></a>
+                <span class="micro">45-min strategy call &middot; structure first</span>
+              </div>
+            </div>
+          </div>
+
+          <p style="margin-top:32px; text-align:center; font-size:13px; color:var(--fg-2); font-family:var(--font-mono); letter-spacing:.04em;">No subscription. No annual retainer. Pay only when you file. Same fee next year.</p>
+
+          <!-- Audit defense callout -->
+          <div class="audit-callout r-up">
+            <div class="audit-icon">CRA</div>
+            <div class="audit-body">
+              <h4>If CRA writes back, Yarova writes back.</h4>
+              <p>Every flat fee includes audit-response support for the life of the return &mdash; letters, document submissions, follow-up calls. No hourly billing. No &ldquo;representation upcharge.&rdquo; That&rsquo;s what flat means.</p>
+            </div>
+            <span class="audit-pill">Included</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUST -->
+      <section id="trust" class="section" data-screen-label="04 Trust" data-rail="Why Yarova">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">02 / 06</span><span class="dot"></span><span>Why Yarova</span><span class="dot"></span><span>What flat-fee actually buys you</span>
+          </div>
+          <h2 class="r-up">Reviewed by a human.<br />Filed with CRA. Defended at audit.</h2>
+          <p class="lead r-up d1" style="margin-top:24px;">Software files what you tell it. Yarova files what&rsquo;s actually in your situation &mdash; and stays on the line if CRA asks questions later.</p>
+
+          <div class="trust-grid">
+            <div class="trust-card r-up"><div class="tc-icon">CPA</div><h4>CPA-trained reviewer on every return</h4><p>Every filing is prepared and reviewed by a Yarova reviewer trained under a Canadian CPA. Not outsourced. Not run through a bot.</p></div>
+            <div class="trust-card r-up d1"><div class="tc-icon">CRA</div><h4>CRA audit response included</h4><p>If CRA reviews or audits a return Yarova prepared, we respond on your behalf &mdash; at no extra charge. Most firms bill $150&ndash;$400/hr for this.</p></div>
+            <div class="trust-card r-up d2"><div class="tc-icon">SEC</div><h4>Canadian-server document handling</h4><p>Encrypted upload. Documents on Canadian servers. Kept only as long as CRA retention requires, then purged.</p></div>
+            <div class="trust-card r-up"><div class="tc-icon">FIX</div><h4>We catch what software misses</h4><p>FHSA in your first year. RRSP carry-forward you didn&rsquo;t track. CCB and GST/HST credits you forgot. The credits a checkbox-driven flow won&rsquo;t surface.</p></div>
+            <div class="trust-card r-up d1"><div class="tc-icon">$$$</div><h4>Salary-vs-dividend strategy for incorporators</h4><p>For business clients: a written remuneration plan tuned to your bracket. The owner-manager decision software can&rsquo;t make for you.</p></div>
+            <div class="trust-card r-up d2"><div class="tc-icon">&infin;</div><h4>Same flat fee, year after year</h4><p>$149 personal. $349 self-employed. $999 T2. $1,499 incorporation. Same number on next year&rsquo;s invoice. No tier creep.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section id="process" class="section alt" data-screen-label="05 Process" data-rail="Process">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">03 / 06</span><span class="dot"></span><span>Process</span><span class="dot"></span><span>Four steps. No surprises.</span>
+          </div>
+          <h2 class="r-up">From booking to NETFILE confirmation,<br />in four steps.</h2>
+          <p class="lead r-up d1" style="margin-top:24px;">No mystery email chains. No &ldquo;we&rsquo;ll get back to you.&rdquo; Each step has a clear owner, a clear handoff, and a clear next date.</p>
+
+          <div class="process">
+            <div class="proc-step r-up"><span class="proc-num">01 &middot; Book</span><h3>Book your filing</h3><p>15&ndash;45 minutes depending on scope. We confirm what you&rsquo;re filing, send the document checklist, and lock the flat fee in writing.</p><span class="when">Same day</span></div>
+            <div class="proc-step r-up d1"><span class="proc-num">02 &middot; Upload</span><h3>Upload through secure intake</h3><p>One encrypted link. T-slips, expenses, books, statements &mdash; everything on the checklist. Completeness confirmed within 4 business hours.</p><span class="when">Day 1&ndash;2</span></div>
+            <div class="proc-step r-up d2"><span class="proc-num">03 &middot; Review</span><h3>CPA review &amp; strategy call</h3><p>Return prepared, credit-optimization pass, then a 15-minute walkthrough so you understand every line before we file.</p><span class="when">48 hrs &middot; 5&ndash;7 days</span></div>
+            <div class="proc-step r-up d3"><span class="proc-num">04 &middot; NETFILE</span><h3>E-file &amp; confirmation</h3><p>Filed direct to CRA. Confirmation number, assessment tracker, calendar reminder 30 days out for the assessment review.</p><span class="when">Same day as approval</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section" data-screen-label="06 Testimonials" data-rail="Clients">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">04 / 06</span><span class="dot"></span><span>Clients</span><span class="dot"></span><span>From newcomers to incorporated consultants</span>
+          </div>
+          <h2 class="r-up">The numbers people walk away with.</h2>
+          <p class="lead r-up d1" style="margin-top:24px;">Real returns, recent filings. Names abbreviated for privacy; full case studies available on request after a discovery call.</p>
+
+          <div class="testis">
+            <div class="testi r-up">
+              <div class="saved"><b>+$1,200</b><span>larger refund vs prior preparer</span></div>
+              <div class="quote">Switched from a walk-in chain. Same employment slips, two rental properties, one freelance contract &mdash; they wanted $340 and missed FHSA entirely. Yarova caught it, filed in two days, and the refund grew by $1,200.</div>
+              <div class="meta-row"><span><b>Personal &middot; $149</b></span><span>2-day turnaround</span></div>
+              <div class="who"><div class="avatar" style="background:#1F3A5F;">SK</div><div><div class="name">Sara K.</div><div class="role">Marketing manager &middot; Toronto</div></div></div>
+            </div>
+            <div class="testi r-up d1">
+              <div class="saved"><b>$0</b><span>audit fee &mdash; included in flat fee</span></div>
+              <div class="quote">CRA reassessed my self-employment return from three years ago. My old preparer wanted $1,800 to respond. Yarova handled the entire correspondence at no charge &mdash; that&rsquo;s not an upsell, it&rsquo;s actually included.</div>
+              <div class="meta-row"><span><b>Self-employed &middot; $349</b></span><span>Reassessment resolved</span></div>
+              <div class="who"><div class="avatar" style="background:#3A4A1B;">RT</div><div><div class="name">Robert T.</div><div class="role">Independent contractor &middot; Ottawa</div></div></div>
+            </div>
+            <div class="testi r-up d2">
+              <div class="saved"><b>$4,200</b><span>tax saved on salary-vs-dividend plan</span></div>
+              <div class="quote">Incorporated my consulting practice with Yarova. Lawyer quote was $1,400 just for incorporation, then $1,800 for the T2. Yarova bundled both for $1,499 and the remuneration plan saved me $4,200 in personal tax.</div>
+              <div class="meta-row"><span><b>Incorporation &middot; $1,499</b></span><span>Bundled</span></div>
+              <div class="who"><div class="avatar" style="background:#5B3A1B;">DH</div><div><div class="name">Dev H.</div><div class="role">Software consultant &middot; Calgary</div></div></div>
+            </div>
+            <div class="testi r-up">
+              <div class="saved"><b>&minus;$1,500</b><span>cheaper than old accountant</span></div>
+              <div class="quote">Two-person Shopify store, growing fast. Old accountant charged $2,200 a year and never picked up the phone. Yarova: $999, monthly check-ins included, GST/HST quick-method election we didn&rsquo;t even know existed.</div>
+              <div class="meta-row"><span><b>T2 &middot; $999</b></span><span>Quick-method GST</span></div>
+              <div class="who"><div class="avatar" style="background:#0F4F46;">JM</div><div><div class="name">Janelle M.</div><div class="role">E-commerce founder &middot; Mississauga</div></div></div>
+            </div>
+            <div class="testi r-up d1">
+              <div class="saved"><b>T1135</b><span>handled at flat fee, no surcharge</span></div>
+              <div class="quote">Newcomer, first Canadian filing. I&rsquo;d tried DIY software and got stuck on T1135 because I have property back home. Yarova handled it without flinching, walked me through every line, and the bill was the price on the website.</div>
+              <div class="meta-row"><span><b>Personal &middot; $149</b></span><span>48 hours</span></div>
+              <div class="who"><div class="avatar" style="background:#5B1B4F;">AM</div><div><div class="name">Adaeze M.</div><div class="role">Healthcare worker &middot; Vancouver</div></div></div>
+            </div>
+            <div class="testi r-up d2">
+              <div class="saved"><b>Same fee</b><span>year three of flat $149 &middot; no tier creep</span></div>
+              <div class="quote">Retired, two pensions, one rental, foreign dividend slips. Other firms quoted $400+ for &ldquo;complexity.&rdquo; Yarova: $149 &mdash; same complexity, same flat fee. They don&rsquo;t pretend retirement income is exotic.</div>
+              <div class="meta-row"><span><b>Personal &middot; $149</b></span><span>Pension splitting</span></div>
+              <div class="who"><div class="avatar" style="background:#1B3A4F;">EW</div><div><div class="name">Eleanor W.</div><div class="role">Retired &middot; Victoria</div></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RISK REVERSAL -->
+      <section class="acct-risk" data-screen-label="07 Promise" data-rail="Promise">
+        <div class="container">
+          <div class="risk-grid">
+            <div class="r-up">
+              <div class="sec-strip" style="color:rgba(255,255,255,.5);">
+                <span class="num" style="color:var(--color-amber);">&mdash; Our promise</span>
+              </div>
+              <h2>Pay only when<br />the return is <em>filed.</em></h2>
+              <p>We prepare your return. We walk you through every line. You approve. <em>Then</em> we invoice. If you&rsquo;re not satisfied with the work before NETFILE, you don&rsquo;t pay &mdash; and we hand back every document you uploaded.</p>
+            </div>
+            <div class="seal r-up d1">
+              <div class="seal-badge">GUARANTEED &middot; SINCE 2022</div>
+              <div class="stamp">The Yarova Accounting guarantee</div>
+              <h3>Flat fee.<br />Filed by humans.<br />Defended at audit.</h3>
+              <div class="three">
+                <div class="row"><span class="n">01</span><span><b>No filing, no fee</b><span>Pay only after the return is approved by you and ready for CRA.</span></span></div>
+                <div class="row"><span class="n">02</span><span><b>Flat means flat</b><span>$149 / $349 / $999 / $1,499. Year after year. No tier creep.</span></span></div>
+                <div class="row"><span class="n">03</span><span><b>Audit response included</b><span>If CRA writes, Yarova writes back &mdash; at no additional charge, ever.</span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="section alt" data-screen-label="08 FAQ" data-rail="FAQ">
+        <div class="container">
+          <div class="sec-strip">
+            <span class="num">05 / 06</span><span class="dot"></span><span>Common questions</span><span class="dot"></span><span>Answers, not promises</span>
+          </div>
+          <h2 class="r-up">Questions you should ask<br /><em>before committing.</em></h2>
+
+          <div class="faq r-up d1">
+            <details open>
+              <summary><span>Who actually prepares my return?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>A Yarova reviewer trained under a Canadian CPA. Not outsourced overseas, not run through an automated bot, not handed off to a junior with no oversight. Every return is reviewed and signed off personally before it&rsquo;s filed.</p></div>
+            </details>
+            <details>
+              <summary><span>What does &ldquo;audit response included&rdquo; actually mean?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>If CRA reviews or audits a return Yarova prepared, we respond on your behalf &mdash; letters, document submissions, follow-up calls, the full back-and-forth &mdash; at no additional charge. Most accounting firms bill $150&ndash;$400/hour for representation. We include it because it&rsquo;s the only honest interpretation of &ldquo;flat fee.&rdquo;</p></div>
+            </details>
+            <details>
+              <summary><span>Why is your T2 cheaper than a CPA firm?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Two reasons. First, we built the intake, review, and strategy workflow on the same operational discipline that runs Yarova&rsquo;s placement program &mdash; so each filing takes hours, not days, of senior time. Second, we don&rsquo;t carry downtown CPA-firm overhead. You get the same return; you don&rsquo;t pay for the lease.</p><p>What&rsquo;s missing from $999? Audited financial statements, complex multi-entity restructuring, and US-Canada cross-border filings. If your situation needs those, we&rsquo;ll tell you on the booking call and refer you out honestly.</p></div>
+            </details>
+            <details>
+              <summary><span>What&rsquo;s the difference between Self-employed and Small Business?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p><b>Self-employed ($349)</b> covers sole proprietors and freelancers who report business income on a personal return &mdash; T1 with a T2125 business statement. You and the business are the same legal entity, taxed at your personal bracket.</p><p><b>Small Business T2 ($999)</b> is for incorporated companies. The corporation files its own return, separate from yours. Cleaner liability, more tax-planning levers (salary vs dividend, RDTOH, small-business deduction), but more paperwork.</p><p>Not sure which you are? The booking call sorts it in 5 minutes &mdash; no charge.</p></div>
+            </details>
+            <details>
+              <summary><span>What&rsquo;s actually in the Incorporation Bundle?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Federal or provincial incorporation (articles, NUANS search, registry filing, minute book template) <em>plus</em> the first-year T2 corporate return, GST/HST and payroll account setup, a chart-of-accounts template you keep, and a written salary-vs-dividend plan for year one. Unbundled it would price at $1,899 ($899 incorporation + $999 T2 + extras); bundled it&rsquo;s $1,499.</p></div>
+            </details>
+            <details>
+              <summary><span>How fast is the turnaround?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Personal T1: 48 hours from full documents. Self-employed: 48&ndash;72 hours from full books. T2: 5&ndash;7 business days from clean books. Incorporation: 5&ndash;10 business days, subject to provincial registry processing.</p><p>If you book in late April with incomplete documents, we&rsquo;ll tell you on the call. We don&rsquo;t take filings we can&rsquo;t deliver on time.</p></div>
+            </details>
+            <details>
+              <summary><span>Can you handle complex personal situations at $149?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>Most of them, yes. Foreign property (T1135), capital gains, RRSP carry-forward, FHSA, pension splitting, foreign tax credits &mdash; all included. Returns we don&rsquo;t handle at $149: deceased estate (T3), bankruptcy returns, and US dual-filers.</p></div>
+            </details>
+            <details>
+              <summary><span>Where are my documents stored?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>On Canadian servers, encrypted in transit and at rest. Documents are kept only as long as CRA retention rules require (six years from the end of the tax year), then purged. You can request earlier deletion at any time.</p></div>
+            </details>
+            <details>
+              <summary><span>What happens if I&rsquo;m not satisfied?</span><span class="glyph">+</span></summary>
+              <div class="answer"><p>You don&rsquo;t pay. Yarova prepares the return, walks you through every line, and only invoices after you approve. If you&rsquo;re not satisfied with the work before NETFILE, we hand back every document you uploaded and you owe nothing.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOOKING -->
+      <section class="section dark" data-screen-label="09 Start" data-rail="Start">
+        <div class="container">
+          <div style="text-align:center;">
+            <span style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.14em; color:var(--color-amber);">&mdash; Start in 3 questions</span>
+            <h2 style="margin-top:14px;">Find your flat fee.<br />Book the right call.</h2>
+            <p class="lead" style="margin:24px auto 0; color:var(--color-gray-300); max-width: 620px;">Three quick questions. We&rsquo;ll route you to the right tier and the right calendar &mdash; no email gate, no info dump.</p>
+          </div>
+
+          <form class="step-form" id="bookFlow" aria-label="Booking flow">
+            <div class="step-bar">
+              <div class="seg"><span class="fill"></span></div>
+              <div class="seg"><span class="fill"></span></div>
+              <div class="seg"><span class="fill"></span></div>
+              <div class="seg"><span class="fill"></span></div>
+            </div>
+
+            <div class="step on" data-key="What are you filing">
+              <div class="q">Question 1 of 3</div>
+              <h3>What are you filing this year?</h3>
+              <div class="opts">
+                <button type="button" class="opt" data-value="Personal return — employment, RRSP, basic credits"><span>Personal return <small style="display:block; margin-top:4px;">Employment slips, RRSP, basic credits</small></span><small>$149</small></button>
+                <button type="button" class="opt" data-value="Self-employed / freelancer / rental"><span>Self-employed or rental <small style="display:block; margin-top:4px;">T2125, T776, contractor income, gig work</small></span><small>$349</small></button>
+                <button type="button" class="opt" data-value="Small business T2 (already incorporated)"><span>Small business T2 <small style="display:block; margin-top:4px;">Already incorporated, books in order</small></span><small>$999</small></button>
+                <button type="button" class="opt" data-value="New incorporation + first-year T2"><span>New incorporation <small style="display:block; margin-top:4px;">Moving from sole-prop, or starting fresh</small></span><small>$1,499</small></button>
+              </div>
+            </div>
+
+            <div class="step" data-key="Your situation">
+              <div class="q">Question 2 of 3</div>
+              <h3>How would you describe your year?</h3>
+              <div class="opts">
+                <button type="button" class="opt" data-value="Straightforward — single income stream">Straightforward &middot; single income stream</button>
+                <button type="button" class="opt" data-value="Multiple slips / income sources">Multiple slips or income sources</button>
+                <button type="button" class="opt" data-value="Foreign income, T1135, dual-country">Foreign income, T1135, or dual-country</button>
+                <button type="button" class="opt" data-value="Major life change (marriage, retirement, newcomer)">Major life change &middot; marriage, retirement, newcomer</button>
+                <button type="button" class="opt" data-value="Carrying forward from a CRA reassessment">Carrying forward a CRA reassessment</button>
+              </div>
+              <div class="step-foot"><button type="button" class="back">&larr; Back</button></div>
+            </div>
+
+            <div class="step" data-key="When you'd like to file">
+              <div class="q">Question 3 of 3</div>
+              <h3>When would you like to file?</h3>
+              <div class="opts">
+                <button type="button" class="opt" data-value="This week — I have everything ready">This week &middot; I have everything ready</button>
+                <button type="button" class="opt" data-value="Next 2–4 weeks — gathering documents">Next 2&ndash;4 weeks &middot; still gathering documents</button>
+                <button type="button" class="opt" data-value="Before the CRA deadline — Apr 30 or Jun 15">Before the CRA deadline &middot; Apr 30 or Jun 15</button>
+                <button type="button" class="opt" data-value="Just exploring — open to a fit call">Just exploring &middot; open to a fit call</button>
+              </div>
+              <div class="step-foot"><button type="button" class="back">&larr; Back</button></div>
+            </div>
+
+            <div class="step final">
+              <div class="q">&mdash; Ready to book</div>
+              <h3>Here&rsquo;s what we have.</h3>
+              <div class="summary"></div>
+              <p>We&rsquo;ll send the document checklist and the fixed quote in writing before the call ends. No deposit. Pay only after the return is filed.</p>
+              <a href="https://cal.com/yarova-fxqeea/tax-consult" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/tax-consult" data-cal-namespace="tax-consult" data-cal-config='{"layout":"month_view"}' class="btn btn-amber btn-lg magnetic" style="justify-content:center; width:100%;">Book the call <span class="arrow">&rarr;</span></a>
+              <div class="step-foot" style="justify-content:center; margin-top:14px;"><button type="button" class="back">&larr; Change answers</button></div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Contact strip -->
+    <section class="contact-strip" data-screen-label="Contact" aria-label="Contact Yarova Accounting">
+      <div class="container">
+        <div class="inner">
+          <div class="cell">
+            <span class="lbl">Book a call</span>
+            <span class="val"><a href="https://cal.com/yarova-fxqeea/tax-consult" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/tax-consult" data-cal-namespace="tax-consult">cal.com/yarova-fxqeea/tax-consult</a></span>
+            <span class="sub">15&ndash;45 min &middot; no deposit &middot; fixed quote in writing before we start</span>
+          </div>
+          <div class="cell">
+            <span class="lbl">WhatsApp Business</span>
+            <span class="val"><a href="https://wa.me/16047197918?text=Hi%20Yarova%2C%20I%27d%20like%20a%20quote%20for%20a%20tax%20return." target="_blank" rel="noopener">+1 (604) 719 &middot; 7918</a></span>
+            <span class="sub">Mon&ndash;Fri &middot; 9:00&ndash;18:00 PT &middot; replies within 4 business hours</span>
+          </div>
+          <div class="cell">
+            <span class="lbl">Email</span>
+            <span class="val"><a href="mailto:tax@yarova.ca">tax@yarova.ca</a></span>
+            <span class="sub">Send your slips and we&rsquo;ll come back with a fixed quote.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="acct-footer">
+      <div class="container">
+        <div class="af-grid">
+          <div>
+            <div class="brand"><span class="y">Y</span> Yarova</div>
+            <p class="af-tag">A consultancy for IT placement and Canadian tax filings. Langley, British Columbia, Canada.</p>
+          </div>
+          <div>
+            <h5>Placement</h5>
+            <ul>
+              <li><a href="/#journey">How it works</a></li>
+              <li><a href="/#track">Track record</a></li>
+              <li><a href="/#pricing">Pricing &mdash; $1,500</a></li>
+              <li><a href="/#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Accounting</h5>
+            <ul>
+              <li><a href="#personal">Personal &mdash; $149</a></li>
+              <li><a href="#self-employed">Self-employed &mdash; $349</a></li>
+              <li><a href="#business">Small Business &mdash; $999</a></li>
+              <li><a href="#incorporation">Incorporation &mdash; $1,499</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Contact</h5>
+            <ul>
+              <li><a href="https://cal.com/yarova-fxqeea/tax-consult" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/tax-consult" data-cal-namespace="tax-consult">Book a call</a></li>
+              <li><a href="https://wa.me/16047197918" target="_blank" rel="noopener">WhatsApp Business</a></li>
+              <li><a href="mailto:tax@yarova.ca">tax@yarova.ca</a></li>
+              <li><a href="/">Yarova home</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="af-legal">
+          <span>&copy; {today.getFullYear()} Yarova Inc. &middot; Langley, BC, Canada &middot; Yarova Accounting is operated under Yarova Inc. and is not a public accounting firm offering audit or assurance services.</span>
+          <span style="font-family:var(--font-mono); font-size:11px; color:var(--color-gray-500);">v2026.05</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating actions -->
+    <div class="floating-actions" aria-label="Quick contact">
+      <a class="fa-btn wa" href="https://wa.me/16047197918?text=Hi%20Yarova%2C%20I%27d%20like%20a%20quote%20for%20a%20tax%20return." target="_blank" rel="noopener" aria-label="Message Yarova on WhatsApp">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01Zm-7.01 15.24c-1.48 0-2.94-.4-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24a8.18 8.18 0 0 1 8.24 8.24c.01 4.54-3.69 8.24-8.22 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12s-.64.81-.78.97c-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.05-.11-.21-.17-.45-.29Z"/></svg></span>
+        <span class="lbl">WhatsApp us</span>
+      </a>
+      <a class="fa-btn cal" href="https://cal.com/yarova-fxqeea/tax-consult" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/tax-consult" data-cal-namespace="tax-consult" data-cal-config='{"layout":"month_view"}' aria-label="Book a tax call">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span>
+        <span class="lbl">Book a call</span>
+      </a>
+    </div>
+
+    <!-- Cal.com embed -->
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "Cal");
+      Cal("init", "tax-consult", {origin:"https://cal.com"});
+      Cal.ns["tax-consult"]("ui", {hideEventTypeDetails:false, layout:"month_view", styles:{branding:{brandColor:"#B45309"}}});
+    </script>
+
+    <script>
+      // Animated counters
+      const observe = (el, fn) => {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) { fn(e.target); io.unobserve(e.target); } });
+        }, { threshold: 0.3 });
+        io.observe(el);
+      };
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseFloat(el.dataset.count);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        observe(el, () => {
+          const duration = 1100;
+          const start = performance.now();
+          const tick = (now) => {
+            const t = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const val = Math.round(target * eased);
+            el.textContent = prefix + val.toLocaleString() + suffix;
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        });
+      });
+
+      // FAQ glyph: swap + / − on toggle
+      document.querySelectorAll('.faq details').forEach(function(d) {
+        d.addEventListener('toggle', function() {
+          var g = d.querySelector('.glyph');
+          if (g) g.textContent = d.open ? '−' : '+';
+        });
+        var g = d.querySelector('.glyph');
+        if (g && d.open) g.textContent = '−';
+      });
+    </script>
+    <script>
+      window.__YAROVA_TICKER__ = [
+        { msg: "<b>Adaeze M.</b> &middot; Vancouver booked Personal &middot; $149", when: "2m ago" },
+        { msg: "<b>Dev H.</b> &middot; Calgary booked Incorporation Bundle &middot; $1,499", when: "14m ago" },
+        { msg: "<b>Janelle M.</b> &middot; Mississauga filed T2 &middot; $999", when: "47m ago" },
+        { msg: "<b>Sara K.</b> &middot; Toronto &mdash; refund $1,200 larger", when: "1h ago" },
+        { msg: "<b>Robert T.</b> &middot; Ottawa &mdash; CRA reassessment closed, $0 fee", when: "3h ago" }
+      ];
+    </script>
+    <script src="/enhancements.js" defer></script>
+
+    <style>
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+
+      a { color: var(--color-amber-hover); text-decoration: none; transition: color 150ms ease; }
+      a:hover { color: var(--color-amber-press); }
+      .skip { position: absolute; left: -9999px; top: 8px; background: var(--color-black); color: white; padding: 10px 14px; border-radius: 8px; font-size: 14px; z-index: 999; }
+      .skip:focus { left: 12px; }
+
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+      .section { padding: 96px 0; border-top: 1px solid var(--border); }
+      .section.alt { background: var(--bg-secondary); }
+      .section.dark { background: var(--color-black); color: var(--color-gray-300); border-top: none; }
+      .section.dark h2, .section.dark h3, .section.dark h4 { color: white; }
+
+      h1, h2, h3, h4 { font-family: var(--font-sans); margin: 0; color: var(--fg-1); letter-spacing: -.025em; }
+      h1 { font-size: clamp(48px, 7.5vw, 104px); font-weight: 700; letter-spacing: -.035em; line-height: .98; }
+      h2 { font-size: clamp(32px, 4.5vw, 56px); font-weight: 700; line-height: 1.05; }
+      h3 { font-size: 22px; font-weight: 600; line-height: 1.3; }
+      p { margin: 0; color: var(--fg-2); line-height: 1.65; }
+      .lead { font-size: 22px; color: var(--fg-1); line-height: 1.5; max-width: 720px; }
+      em { color: var(--color-amber-hover); font-style: normal; font-weight: 600; }
+
+      .sec-strip { display: flex; align-items: center; gap: 14px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-2); margin-bottom: 28px; flex-wrap: wrap; }
+      .sec-strip .num { color: var(--color-amber-hover); font-weight: 600; }
+      .sec-strip .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--color-gray-400); }
+
+      .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid transparent; cursor: pointer; transition: all 150ms ease; font-family: var(--font-sans); text-decoration: none; }
+      .btn-amber { background: var(--color-amber-hover); color: white !important; }
+      .btn-amber:hover { background: var(--color-amber-press); }
+      .btn-ghost { background: transparent; color: var(--fg-1); border-color: var(--border); }
+      .btn-ghost:hover { background: var(--bg-secondary); border-color: var(--border-hover); }
+      .btn-dark { background: var(--color-black); color: white !important; }
+      .btn-dark:hover { background: var(--color-gray-800); }
+      .btn-lg { padding: 14px 24px; font-size: 15px; }
+      .btn .arrow { transition: transform 200ms ease; display: inline-block; }
+      .btn:hover .arrow { transform: translateX(3px); }
+
+      /* Hero */
+      .hero { padding: 96px 0 80px; }
+      .hero-eyebrow { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 36px; }
+      .hero-eyebrow .tag { padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--fg-2); }
+      .hero h1 .acc { color: var(--color-amber-hover); font-style: italic; }
+      .hero-sub { font-size: 22px; max-width: 720px; margin-top: 32px; color: var(--fg-1); line-height: 1.5; }
+      .hero-sub b { color: var(--color-amber-hover); font-weight: 600; }
+      .hero-actions { margin-top: 40px; display: flex; gap: 12px; flex-wrap: wrap; }
+      .hero-stamps { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 10px; }
+      .hero-stamps .stamp { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; background: white; border: 1px solid var(--border); border-radius: 999px; font-size: 13px; color: var(--fg-1); font-weight: 500; }
+      .hero-stamps .stamp::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #10B981; }
+      .hero-stamps .stamp.amber::before { background: var(--color-amber-hover); }
+      .hero-meta { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+      .hero-meta .cell { display: flex; flex-direction: column; gap: 4px; }
+      .hero-meta .k { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); }
+      .hero-meta .v { font-size: 21px; font-weight: 700; color: var(--fg-1); letter-spacing: -.015em; }
+      .hero-meta .v small { font-size: 12px; color: var(--fg-3); font-weight: 400; margin-left: 6px; }
+      @media (max-width: 720px) { .hero-meta { grid-template-columns: repeat(2, 1fr); } }
+
+      /* Live counter strip */
+      .live-strip { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 28px 0; }
+      .ls-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+      .ls-cell { display: flex; flex-direction: column; gap: 4px; }
+      .ls-cell .v { font-size: 30px; font-weight: 700; color: var(--fg-1); letter-spacing: -.02em; line-height: 1; }
+      .ls-cell .k { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--fg-2); margin-top: 6px; }
+      .ls-cell.amber .v { color: var(--color-amber-hover); }
+      .ls-unit { font-family: var(--font-mono); font-size: 14px; color: var(--fg-3); margin-left: 4px; }
+      @media (max-width: 720px) { .ls-grid { grid-template-columns: repeat(2, 1fr); } }
+
+      /* Pricing cards */
+      .pricing-head { margin-bottom: 48px; }
+      .pricing-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+      .price-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; display: flex; flex-direction: column; gap: 18px; position: relative; transition: transform 280ms cubic-bezier(.22,.7,.18,1), box-shadow 280ms ease, border-color 280ms ease; }
+      .price-card:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 18px 36px -22px rgba(0,0,0,.22); border-color: var(--border-hover); }
+      .price-card.featured { background: var(--color-black); color: var(--color-gray-300); border-color: var(--color-black); }
+      .price-card.featured h3, .price-card.featured h4, .price-card.featured .price-num, .price-card.featured .ccy { color: white; }
+      .badge { position: absolute; top: -10px; right: 18px; background: var(--color-amber-hover); color: white; padding: 4px 10px; border-radius: 999px; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .14em; font-weight: 600; }
+      .badge.green { background: #10B981; }
+      .pc-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber-hover); }
+      .price-card.featured .pc-label { color: var(--color-amber); }
+      .who { font-size: 12px; color: var(--fg-3); margin-top: 4px; line-height: 1.5; }
+      .price-card.featured .who { color: var(--color-gray-400); }
+      .pc-price { display: flex; align-items: baseline; gap: 6px; padding: 4px 0; }
+      .price-num { font-size: 52px; font-weight: 700; letter-spacing: -.04em; color: var(--fg-1); line-height: 1; }
+      .price-card.featured .price-num { color: white; }
+      .ccy { font-family: var(--font-mono); font-size: 12px; color: var(--fg-3); }
+      .price-card.featured .ccy { color: var(--color-gray-400); }
+      .market-context { font-size: 12px; color: var(--fg-3); }
+      .market-context s { text-decoration: line-through; }
+      .market-context b { color: var(--color-amber-hover); font-weight: 600; }
+      .price-card.featured .market-context { color: var(--color-gray-400); }
+      .price-card.featured .market-context b { color: var(--color-amber); }
+      .price-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.45; color: var(--fg-2); }
+      .price-card.featured ul { color: var(--color-gray-300); }
+      .price-card ul li { display: flex; gap: 8px; }
+      .price-card ul li::before { content: "✓"; color: var(--color-amber-hover); flex-shrink: 0; font-weight: 700; }
+      .price-card.featured ul li::before { color: var(--color-amber); }
+      .pc-actions { margin-top: auto; display: flex; flex-direction: column; gap: 8px; padding-top: 8px; }
+      .micro { font-size: 11px; color: var(--fg-3); text-align: center; line-height: 1.4; }
+      .price-card.featured .micro { color: var(--color-gray-400); }
+      @media (max-width: 1080px) { .pricing-4 { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 560px) { .pricing-4 { grid-template-columns: 1fr; } }
+
+      /* Audit callout */
+      .audit-callout { display: grid; grid-template-columns: 80px 1fr auto; gap: 20px; align-items: center; padding: 24px 28px; background: var(--color-black); color: white; border-radius: 16px; margin-top: 32px; }
+      .audit-icon { width: 64px; height: 64px; border-radius: 14px; background: rgba(217,119,6,.18); border: 1px solid rgba(217,119,6,.3); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--color-amber); }
+      .audit-body h4 { color: white; font-size: 19px; margin-bottom: 4px; letter-spacing: -.01em; }
+      .audit-body p { color: var(--color-gray-400); font-size: 14px; line-height: 1.5; max-width: 540px; }
+      .audit-pill { padding: 8px 14px; background: var(--color-amber-hover); color: white; border-radius: 999px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; font-weight: 600; white-space: nowrap; }
+      @media (max-width: 720px) { .audit-callout { grid-template-columns: 1fr; } }
+
+      /* Trust */
+      .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+      .trust-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; transition: transform 240ms ease, border-color 240ms ease; }
+      .trust-card:hover { transform: translateY(-3px); border-color: var(--border-hover); }
+      .tc-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-secondary); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: var(--color-amber-hover); margin-bottom: 16px; }
+      .trust-card h4 { font-size: 16px; margin-bottom: 8px; }
+      .trust-card p { font-size: 14px; color: var(--fg-2); line-height: 1.55; }
+      @media (max-width: 880px) { .trust-grid { grid-template-columns: 1fr; } }
+
+      /* Process */
+      .process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 56px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+      .proc-step { padding: 32px 28px; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; }
+      .proc-step:last-child { border-right: none; }
+      .proc-num { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber-hover); font-weight: 600; }
+      .proc-step h3 { font-size: 18px; }
+      .proc-step p { font-size: 14px; color: var(--fg-2); }
+      .when { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); margin-top: auto; padding-top: 8px; }
+      @media (max-width: 880px) { .process { grid-template-columns: 1fr; } .proc-step { border-right: none; border-bottom: 1px solid var(--border); } .proc-step:last-child { border-bottom: none; } }
+
+      /* Testimonials */
+      .testis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+      .testi { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 16px; transition: transform 260ms ease, border-color 260ms ease; }
+      .testi:hover { transform: translateY(-3px); border-color: var(--border-hover); }
+      .testi .quote { font-size: 15px; line-height: 1.55; color: var(--fg-1); font-weight: 500; }
+      .testi .quote::before { content: "\201C"; font-size: 32px; line-height: 0; vertical-align: -10px; color: var(--color-amber-hover); margin-right: 4px; }
+      .saved { display: inline-flex; align-items: baseline; gap: 6px; padding: 8px 14px; background: rgba(217,119,6,.08); border-radius: 8px; font-family: var(--font-mono); font-size: 12px; }
+      .saved b { font-size: 20px; color: var(--color-amber-hover); font-weight: 700; letter-spacing: -.01em; }
+      .saved span { color: var(--fg-2); }
+      .testi .meta-row { display: flex; gap: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); text-transform: uppercase; letter-spacing: .08em; }
+      .testi .meta-row b { color: var(--color-amber-hover); font-weight: 600; }
+      .testi .who { display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid var(--border); margin-top: auto; }
+      .testi .avatar { width: 40px; height: 40px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; flex-shrink: 0; }
+      .testi .name { font-size: 13px; font-weight: 600; color: var(--fg-1); }
+      .testi .role { font-size: 12px; color: var(--fg-3); margin-top: 2px; font-family: var(--font-mono); letter-spacing: .02em; }
+      @media (max-width: 980px) { .testis { grid-template-columns: 1fr; } }
+
+      /* Risk reversal */
+      .acct-risk { background: var(--color-black); color: white; padding: 80px 0; }
+      .acct-risk h2 { color: white; }
+      .risk-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 64px; align-items: center; }
+      .acct-risk p { color: var(--color-gray-300); font-size: 17px; line-height: 1.65; max-width: 560px; margin-top: 24px; }
+      .acct-risk em { color: var(--color-amber); font-style: normal; font-weight: 700; }
+      .seal { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 36px; }
+      .seal-badge { display: inline-block; border: 1.5px solid var(--color-amber); color: var(--color-amber); font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; padding: 4px 12px; border-radius: 4px; margin-bottom: 14px; text-transform: uppercase; }
+      .stamp { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber); margin-bottom: 16px; }
+      .seal h3 { color: white; font-size: 22px; line-height: 1.3; margin-bottom: 24px; }
+      .three { display: flex; flex-direction: column; gap: 14px; }
+      .row { display: grid; grid-template-columns: 32px 1fr; gap: 14px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.1); }
+      .row:first-child { border-top: none; padding-top: 0; }
+      .n { color: var(--color-amber); font-family: var(--font-mono); font-size: 14px; font-weight: 600; }
+      .row b { color: white; display: block; font-size: 14px; margin-bottom: 4px; }
+      .row span span { color: var(--color-gray-400); font-size: 13px; line-height: 1.5; }
+      @media (max-width: 880px) { .risk-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+      /* FAQ */
+      .faq { max-width: 880px; margin-top: 32px; }
+      .faq details { border-bottom: 1px solid var(--border); padding: 22px 0; }
+      .faq details summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; list-style: none; font-size: 17px; font-weight: 500; color: var(--fg-1); gap: 24px; }
+      .faq details summary::-webkit-details-marker { display: none; }
+      .faq summary .glyph { font-family: var(--font-mono); font-size: 22px; color: var(--color-amber-hover); flex-shrink: 0; }
+      .faq .answer { padding-top: 16px; max-width: 720px; }
+      .faq .answer p { margin-bottom: 12px; color: var(--fg-2); line-height: 1.7; font-size: 14px; }
+      .faq .answer p:last-child { margin-bottom: 0; }
+
+      /* Accounting footer */
+      .acct-footer { background: var(--color-black); color: var(--color-gray-400); padding: 80px 0 40px; }
+      .af-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 64px; }
+      .af-grid .brand { color: white; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+      .af-grid .brand .y { width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; background: var(--color-amber-hover); color: white; border-radius: 6px; font-weight: 700; font-size: 14px; }
+      .af-tag { margin-top: 12px; font-size: 14px; line-height: 1.6; max-width: 320px; color: var(--color-gray-400); }
+      .acct-footer h5 { color: white; font-size: 13px; text-transform: uppercase; letter-spacing: .14em; font-family: var(--font-mono); margin-bottom: 18px; }
+      .acct-footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+      .acct-footer a { color: var(--color-gray-400); font-size: 14px; }
+      .acct-footer a:hover { color: white; }
+      .af-legal { padding-top: 32px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--color-gray-500); flex-wrap: wrap; gap: 16px; }
+      @media (max-width: 880px) { .af-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+    </style>
+  </body>
+</html>
