@@ -210,9 +210,13 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run dev',
+    // Serve the built production output. `astro dev` cold-start was exceeding
+    // the 30s webServer timeout in CI and tripping the whole job.
+    // Tests assume `npm run build` ran first (CI does this; locally,
+    // reuseExistingServer lets devs point at `npm run dev` themselves).
+    command: 'npm run preview',
     url: 'http://localhost:4321',
     reuseExistingServer: true,
-    timeout: 30000,
+    timeout: 60000,
   },
 });

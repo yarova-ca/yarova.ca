@@ -1,0 +1,18 @@
+---
+// Shared Cal.com embed initializer. Keeps the namespace + brand color in
+// one place so the embed can't drift across pages.
+//
+// Use one instance per page; if multiple namespaces are needed on the
+// same page, pass `namespace` separately for each.
+interface Props {
+  /** Cal.com namespace, e.g. "discovery-call" or "tax-consult". */
+  namespace: string;
+}
+const { namespace } = Astro.props;
+---
+
+<script type="text/javascript" is:inline define:vars={{ namespace }}>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const ns = ar[1]; api.q = api.q || []; if(typeof ns === "string"){cal.ns[ns] = cal.ns[ns] || api; p(cal.ns[ns], ar); p(cal, ["initNamespace", ns]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "Cal");
+  Cal("init", namespace, { origin: "https://cal.com" });
+  Cal.ns[namespace]("ui", { hideEventTypeDetails: false, layout: "month_view", styles: { branding: { brandColor: "#B45309" } } });
+</script>
