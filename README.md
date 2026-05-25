@@ -124,7 +124,7 @@ Build + deploy to Cloudflare Pages via `wrangler pages deploy`.
 
 `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` — set in repo Settings → Secrets → Actions.
 
-Project name in `deploy.yml`: `viro`.
+Project name in `deploy.yml`: `yarova`.
 
 ---
 
