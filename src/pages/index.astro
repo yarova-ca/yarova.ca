@@ -1,19 +1,10 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import CalEmbed from '../components/CalEmbed.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-
-// Upcoming batches — single source of truth. Update weekly.
-// Each batch: 4 seats. Mark seatsLeft honestly. Set seatsLeft: 0 to show "full".
-const batches = [
-  { dayLabel: 'Mon Jun 1',  track: 'DevOps', seatsLeft: 2, seatsTotal: 4, focus: 'CI/CD + AWS + Terraform',     shift: '09:00–17:00 PT' },
-  { dayLabel: 'Mon Jun 8',  track: 'SRE',    seatsLeft: 3, seatsTotal: 4, focus: 'On-call + Prometheus + K8s',  shift: '09:00–17:00 PT' },
-  { dayLabel: 'Mon Jun 15', track: 'DevOps', seatsLeft: 4, seatsTotal: 4, focus: 'Pipelines + Docker + secrets',shift: '13:00–21:00 PT (evening)' },
-  { dayLabel: 'Mon Jun 22', track: 'SRE',    seatsLeft: 4, seatsTotal: 4, focus: 'Incident response + alerting',shift: '09:00–17:00 PT' },
-  { dayLabel: 'Mon Jul 6',  track: 'DevOps', seatsLeft: 4, seatsTotal: 4, focus: 'IaC + cost control + GitHub', shift: '09:00–17:00 PT' },
-  { dayLabel: 'Mon Jul 13', track: 'SRE',    seatsLeft: 4, seatsTotal: 4, focus: 'SLOs + runbooks + chaos eng', shift: '13:00–21:00 PT (evening)' },
-];
+import { batches } from '../data/batches';
 
 // Aggregate hiring stats.
 // TODO: replace these four numbers with verified actuals before launch.
@@ -266,7 +257,7 @@ const dayLine = [
                   <th scope="col">Focus</th>
                   <th scope="col">Shift</th>
                   <th scope="col">Seats left</th>
-                  <th scope="col" class="end"></th>
+                  <th scope="col" class="end"><span class="sr-only">Action</span></th>
                 </tr>
               </thead>
               <tbody>
@@ -452,12 +443,7 @@ const dayLine = [
       });
     </script>
 
-    <!-- Cal.com embed -->
-    <script type="text/javascript">
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "Cal");
-      Cal("init", "discovery-call", {origin:"https://cal.com"});
-      Cal.ns["discovery-call"]("ui", {hideEventTypeDetails:false, layout:"month_view", styles:{branding:{brandColor:"#B45309"}}});
-    </script>
+    <CalEmbed namespace="discovery-call" />
 
     <style>
       * { box-sizing: border-box; }

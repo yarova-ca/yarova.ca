@@ -2,30 +2,32 @@
 // The Header is shared with /accounting (which passes page="accounting"
 // to switch the scarcity bar + nav links). On the main site (page="main"),
 // no accounting link is shown anywhere.
+import { nextBatch } from '../data/batches';
+
 interface Props {
   page?: 'main' | 'accounting';
 }
 const { page = 'main' } = Astro.props;
-
-// Single source of truth for the "next batch" banner.
-// Update when seats fill or a new batch opens.
-const nextBatch = {
-  dayLabel: 'Mon Jun 1',
-  track: 'DevOps',
-  seatsLeft: 2,
-  seatsTotal: 4,
-};
 ---
 
 <!-- Scarcity / deadline bar -->
-{page === 'main' && (
+{page === 'main' && nextBatch && (
   <div class="scarcity" role="region" aria-label="Next batch availability">
     <div class="container inner">
       <span class="pulse">Live</span>
       <span class="sep">/</span>
       <span><b>Next batch:</b> {nextBatch.dayLabel} &middot; {nextBatch.track} &middot; <b>{nextBatch.seatsLeft} of {nextBatch.seatsTotal} seats left</b></span>
       <span class="sep hide-sm">/</span>
-      <a href="#batches" class="hide-sm">See all batches &rarr;</a>
+      <a href="/#batches" class="hide-sm">See all batches &rarr;</a>
+    </div>
+  </div>
+)}
+{page === 'main' && !nextBatch && (
+  <div class="scarcity" role="region" aria-label="Next batch availability">
+    <div class="container inner">
+      <span class="pulse">Live</span>
+      <span class="sep">/</span>
+      <span><b>All current batches are full.</b> Book a call to get on the waitlist.</span>
     </div>
   </div>
 )}
