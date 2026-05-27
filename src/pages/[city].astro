@@ -1,0 +1,672 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export function getStaticPaths() {
+  const cities = [
+  {
+    slug: 'devops-experience-toronto',
+    cityName: 'Toronto',
+    province: 'Ontario',
+    title: 'DevOps & SRE Experience for Toronto IT Professionals | Yarova',
+    description: "Toronto's experience loop — no Canadian experience, no offer. Yarova puts you inside a real DevOps or SRE team for $799/month. Real AWS. Real GitHub. Real Team Lead.",
+    badge: 'DevOps & SRE · Toronto · $799/month · Cancel Anytime',
+    heroH1a: 'Toronto won\'t hire you without Canadian experience.',
+    heroH1b: 'You can\'t get experience without being hired.',
+    marketH2: "Toronto's tech market runs on Canadian experience you don't have yet.",
+    marketBody: `
+      <p>Toronto is home to Canada's largest concentration of financial tech employers.</p>
+      <p>The Big Six banks — RBC, TD, BMO, CIBC, Scotiabank, HSBC Canada — run DevOps and SRE teams of 50–200 engineers each. Shopify, Wealthsimple, and Loblaw Technology anchor the startup and scale-up tier. Amazon, Google, and Microsoft operate regional engineering hubs downtown and in Kitchener–Waterloo.</p>
+      <p>Every one of these employers asks the same interview question:</p>
+      <blockquote>"Tell me about something you shipped to production."</blockquote>
+      <p>They mean Canadian production. Canadian team. Real consequences.</p>
+      <p>Your international experience does not answer that question. Yarova gives you the answer.</p>`,
+    salaryRows: [
+      { role: 'DevOps Engineer', entry: '$85,000', mid: '$105,000', senior: '$130,000' },
+      { role: 'SRE', entry: '$90,000', mid: '$115,000', senior: '$140,000' },
+      { role: 'Platform Engineer', entry: '$88,000', mid: '$110,000', senior: '$135,000' },
+      { role: 'DevSecOps Engineer', entry: '$92,000', mid: '$118,000', senior: '$145,000' },
+    ],
+    salarySource: 'LinkedIn Salary (Toronto, ON) · Robert Half Technology 2025 · Indeed Canada Q4 2024.',
+    complianceH2: 'What background checks look for in Ontario.',
+    complianceBody: `
+      <p>Sterling Backcheck and HireRight are the two dominant vendors for Toronto financial and tech employers. Both verify employment history against the employer's HR system.</p>
+      <p>Yarova Inc. is a registered Canadian company in British Columbia. We provide formal employment verification letters. We serve as your reference. We answer when the vendor calls.</p>
+      <p>List your role as: <strong>Independent Technical Fellow (Uncompensated) — Yarova Inc.</strong></p>
+      <p>Do not use "DevOps Engineer at Yarova" or "SRE at Yarova." Those titles trigger T4 requests. T4s do not exist because you paid Yarova, not the reverse.</p>`,
+    cityFaq: [
+      {
+        q: 'I have international DevOps experience. Do I still need this?',
+        a: 'Yes. Toronto employers specifically ask about Canadian production systems. International experience counts for your knowledge. Not for their filter.',
+      },
+      {
+        q: 'Will Yarova show up on a Toronto-area background check?',
+        a: 'Yes. Yarova Inc. is a registered Canadian company in British Columbia. We verify. We reference. We answer the phone. Title: Independent Technical Fellow (Uncompensated) — Yarova Inc.',
+      },
+    ],
+  },
+  {
+    slug: 'sre-simulation-vancouver',
+    cityName: 'Vancouver',
+    province: 'British Columbia',
+    title: 'SRE & DevOps Real Experience for Vancouver IT Professionals | Yarova',
+    description: 'Vancouver tech market demands Canadian production experience. Yarova puts you inside a real SRE or DevOps team for $799/month. Real AWS. Real GitHub. Real Team Lead.',
+    badge: 'DevOps & SRE · Vancouver · $799/month · Cancel Anytime',
+    heroH1a: 'Vancouver tech is hiring SREs and DevOps engineers.',
+    heroH1b: 'But only the ones who already have Canadian experience.',
+    marketH2: "Vancouver's tech hiring runs through one filter you haven't passed yet.",
+    marketBody: `
+      <p>Vancouver anchors Western Canada's technology corridor.</p>
+      <p>Hootsuite, SAP Canada, Slack (Salesforce), and Amazon's Vancouver engineering hub drive large-scale SRE and DevOps hiring. Electronic Arts, Microsoft, and Ballard Power Systems operate major engineering teams in Burnaby and Richmond.</p>
+      <p>Mount Pleasant and Yaletown have become the software engineering core of Metro Vancouver. The interview blocker is identical to every other Canadian market:</p>
+      <blockquote>"Tell me about a production incident you owned end-to-end."</blockquote>
+      <p>Hiring managers want BC-based production. AWS. Kubernetes. On-call. Yarova gives you that answer.</p>`,
+    salaryRows: [
+      { role: 'SRE', entry: '$88,000', mid: '$110,000', senior: '$138,000' },
+      { role: 'DevOps Engineer', entry: '$83,000', mid: '$103,000', senior: '$128,000' },
+      { role: 'Platform Engineer', entry: '$86,000', mid: '$108,000', senior: '$132,000' },
+      { role: 'DevSecOps Engineer', entry: '$90,000', mid: '$115,000', senior: '$142,000' },
+    ],
+    salarySource: 'LinkedIn Salary (Vancouver, BC) · Hays Canada Technology 2025 · Indeed Canada Q4 2024.',
+    complianceH2: 'What background checks look for in British Columbia.',
+    complianceBody: `
+      <p>BC employers use Triton, BackCheck, and HireRight as primary verification vendors.</p>
+      <p>Yarova Inc. is incorporated in British Columbia. We provide formal employment verification letters. We serve as your reference. We answer when the vendor calls.</p>
+      <p>List your role as: <strong>Independent Technical Fellow (Uncompensated) — Yarova Inc.</strong></p>
+      <p>Do not use "SRE at Yarova" or "DevOps Engineer at Yarova." Standard titles trigger T4 requests. T4s do not exist because you paid Yarova. BC's Employment Standards Act does not prohibit uncompensated practicum arrangements with registered companies.</p>`,
+    cityFaq: [
+      {
+        q: 'I moved to Vancouver from another country. Does my SRE experience transfer?',
+        a: 'Your knowledge transfers. Your proof of Canadian production does not. Vancouver hiring managers ask for BC or Canadian production incidents. Yarova gives you the GitHub history that answers that question.',
+      },
+      {
+        q: 'Does Yarova count toward BC PNP Tech Pilot points?',
+        a: 'No. Yarova is an uncompensated practicum. The BC PNP Tech Pilot requires a valid job offer from a BC employer. Yarova gives you the depth to win that job offer. Not the offer itself.',
+      },
+    ],
+  },
+  {
+    slug: 'devops-placement-calgary',
+    cityName: 'Calgary',
+    province: 'Alberta',
+    title: 'DevOps Experience & Placement for Calgary IT Professionals | Yarova',
+    description: "Calgary's energy sector runs on DevOps engineers. But they only hire ones with Canadian experience. Yarova puts you inside a real team for $799/month. Real AWS. Real GitHub.",
+    badge: 'DevOps & SRE · Calgary · $799/month · Cancel Anytime',
+    heroH1a: "Calgary's tech and energy sector is hiring DevOps engineers.",
+    heroH1b: 'Not you. Not yet. Not without Canadian experience.',
+    marketH2: 'Calgary has two tech markets. Both demand Canadian production experience.',
+    marketBody: `
+      <p>Calgary runs a dual-sector tech economy unlike any other Canadian city.</p>
+      <p><strong>Energy tech:</strong> Enbridge, TC Energy, Suncor, Canadian Natural Resources, and Cenovus each operate large internal DevOps and platform engineering teams. Pipeline monitoring, SCADA integration, and cloud-based operational data platforms drive sustained demand.</p>
+      <p><strong>General tech:</strong> Shaw Communications (now Rogers), ATB Financial, and WestJet anchor the non-energy tech sector. The Beltline and Eau Claire tech districts have become Calgary's answer to Toronto's MaRS district.</p>
+      <p>The hiring barrier is the same across both sectors:</p>
+      <blockquote>"Walk me through a production deployment you owned."</blockquote>
+      <p>Calgary hiring managers are experienced. They can tell cloud simulation from real infrastructure in five minutes. Yarova gives you real infrastructure.</p>`,
+    salaryRows: [
+      { role: 'DevOps Engineer', entry: '$82,000', mid: '$102,000', senior: '$125,000' },
+      { role: 'SRE', entry: '$86,000', mid: '$108,000', senior: '$132,000' },
+      { role: 'Platform Engineer', entry: '$84,000', mid: '$105,000', senior: '$130,000' },
+      { role: 'DevSecOps Engineer', entry: '$88,000', mid: '$112,000', senior: '$138,000' },
+    ],
+    salarySource: 'LinkedIn Salary (Calgary, AB) · Hays Canada Technology 2025 · Indeed Canada Q4 2024.',
+    complianceH2: 'What background checks look for in Alberta.',
+    complianceBody: `
+      <p>Alberta employers use BackCheck and Sterling as primary verification vendors. Energy sector employers — Enbridge, Suncor, TC Energy — apply enhanced background screening.</p>
+      <p>Yarova Inc. is a registered Canadian company in British Columbia. We provide formal employment verification letters. We serve as your reference. We answer when the vendor calls.</p>
+      <p>List your role as: <strong>Independent Technical Fellow (Uncompensated) — Yarova Inc.</strong></p>
+      <p>Energy sector vendors are thorough. Standard titles trigger T4 requests. T4s do not exist because you paid Yarova. Alberta's Employment Standards Code does not prohibit uncompensated practicum arrangements with registered companies.</p>`,
+    cityFaq: [
+      {
+        q: 'I have energy sector IT experience from outside Canada. Does that transfer?',
+        a: 'Your domain knowledge transfers. Your proof of Canadian production systems does not. Calgary energy employers specifically ask about incident ownership on Canadian infrastructure. Yarova gives you that answer.',
+      },
+      {
+        q: 'Will Yarova show up on a Calgary energy sector background check?',
+        a: 'Yes. Yarova Inc. is a registered Canadian company. We verify. We reference. We answer the phone. We are prepared for the enhanced screening that energy employers apply. Title: Independent Technical Fellow (Uncompensated) — Yarova Inc.',
+      },
+    ],
+  },
+  {
+    slug: 'platform-engineering-ottawa',
+    cityName: 'Ottawa',
+    province: 'Ontario',
+    title: 'Platform Engineering & DevOps Experience for Ottawa IT Professionals | Yarova',
+    description: "Ottawa's federal tech contracts and Kanata North startups demand Canadian production experience. Yarova puts you inside a real team for $799/month. Real AWS. Real GitHub.",
+    badge: 'DevOps & SRE · Ottawa · $799/month · Cancel Anytime',
+    heroH1a: "Ottawa's federal and tech sector keeps asking for Canadian experience.",
+    heroH1b: 'Every hiring manager. Every contract. Every time.',
+    marketH2: "Ottawa has Canada's largest tech park. It runs on platform engineers you are not yet.",
+    marketBody: `
+      <p>Kanata North Technology Park is Canada's largest tech cluster by employer count.</p>
+      <p>Shopify (headquartered in Ottawa), Kinaxis, Pythian, and QNX (BlackBerry) are the anchor employers. IBM, DXC Technology, and CGI run large federal IT delivery practices from Ottawa offices. Accenture Federal, Deloitte Canada, and KPMG Canada all maintain Ottawa-specific government IT practices.</p>
+      <p>The federal government spends $10B+ annually on IT contracts. Almost all of it requires security-cleared, Canadian-experienced platform and DevOps engineers.</p>
+      <p>For private sector Ottawa roles the question is direct:</p>
+      <blockquote>"Show me your recent GitHub activity."</blockquote>
+      <p>Yarova gives you the GitHub activity that answers that question.</p>`,
+    salaryRows: [
+      { role: 'Platform Engineer', entry: '$87,000', mid: '$108,000', senior: '$133,000' },
+      { role: 'DevOps Engineer', entry: '$84,000', mid: '$105,000', senior: '$128,000' },
+      { role: 'DevSecOps Engineer', entry: '$92,000', mid: '$118,000', senior: '$145,000' },
+      { role: 'SRE', entry: '$88,000', mid: '$112,000', senior: '$138,000' },
+    ],
+    salarySource: 'LinkedIn Salary (Ottawa, ON) · Robert Half Technology 2025 · Indeed Canada Q4 2024. Federal contract roles add a security clearance premium of $8,000–$15,000.',
+    complianceH2: 'What background checks look for in Ottawa — including federal contracts.',
+    complianceBody: `
+      <p>Federal contractors require enhanced background checks through the Government of Canada's PSPC standard. Non-federal Ottawa employers use BackCheck, Sterling, and HireRight.</p>
+      <p>Yarova Inc. is a registered Canadian company in British Columbia. We provide formal employment verification letters. We serve as your reference. We answer when the vendor calls.</p>
+      <p>List your role as: <strong>Independent Technical Fellow (Uncompensated) — Yarova Inc.</strong></p>
+      <p>Federal and federal-adjacent background checks are thorough. Standard titles trigger T4 requests. T4s do not exist because you paid Yarova. Security clearance comes from citizenship, criminal history, and financial history — not employment history. Yarova experience cannot be listed as justification for clearance eligibility.</p>`,
+    cityFaq: [
+      {
+        q: 'I want to work on federal IT contracts. Does Yarova prepare me for that?',
+        a: 'Yes — the technical depth. The DevSecOps track is directly relevant to federal contract work. Security clearance is a separate process Yarova cannot affect. Yarova gives you the technical answers that get you past the interview.',
+      },
+      {
+        q: "I'm targeting Kanata North startups, not government. Is Yarova relevant?",
+        a: 'Yes. Private sector Ottawa employers (Shopify, Kinaxis, Pythian) run the same hiring filter: show me your GitHub, show me production incidents you owned. Yarova gives you that proof.',
+      },
+    ],
+  },
+  {
+    slug: 'sre-training-halifax',
+    cityName: 'Halifax',
+    province: 'Nova Scotia',
+    title: 'SRE & DevOps Real Experience for Halifax IT Professionals | Yarova',
+    description: "Halifax is Atlantic Canada's fastest-growing tech market. Every employer asks for Canadian experience first. Yarova puts you inside a real team for $799/month. Real AWS. Real GitHub.",
+    badge: 'DevOps & SRE · Halifax · $799/month · Cancel Anytime',
+    heroH1a: 'Halifax tech is growing fast.',
+    heroH1b: 'The companies hiring all want Canadian experience you don\'t have yet.',
+    marketH2: "Halifax is Atlantic Canada's tech hiring centre — and the bar is rising fast.",
+    marketBody: `
+      <p>Halifax has become the technology anchor for Atlantic Canada.</p>
+      <p>Volta Labs, Nova Scotia's flagship tech accelerator, has graduated over 300 companies since 2014. IBM's Halifax delivery centre employs 800+ IT professionals in managed services and cloud operations. Accenture, CGI, and Innovatia (now Coresio) run significant IT delivery operations from Halifax.</p>
+      <p>The Atlantic tech corridor is no longer a backup market. Remote-first hiring means Halifax engineers now compete with Toronto and Vancouver candidates.</p>
+      <p>That means Halifax employers ask the same question everyone else asks:</p>
+      <blockquote>"What have you shipped to production in Canada?"</blockquote>
+      <p>Yarova gives you the GitHub history of a real system.</p>`,
+    salaryRows: [
+      { role: 'SRE', entry: '$78,000', mid: '$96,000', senior: '$118,000' },
+      { role: 'DevOps Engineer', entry: '$75,000', mid: '$93,000', senior: '$115,000' },
+      { role: 'Platform Engineer', entry: '$77,000', mid: '$95,000', senior: '$116,000' },
+      { role: 'DevSecOps Engineer', entry: '$80,000', mid: '$100,000', senior: '$122,000' },
+    ],
+    salarySource: 'LinkedIn Salary (Halifax, NS) · Hays Canada Technology 2025 · Indeed Canada Q4 2024. Halifax salaries are lower than Toronto and Vancouver. Cost of living is significantly lower — adjusted for purchasing power, mid-level roles are comparable.',
+    complianceH2: 'What background checks look for in Nova Scotia.',
+    complianceBody: `
+      <p>Halifax employers use BackCheck and Sterling as primary verification vendors. Provincial government roles use Nova Scotia Government's internal HR verification.</p>
+      <p>Yarova Inc. is a registered Canadian company in British Columbia. We provide formal employment verification letters. We serve as your reference. We answer when the vendor calls.</p>
+      <p>List your role as: <strong>Independent Technical Fellow (Uncompensated) — Yarova Inc.</strong></p>
+      <p>Standard titles trigger T4 requests. T4s do not exist because you paid Yarova. Nova Scotia's Labour Standards Code does not prohibit uncompensated practicum arrangements with registered companies.</p>`,
+    cityFaq: [
+      {
+        q: 'Halifax salaries look lower than the rest of Canada. Is this worth it?',
+        a: "The cost of living offset is real. A $78,000 salary in Halifax has higher purchasing power than an $85,000 salary in Toronto. The DevOps and SRE experience you build is portable — you can move to Toronto or Vancouver and apply the same GitHub history.",
+      },
+      {
+        q: 'Does Yarova count toward the Atlantic Immigration Program (AIP)?',
+        a: 'No. Yarova is an uncompensated practicum. AIP requires a valid job offer from a designated Atlantic employer. Yarova gives you the depth to win that job offer. Not the offer itself.',
+      },
+    ],
+  },
+  ];
+
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={city.title} description={city.description} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "EducationalOccupationalProgram",
+      "name": `Yarova DevOps & SRE Experience — ${city.cityName}`,
+      "description": city.description,
+      "provider": {
+        "@type": "Organization",
+        "name": "Yarova Inc.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Langley",
+          "addressRegion": "BC",
+          "addressCountry": "CA"
+        }
+      },
+      "occupationalCategory": "DevOps Engineer, Site Reliability Engineer",
+      "educationalProgramMode": "online",
+      "offers": {
+        "@type": "Offer",
+        "price": "799",
+        "priceCurrency": "CAD",
+        "priceValidUntil": "2027-12-31"
+      }
+    })}></script>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header />
+
+    <main id="main">
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">
+            <span class="dot-green"></span>
+            {city.badge}
+          </p>
+          <h1>
+            {city.heroH1a}<br />
+            <span class="acc">{city.heroH1b}</span>
+          </h1>
+          <p class="hero-sub">
+            Yarova breaks that loop.<br />
+            $799 a month puts you inside a real DevOps or SRE team.<br />
+            Real tickets. Real AWS. Real Team Lead. Your code on GitHub. Permanently.
+          </p>
+          <div class="actions">
+            <a href="https://cal.com/yarova-fxqeea/discovery-call"
+               target="_blank" rel="noopener"
+               data-cal-link="yarova-fxqeea/discovery-call"
+               data-cal-namespace="discovery-call"
+               data-cal-config='{"layout":"month_view"}'
+               class="btn btn-amber btn-lg">
+              Book a Free 30-Min Call <span class="arrow">&rarr;</span>
+            </a>
+          </div>
+          <p class="fine">Month to month &middot; Cancel anytime &middot; 3 months recommended</p>
+        </div>
+      </section>
+
+      <!-- LOCAL MARKET -->
+      <section class="section alt">
+        <div class="container narrow">
+          <div class="sec-label">Local Market</div>
+          <h2>{city.marketH2}</h2>
+          <div class="city-body" set:html={city.marketBody}></div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="section" id="how-it-works">
+        <div class="container">
+          <div class="sec-label">How It Works</div>
+          <h2>This is not a course.<br />This is a job you pay to join.</h2>
+          <div class="how-grid">
+            <div class="how-item"><span class="how-n">01</span><div class="how-title">Join a project team of four engineers.</div></div>
+            <div class="how-item"><span class="how-n">02</span><div class="how-title">Get a veteran Team Lead who has done this for years.</div></div>
+            <div class="how-item"><span class="how-n">03</span><div class="how-title">Pull tickets from a live backlog &mdash; real problems, real scope.</div></div>
+            <div class="how-item"><span class="how-n">04</span><div class="how-title">Deploy to real cloud infrastructure, not a sandbox.</div></div>
+            <div class="how-item"><span class="how-n">05</span><div class="how-title">Your code gets reviewed line by line by your Team Lead.</div></div>
+            <div class="how-item how-item-final"><span class="how-n">06</span><div class="how-title">Every commit goes on your GitHub. Permanently.</div></div>
+          </div>
+          <div class="how-meta">
+            <div class="how-meta-item">
+              <div class="how-meta-label">Status calls</div>
+              <div class="how-meta-val">Scheduled twice a week. Attend if you can. If you can't: drop an update on your ticket and keep moving.</div>
+            </div>
+            <div class="how-meta-item">
+              <div class="how-meta-label">Your schedule</div>
+              <div class="how-meta-val">Async. Work when you have time. The work is real. The timeline is yours.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRACKS -->
+      <section class="section alt" id="tracks">
+        <div class="container">
+          <div class="sec-label">Two Tracks</div>
+          <h2>Pick the track that fits where you want to go.</h2>
+          <div class="tracks-grid">
+            <div class="track-card">
+              <div class="track-tag">DevOps &amp; DevSecOps</div>
+              <div class="track-desc">Build, automate, and secure the pipeline that ships software.</div>
+              <div class="track-owns-label">You own:</div>
+              <ul>
+                <li>CI/CD &mdash; the automated pipeline that builds and ships code</li>
+                <li>Infrastructure as Code with Terraform</li>
+                <li>Container security and image promotion</li>
+              </ul>
+              <div class="track-stack">AWS &middot; Terraform &middot; GitHub Actions &middot; Kubernetes &middot; Docker</div>
+            </div>
+            <div class="track-card">
+              <div class="track-tag">Site Reliability Engineering (SRE)</div>
+              <div class="track-desc">Keep production systems alive, observable, and self-healing.</div>
+              <div class="track-owns-label">You own:</div>
+              <ul>
+                <li>Telemetry &mdash; metrics, logs, traces</li>
+                <li>Incident response and on-call runbooks</li>
+                <li>Error budgets &mdash; how much downtime is acceptable</li>
+              </ul>
+              <div class="track-stack">AWS &middot; Kubernetes &middot; Prometheus &middot; Grafana &middot; PagerDuty</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REGIONAL SALARY -->
+      <section class="section" id="salary">
+        <div class="container narrow">
+          <div class="sec-label">Regional Salaries</div>
+          <h2>What {city.cityName} employers pay after you pass the experience filter.</h2>
+          <table class="salary-table">
+            <thead>
+              <tr>
+                <th>Role</th>
+                <th>Entry Level</th>
+                <th>Mid Level</th>
+                <th>Senior</th>
+              </tr>
+            </thead>
+            <tbody>
+              {city.salaryRows.map(row => (
+                <tr>
+                  <td>{row.role}</td>
+                  <td>{row.entry}</td>
+                  <td>{row.mid}</td>
+                  <td>{row.senior}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="salary-source">Source: {city.salarySource}</p>
+          <div class="roi-strip">
+            <span><strong>$2,397</strong> 3 months total</span>
+            <span class="roi-arrow">&rarr;</span>
+            <span><strong>$98,000 CAD</strong> avg starting salary</span>
+            <span class="roi-arrow">&rarr;</span>
+            <span><strong>11 weeks</strong> avg time to first offer</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPLIANCE -->
+      <section class="section alt" id="compliance">
+        <div class="container narrow">
+          <div class="sec-label">Background Check</div>
+          <h2>{city.complianceH2}</h2>
+          <div class="city-body" set:html={city.complianceBody}></div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section class="section" id="pricing">
+        <div class="container narrow">
+          <div class="sec-label">Pricing</div>
+          <h2>Simple. Honest. Justified.</h2>
+          <div class="price-card">
+            <div class="price-top">
+              <div class="price-num">$799 <span class="ccy">/ month</span></div>
+              <div class="price-when">Month to month &middot; Cancel anytime</div>
+            </div>
+            <div class="price-cols">
+              <div class="price-col">
+                <div class="price-col-label">What that pays for</div>
+                <ul class="price-list">
+                  <li>Your veteran Team Lead's time.</li>
+                  <li>Real cloud infrastructure.</li>
+                  <li>Real ticket reviews.</li>
+                  <li>Real status calls.</li>
+                </ul>
+              </div>
+              <div class="price-col">
+                <div class="price-col-label price-col-label-neg">What it does not pay for</div>
+                <ul class="price-list price-list-neg">
+                  <li>Not a course.</li>
+                  <li>Not pre-recorded videos.</li>
+                  <li>Not a certificate.</li>
+                </ul>
+              </div>
+            </div>
+            <a href="https://cal.com/yarova-fxqeea/discovery-call"
+               target="_blank" rel="noopener"
+               data-cal-link="yarova-fxqeea/discovery-call"
+               data-cal-namespace="discovery-call"
+               data-cal-config='{"layout":"month_view"}'
+               class="btn btn-amber btn-lg price-cta">
+              Book a Free 30-Min Call <span class="arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section alt" id="faq">
+        <div class="container narrow">
+          <div class="sec-label">FAQ</div>
+          <h2>Questions before booking.</h2>
+          <div class="faq">
+
+            <details open>
+              <summary><span>What exactly is Yarova?</span><span class="glyph">&minus;</span></summary>
+              <div class="answer">
+                <p>A paid engineering team you join to get real production experience. $799/month pays your veteran Team Lead. You work on real tickets, real infrastructure, and real code reviews. Your work goes on GitHub permanently.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><span>Is this real work or a simulation?</span><span class="glyph">+</span></summary>
+              <div class="answer">
+                <p>Real. The infrastructure runs on live AWS accounts. The tickets have real acceptance criteria and a real reviewer. The only thing not real: you are not on Yarova's payroll. You are a paid participant. The work is real.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><span>Can I cancel anytime?</span><span class="glyph">+</span></summary>
+              <div class="answer">
+                <p>Yes. Month to month. No penalty. No lock-in.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><span>What if I already have a job?</span><span class="glyph">+</span></summary>
+              <div class="answer">
+                <p>Join. Work on your own schedule. Status calls are twice a week — attend when you can. Async work fits around a day job.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><span>Does this count toward Canadian PR or Express Entry?</span><span class="glyph">+</span></summary>
+              <div class="answer">
+                <p>No. Yarova is an uncompensated practicum. IRCC does not count unpaid work for CEC hours. Yarova gives you the depth to pass a TEER 1 technical interview. That job earns the CRS score. Not this.</p>
+              </div>
+            </details>
+
+            {city.cityFaq.map(item => (
+              <details>
+                <summary><span>{item.q}</span><span class="glyph">+</span></summary>
+                <div class="answer">
+                  <p>{item.a}</p>
+                </div>
+              </details>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="cta-final" id="book">
+        <div class="container narrow" style="text-align:center;">
+          <h2>Book a free 30-minute call.</h2>
+          <div class="cta-bullets">
+            <span>No payment on the call.</span>
+            <span>We confirm the right track and start date.</span>
+            <span>You decide after.</span>
+          </div>
+          <div class="actions" style="justify-content:center; margin-top:40px;">
+            <a href="https://cal.com/yarova-fxqeea/discovery-call"
+               target="_blank" rel="noopener"
+               data-cal-link="yarova-fxqeea/discovery-call"
+               data-cal-namespace="discovery-call"
+               data-cal-config='{"layout":"month_view"}'
+               class="btn btn-amber btn-lg">
+              Book a Free 30-Min Call <span class="arrow">&rarr;</span>
+            </a>
+            <a href="mailto:hello@yarova.ca" class="btn btn-ghost btn-lg ghost-light">Email us instead</a>
+          </div>
+          <div class="cta-contact">
+            <span>WhatsApp: <a href="https://wa.me/16047197918" target="_blank" rel="noopener">+1 (604) 719-7918</a> &middot; Mon&ndash;Fri 9:00&ndash;18:00 PT</span>
+            <span>Email: <a href="mailto:hello@yarova.ca">hello@yarova.ca</a></span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <Footer />
+
+    <!-- Cal.com embed -->
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "Cal");
+      Cal("init", "discovery-call", {origin:"https://cal.com"});
+      Cal.ns["discovery-call"]("ui", {hideEventTypeDetails:false, layout:"month_view", styles:{branding:{brandColor:"#B45309"}}});
+    </script>
+
+    <script>
+      document.querySelectorAll('.faq details').forEach(function(d) {
+        d.addEventListener('toggle', function() {
+          var g = d.querySelector('.glyph');
+          if (g) g.textContent = d.open ? '−' : '+';
+        });
+      });
+    </script>
+
+    <style>
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      a { color: var(--color-amber-hover); text-decoration: none; }
+      a:hover { color: var(--color-amber-press); }
+      .skip { position: absolute; left: -9999px; top: 8px; background: var(--color-black); color: white; padding: 10px 14px; border-radius: 8px; font-size: 14px; z-index: 999; }
+      .skip:focus { left: 12px; }
+
+      .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+      .container.narrow { max-width: 720px; }
+      .section { padding: 96px 0; border-top: 1px solid var(--border); }
+      .section.alt { background: var(--bg-secondary); }
+
+      h1, h2, h3 { font-family: var(--font-sans); margin: 0; color: var(--fg-1); letter-spacing: -.025em; }
+      h1 { font-size: clamp(28px, 4.8vw, 62px); font-weight: 700; line-height: 1.06; letter-spacing: -.035em; }
+      h2 { font-size: clamp(24px, 3.5vw, 44px); font-weight: 700; line-height: 1.1; }
+      p { margin: 0; color: var(--fg-2); line-height: 1.65; }
+
+      .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; font-family: var(--font-sans); font-size: 15px; font-weight: 600; line-height: 1; border: 1px solid transparent; cursor: pointer; transition: transform 120ms ease, background 150ms ease; text-decoration: none; }
+      .btn-lg { padding: 18px 30px; font-size: 16px; }
+      .btn-amber { background: var(--color-amber-hover); color: white !important; box-shadow: 0 8px 22px -10px rgba(217,119,6,.55); }
+      .btn-amber:hover { background: var(--color-amber-press); color: white !important; transform: translateY(-1px); }
+      .btn-ghost { background: transparent; color: var(--fg-1); border-color: var(--border); }
+      .ghost-light { color: rgba(255,255,255,.8) !important; border-color: rgba(255,255,255,.2) !important; }
+      .btn .arrow { transition: transform 180ms ease; display: inline-block; }
+      .btn:hover .arrow { transform: translateX(3px); }
+
+      .sec-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber-hover); font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+      .sec-label::before { content: ""; width: 20px; height: 1px; background: var(--color-amber-hover); }
+
+      /* Hero */
+      .hero { padding: 80px 0 72px; }
+      .eyebrow { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); margin-bottom: 32px; display: flex; align-items: center; gap: 10px; }
+      .dot-green { width: 8px; height: 8px; border-radius: 50%; background: #10B981; box-shadow: 0 0 0 3px rgba(16,185,129,.2); flex-shrink: 0; }
+      .hero h1 .acc { color: var(--color-amber-hover); }
+      .hero-sub { font-size: 19px; color: var(--fg-2); margin-top: 28px; max-width: 620px; line-height: 1.6; }
+      .actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+      .fine { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; color: var(--fg-3); margin-top: 14px; }
+
+      /* City body prose */
+      .city-body { margin-top: 32px; }
+      .city-body p { font-size: 16px; color: var(--fg-2); line-height: 1.7; margin-bottom: 18px; }
+      .city-body strong { color: var(--fg-1); font-weight: 600; }
+      .city-body blockquote { margin: 24px 0; padding: 20px 24px; background: var(--color-black); color: rgba(255,255,255,.9); border-radius: 10px; font-size: 17px; font-weight: 600; font-family: var(--font-mono); line-height: 1.4; border: none; font-style: normal; }
+
+      /* How It Works */
+      .how-grid { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+      .how-item { padding: 26px 22px; background: var(--bg-primary); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; gap: 14px; }
+      .how-item:nth-child(3n) { border-right: none; }
+      .how-item:nth-child(4), .how-item:nth-child(5), .how-item:nth-child(6) { border-bottom: none; }
+      .how-item-final { background: var(--color-black); }
+      .how-item-final .how-n { color: var(--color-amber); }
+      .how-item-final .how-title { color: white; }
+      .how-n { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--color-amber-hover); padding-top: 2px; flex-shrink: 0; }
+      .how-title { font-size: 14px; font-weight: 500; color: var(--fg-1); line-height: 1.5; }
+      @media (max-width: 880px) { .how-grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 560px) { .how-grid { grid-template-columns: 1fr; } .how-item { border-right: none !important; border-bottom: 1px solid var(--border) !important; } .how-item:last-child { border-bottom: none !important; } }
+      .how-meta { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .how-meta-item { padding: 22px; background: var(--bg-secondary); border-radius: 12px; border: 1px solid var(--border); }
+      .how-meta-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber-hover); font-weight: 600; margin-bottom: 8px; }
+      .how-meta-val { font-size: 14px; color: var(--fg-2); line-height: 1.6; }
+      @media (max-width: 640px) { .how-meta { grid-template-columns: 1fr; } }
+
+      /* Tracks */
+      .tracks-grid { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .track-card { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
+      .track-tag { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber-hover); font-weight: 600; margin-bottom: 10px; }
+      .track-desc { font-size: 15px; font-weight: 500; color: var(--fg-1); margin-bottom: 18px; line-height: 1.5; }
+      .track-owns-label { font-size: 11px; font-weight: 600; color: var(--fg-3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+      .track-card ul { list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-direction: column; gap: 8px; }
+      .track-card ul li { font-size: 13px; color: var(--fg-2); padding-left: 16px; position: relative; line-height: 1.5; }
+      .track-card ul li::before { content: "→"; position: absolute; left: 0; color: var(--color-amber-hover); font-size: 12px; }
+      .track-stack { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); letter-spacing: .06em; padding-top: 14px; border-top: 1px solid var(--border); }
+      @media (max-width: 700px) { .tracks-grid { grid-template-columns: 1fr; } }
+
+      /* Salary table */
+      .salary-table { margin-top: 36px; width: 100%; border-collapse: collapse; font-size: 14px; }
+      .salary-table th { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--fg-3); padding: 10px 12px; border-bottom: 2px solid var(--border); text-align: left; }
+      .salary-table td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--fg-1); }
+      .salary-table td:first-child { font-weight: 500; }
+      .salary-table td:not(:first-child) { font-family: var(--font-mono); font-size: 13px; color: var(--color-amber-hover); font-weight: 600; }
+      .salary-source { font-size: 12px; color: var(--fg-3); margin-top: 14px; line-height: 1.5; }
+      .roi-strip { display: flex; align-items: center; gap: 16px; margin-top: 28px; padding: 20px 24px; background: var(--color-black); border-radius: 12px; flex-wrap: wrap; }
+      .roi-strip span { font-family: var(--font-mono); font-size: 12px; color: rgba(255,255,255,.6); }
+      .roi-strip strong { color: white; font-size: 15px; }
+      .roi-arrow { color: rgba(255,255,255,.25) !important; font-size: 16px !important; }
+
+      /* Pricing */
+      .price-card { margin-top: 36px; background: var(--color-black); border-radius: 18px; padding: 44px; position: relative; overflow: hidden; }
+      .price-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(217,119,6,.15), transparent 60%); pointer-events: none; }
+      .price-top { position: relative; margin-bottom: 32px; }
+      .price-num { font-size: clamp(44px, 7vw, 66px); font-weight: 700; color: white; letter-spacing: -.04em; line-height: 1; }
+      .price-num .ccy { font-size: 20px; color: rgba(255,255,255,.5); font-weight: 500; letter-spacing: 0; }
+      .price-when { font-size: 13px; color: rgba(255,255,255,.4); margin-top: 8px; font-family: var(--font-mono); }
+      .price-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; position: relative; }
+      .price-col-label { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--color-amber); font-weight: 600; margin-bottom: 12px; }
+      .price-col-label-neg { color: rgba(255,255,255,.35); }
+      .price-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+      .price-list li { font-size: 14px; color: rgba(255,255,255,.8); padding-left: 20px; position: relative; }
+      .price-list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-amber); font-weight: 700; }
+      .price-list-neg li { color: rgba(255,255,255,.35); }
+      .price-list-neg li::before { content: "—"; color: rgba(255,255,255,.18); }
+      @media (max-width: 560px) { .price-cols { grid-template-columns: 1fr; } }
+      .price-cta { width: 100%; justify-content: center; position: relative; }
+
+      /* FAQ */
+      .faq { margin-top: 40px; }
+      .faq details { border-bottom: 1px solid var(--border); padding: 20px 0; }
+      .faq details summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; list-style: none; font-size: 16px; font-weight: 500; color: var(--fg-1); gap: 24px; }
+      .faq details summary::-webkit-details-marker { display: none; }
+      .glyph { font-family: var(--font-mono); font-size: 20px; color: var(--color-amber-hover); flex-shrink: 0; }
+      .answer { padding-top: 14px; max-width: 620px; }
+      .answer p { color: var(--fg-2); font-size: 14px; line-height: 1.7; margin-bottom: 10px; }
+      .answer p:last-child { margin-bottom: 0; }
+
+      /* Final CTA */
+      .cta-final { background: var(--color-black); color: white; padding: 88px 0; }
+      .cta-final h2 { color: white; }
+      .cta-bullets { display: flex; flex-direction: column; gap: 6px; margin-top: 20px; }
+      .cta-bullets span { font-size: 16px; color: rgba(255,255,255,.6); }
+      .cta-contact { margin-top: 28px; display: flex; flex-direction: column; gap: 6px; }
+      .cta-contact span { font-family: var(--font-mono); font-size: 12px; color: rgba(255,255,255,.35); }
+      .cta-contact a { color: rgba(255,255,255,.6); }
+      .cta-contact a:hover { color: white; }
+    </style>
+  </body>
+</html>

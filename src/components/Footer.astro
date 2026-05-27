@@ -7,19 +7,30 @@ const today = new Date();
   <div class="container">
     <div class="inner">
       <div class="cell">
-        <span class="lbl">Book a 30-min enrollment call</span>
-        <span class="val"><a href="https://cal.com/yarova-fxqeea/discovery-call" target="_blank" rel="noopener" data-cal-link="yarova-fxqeea/discovery-call" data-cal-namespace="discovery-call">cal.com/yarova-fxqeea/discovery-call</a></span>
-        <span class="sub">30 min &middot; no deposit &middot; we confirm the right batch on the call</span>
+        <span class="lbl">Book a free call</span>
+        <span class="val">
+          <a href="https://cal.com/yarova-fxqeea/discovery-call"
+             target="_blank" rel="noopener"
+             data-cal-link="yarova-fxqeea/discovery-call"
+             data-cal-namespace="discovery-call">
+            cal.com/yarova-fxqeea/discovery-call
+          </a>
+        </span>
+        <span class="sub">30 min &middot; no payment on the call &middot; you decide after</span>
       </div>
       <div class="cell">
-        <span class="lbl">WhatsApp Business</span>
-        <span class="val"><a href="https://wa.me/16047197918?text=Hi%20Yarova%2C%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener">+1 (604) 719 &middot; 7918</a></span>
-        <span class="sub">Mon&ndash;Fri &middot; 9:00&ndash;18:00 PT &middot; replies within 4 business hours</span>
+        <span class="lbl">WhatsApp</span>
+        <span class="val">
+          <a href="https://wa.me/16047197918?text=Hi%20Yarova%2C%20I%27d%20like%20to%20learn%20about%20the%20program." target="_blank" rel="noopener">
+            +1 (604) 719&middot;7918
+          </a>
+        </span>
+        <span class="sub">Mon&ndash;Fri &middot; 9:00&ndash;18:00 PT</span>
       </div>
       <div class="cell">
         <span class="lbl">Email</span>
         <span class="val"><a href="mailto:hello@yarova.ca">hello@yarova.ca</a></span>
-        <span class="sub">Ask for the syllabus, role profiles, or batch calendar.</span>
+        <span class="sub">Send questions &mdash; we reply within one business day.</span>
       </div>
     </div>
   </div>
@@ -28,14 +39,21 @@ const today = new Date();
 <!-- Footer -->
 <footer class="foot">
   <div class="container foot-inner">
-    <div>&copy; {today.getFullYear()} Yarova Inc. &middot; Langley, BC &middot; Founded 2018</div>
+    <div>&copy; {today.getFullYear()} Yarova Inc. &middot; Langley, BC, Canada &middot; Founded 2018</div>
     <div class="foot-links">
-      <a href="/#tracks">Tracks</a>
-      <a href="/#day">How it works</a>
-      <a href="/#runway">Career support</a>
-      <a href="/#enroll">Enroll</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#tracks">Tracks</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="/about">About</a>
       <a href="/blog">Blog</a>
+      <a href="https://wa.me/16047197918" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://cal.com/yarova-fxqeea/discovery-call"
+         target="_blank" rel="noopener"
+         data-cal-link="yarova-fxqeea/discovery-call"
+         data-cal-namespace="discovery-call">
+        Book a call
+      </a>
     </div>
   </div>
 </footer>
@@ -43,20 +61,19 @@ const today = new Date();
 <style>
   .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
 
-  /* Contact strip */
-  .contact-strip { padding: 56px 0; border-top: 1px solid var(--border); background: var(--bg-primary); }
+  .contact-strip { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 48px 0; }
   .contact-strip .inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-  .contact-strip .cell { display: flex; flex-direction: column; gap: 6px; }
-  .contact-strip .lbl { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); }
-  .contact-strip .val { font-size: 16px; font-weight: 600; color: var(--fg-1); }
-  .contact-strip .val a { color: var(--fg-1); }
-  .contact-strip .val a:hover { color: var(--color-amber-hover); }
-  .contact-strip .sub { font-size: 13px; color: var(--fg-2); line-height: 1.55; }
-  @media (max-width: 800px) { .contact-strip .inner { grid-template-columns: 1fr; gap: 24px; } }
+  .cell { display: flex; flex-direction: column; gap: 6px; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--fg-3); }
+  .val { font-size: 15px; font-weight: 600; color: var(--fg-1); }
+  .val a { color: var(--color-amber-hover); text-decoration: none; }
+  .val a:hover { color: var(--color-amber-press); }
+  .sub { font-size: 12px; color: var(--fg-3); line-height: 1.5; }
+  @media (max-width: 720px) { .contact-strip .inner { grid-template-columns: 1fr; } }
 
-  .foot { padding: 40px 0 64px; border-top: 1px solid var(--border); background: var(--bg-secondary); }
+  .foot { padding: 40px 0; border-top: 1px solid var(--border); }
   .foot-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; font-size: 13px; color: var(--fg-2); }
-  .foot a { color: var(--fg-2); text-decoration: none; }
-  .foot a:hover { color: var(--fg-1); }
   .foot-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .foot a { color: var(--fg-2); text-decoration: none; transition: color 150ms ease; }
+  .foot a:hover { color: var(--fg-1); }
 </style>

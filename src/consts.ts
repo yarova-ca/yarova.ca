@@ -1,2 +1,2 @@
-export const SITE_TITLE = 'Yarova — Real Canadian DevOps & SRE Production Experience in 8 Weeks';
-export const SITE_DESCRIPTION = 'Structured remote workplace simulation for IT professionals in Canada. Squad of 4, real Team Lead, real AWS infrastructure, real GitHub history. Full career support from resume rewrites through clearing your 90-day job probation. $2,400 CAD flat. No hidden fees. No income-share traps.';
+export const SITE_TITLE = 'Yarova — Real DevOps & SRE experience. $799/month.';
+export const SITE_DESCRIPTION = 'Join a real DevOps or SRE team for $799/month. Real tickets. Real AWS. Real Team Lead. Your code on GitHub permanently. Month to month. Cancel anytime. Canada.';
