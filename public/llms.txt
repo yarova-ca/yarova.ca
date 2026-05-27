@@ -1,45 +1,47 @@
 # Yarova
 
-> An IT placement consultancy for the AI era. We get people into DevOps, SRE, and Platform Engineering roles in Canada.
+> A simulated remote workplace for DevOps and SRE engineers in Canada. Real squad, real Team Lead, real tickets on real infrastructure. Eight weeks of real work, a real GitHub history, then full support to a stable Canadian job.
 
-Yarova is a placement consultancy — not a bootcamp, not a course platform.
-
-The program builds real GitHub artifacts: 33 executed tickets across 8 phases, 3 repositories (viro-services, viro-tooling, viro-infra), and a resume rebuilt around proof.
+Yarova is not a course, not a bootcamp, not a tutorial platform. The work is real: real repositories under the Yarova GitHub organization, real cloud infrastructure, real PR reviews, real incident drills.
 
 Founder: Rohith Yadla — Solutions Architect with 10 years of production consulting experience across Morgan Stanley, Salesforce, and the BC Government.
 
 ## What Yarova does
 
-- Structured 8-phase program — foundations through interview readiness
-- 33 tickets executed and committed to GitHub by the participant
-- Live group sessions, async coaching, mock interviews, resume rebuild
-- Support until the participant has an offer — no time cap
-- One-time $1,500 CAD — rejoin free if program is completed without landing a role
+- An 8-week real-work experience for DevOps or SRE engineers
+- Squad of 4 reporting to a real Team Lead (a senior engineer at a Canadian tech company)
+- Real GitHub history: tickets, PRs, code reviews, runbooks
+- Full transition support after the batch: resume rebuild, interview prep, background-check support, day-one prep, probation check-ins at 30/60/90 days
+- $2,400 CAD one-time, paid before day one of the batch
+- Rejoin guarantee: not hired? Rejoin the next batch, free, until you are
+
+## How batches work
+
+- Multiple batches start each month, on different Mondays
+- Some batches run 09:00–17:00 PT (standard shift), some run 13:00–21:00 PT (evening shift, for engineers who still hold a day job)
+- 4 seats per batch — cap is enforced
+
+## Two tracks
+
+- DevOps & DevSecOps — AWS, Terraform, GitHub Actions, Kubernetes, Docker
+- SRE — AWS, Kubernetes, Prometheus, Grafana, PagerDuty
 
 ## Who it is for
 
-- People already in Canada who need a structured path to DevOps/SRE interviews
-- Newcomers arriving within 6–12 months or on shrinking PGWP authorization
-- Career switchers targeting DevOps or SRE specifically
-- IT professionals (junior, sysadmin, QA) going senior
-
-## Roles targeted
-
-- DevOps Engineer (Junior–Mid): $75,000–$110,000 CAD
-- Site Reliability Engineer I–II: $90,000–$130,000 CAD
-- Site Reliability Engineer III / Senior: $130,000–$170,000 CAD
-- Platform Engineer: $110,000–$155,000 CAD
-- Cloud Engineer / Cloud Architect Assoc.: $95,000–$140,000 CAD
+- Engineers already in Canada (or arriving within 6 months with valid authorization)
+- People stuck in the "no Canadian experience" loop
+- Career switchers from QA, sysadmin, or IT support moving into DevOps/SRE
+- Newcomers from senior engineering roles abroad who need a Canadian reference
 
 ## Contact
 
 - Discovery call: https://cal.com/yarova-fxqeea/discovery-call
 - WhatsApp Business: https://wa.me/16047197918
-- Email: support@yarova.ca
+- Email: hello@yarova.ca
 - Location: Langley, British Columbia, Canada
 
 ## Optional
 
 - [Full site](https://yarova.ca)
-- [Blog](https://yarova.ca/blog)
 - [About Rohith Yadla](https://yarova.ca/about)
+- [Blog](https://yarova.ca/blog)

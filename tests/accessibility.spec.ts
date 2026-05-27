@@ -85,14 +85,12 @@ test.describe('Accessibility — homepage', () => {
 
   test('keyboard: can reach hero CTA via Tab', async ({ page }) => {
     await page.goto('/');
-    // Tab through header elements to reach hero CTA
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       await page.keyboard.press('Tab');
       const focused = await page.evaluate(() => document.activeElement?.textContent?.trim());
-      if (focused?.includes('Schedule a fit call')) break;
+      if (focused?.includes('Book a 30-Min Enrollment Call')) break;
     }
     const focused = await page.evaluate(() => document.activeElement?.textContent?.trim());
-    // Either the hero CTA or a nearby link should be reachable
     expect(focused).toBeTruthy();
   });
 

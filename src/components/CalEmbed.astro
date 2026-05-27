@@ -1,0 +1,41 @@
+---
+// Shared Cal.com embed initializer. Keeps the namespace + brand color in
+// one place so the embed can't drift across pages.
+//
+// Two modes:
+//   <CalEmbed namespace="discovery-call" />
+//     → Just the init script. Use when only popup CTAs (data-cal-link) are
+//       on the page.
+//   <CalEmbed namespace="discovery-call" inline calLink="yarova-fxqeea/discovery-call" height="720px" />
+//     → Renders an inline calendar widget inside a div with id
+//       `cal-{namespace}-inline`, plus the init script.
+interface Props {
+  /** Cal.com namespace, e.g. "discovery-call" or "tax-consult". */
+  namespace: string;
+  /** If true, render the inline calendar widget. Requires calLink. */
+  inline?: boolean;
+  /** Full Cal.com link, e.g. "yarova-fxqeea/discovery-call". Used by inline. */
+  calLink?: string;
+  /** Height of the inline calendar container. Default 720px. */
+  height?: string;
+}
+const { namespace, inline = false, calLink, height = '720px' } = Astro.props;
+const elementId = `cal-${namespace}-inline`;
+---
+
+{inline && calLink && (
+  <div id={elementId} style={`width:100%; min-height:${height}`}></div>
+)}
+
+<script type="text/javascript" is:inline define:vars={{ namespace, inline, elementId, calLink }}>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const ns = ar[1]; api.q = api.q || []; if(typeof ns === "string"){cal.ns[ns] = cal.ns[ns] || api; p(cal.ns[ns], ar); p(cal, ["initNamespace", ns]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "Cal");
+  Cal("init", namespace, { origin: "https://cal.com" });
+  Cal.ns[namespace]("ui", { hideEventTypeDetails: false, layout: "month_view", styles: { branding: { brandColor: "#B45309" } } });
+  if (inline && calLink) {
+    Cal.ns[namespace]("inline", {
+      elementOrSelector: "#" + elementId,
+      calLink: calLink,
+      config: { layout: "month_view" }
+    });
+  }
+</script>
