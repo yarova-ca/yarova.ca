@@ -1,2 +1,2 @@
-export const SITE_TITLE = 'Yarova — The closest thing to your first day on the job.';
-export const SITE_DESCRIPTION = 'Simulated remote workplace for DevOps and SRE engineers. Real squad, real Team Lead, real daily standups, real tickets. Full support — resume to probation. $1,500 flat. Canada.';
+export const SITE_TITLE = 'Yarova — Real DevOps & SRE experience. $799/month.';
+export const SITE_DESCRIPTION = 'Join a real DevOps or SRE team for $799/month. Real tickets. Real AWS. Real Team Lead. Your code on GitHub permanently. Month to month. Cancel anytime. Canada.';
